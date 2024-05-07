@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string-array name="names_of_product">
+        <item>"Strawberry Praffle"</item>
+        <item>"Cheese Prata"</item>
+        <item>"Strawberry Praffle"</item>
+        <item>"Strawberry Praffle"</item>
+        <item>"Strawberry Praffle"</item>
+        <item>"Strawberry Praffle"</item>
+        <item>"Strawberry Praffle"</item>
+        <item>"Strawberry Praffle"</item>
+    </string-array>
+
+    <string-array name="desc">
+        <item>"Very delicious and tasty, melts in your mouth"</item>
+        <item>"Very delicious and tasty, melts in your mouth"</item>
+        <item>"Very delicious and tasty, melts in your mouth"</item>
+        <item>"Very delicious and tasty, melts in your mouth"</item>
+        <item>"Very delicious and tasty, melts in your mouth"</item>
+        <item>"Very delicious and tasty, melts in your mouth"</item>
+        <item>"Very delicious and tasty, melts in your mouth"</item>
+        <item>"Very delicious and tasty, melts in your mouth"</item>
+    </string-array>
 </resources>
