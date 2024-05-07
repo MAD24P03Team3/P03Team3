@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        //item recycler view
         setContentView(R.layout.activity_main);
         rv = findViewById(R.id.horizontalRV);
 
