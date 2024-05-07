@@ -60,10 +60,10 @@ public  class MainActivity extends AppCompatActivity {
         rv_Store = findViewById(R.id.storelistRV);
 
         rv_Store_Data = new ArrayList<>();
-        rv_Store_Data.add("item 1");
-        rv_Store_Data.add("item 2");
-        rv_Store_Data.add("item 3");
-        rv_Store_Data.add("item 4");
+        rv_Store_Data.add("Prata boy");
+        rv_Store_Data.add("Oishii daily");
+        rv_Store_Data.add("Coffee connect");
+        rv_Store_Data.add("Acai den");
 
         linearLayoutManagerStore = new LinearLayoutManager(MainActivity.this,LinearLayoutManager.VERTICAL,false);
         rv_Store_Adapter = new StoreRVAdapter(rv_Store_Data);
