@@ -20,7 +20,7 @@
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="60dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/layout_bg_searchbar"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
             android:id="@+id/searchimage"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="60dp"
             android:background="@drawable/layout_bg_searchicon"
             app:layout_constraintRight_toLeftOf="@id/searchbar"
             app:layout_constraintTop_toTopOf="@id/main"
@@ -56,7 +56,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:paddingBottom="10dp">
+                android:paddingBottom="10dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp">
 
 
                 <ImageView

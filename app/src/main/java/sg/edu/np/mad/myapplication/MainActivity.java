@@ -18,10 +18,16 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    RecyclerView rv;
-    ArrayList<String> rvData;
+    //product items recycler view
+    RecyclerView rv_Items;
+    ArrayList<String> rv_Items_Data;
     LinearLayoutManager linearLayoutManager;
-    RVAdapter rvAdapter;
+    RVAdapter rv_Items_Adapter;
+
+    //store list recycler view
+    RecyclerView rv_Stores;
+    ArrayList<String> rv_Store_Data;
+    RVAdapter rv_Store_Adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,20 +40,20 @@ public class MainActivity extends AppCompatActivity {
         });
         //item recycler view
         setContentView(R.layout.activity_main);
-        rv = findViewById(R.id.horizontalRV);
+        rv_Items = findViewById(R.id.horizontalRV);
 
-        rvData = new ArrayList<>();
-        rvData.add("item 1");
-        rvData.add("item 2");
-        rvData.add("item 3");
-        rvData.add("item 4");
-        rvData.add("item 5");
-        rvData.add("item 6");
+        rv_Items_Data = new ArrayList<>();
+        rv_Items_Data.add("item 1");
+        rv_Items_Data.add("item 2");
+        rv_Items_Data.add("item 3");
+        rv_Items_Data.add("item 4");
+        rv_Items_Data.add("item 5");
+        rv_Items_Data.add("item 6");
 
         linearLayoutManager = new LinearLayoutManager(MainActivity.this,LinearLayoutManager.HORIZONTAL,false);
-        rvAdapter = new RVAdapter(rvData);
-        rv.setLayoutManager(linearLayoutManager);
-        rv.setAdapter(rvAdapter);
+        rv_Items_Adapter = new RVAdapter(rv_Items_Data);
+        rv_Items.setLayoutManager(linearLayoutManager);
+        rv_Items.setAdapter(rv_Items_Adapter);
     }
     class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyHolder>{
         ArrayList<String> data;
