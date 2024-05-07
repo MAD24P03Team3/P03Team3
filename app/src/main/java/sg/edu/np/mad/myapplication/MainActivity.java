@@ -17,17 +17,19 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public  class MainActivity extends AppCompatActivity {
     //product items recycler view
     RecyclerView rv_Items;
     ArrayList<String> rv_Items_Data;
-    LinearLayoutManager linearLayoutManager;
+    LinearLayoutManager linearLayoutManagerItems;
     RVAdapter rv_Items_Adapter;
 
     //store list recycler view
-    RecyclerView rv_Stores;
+    RecyclerView rv_Store;
     ArrayList<String> rv_Store_Data;
-    RVAdapter rv_Store_Adapter;
+    LinearLayoutManager linearLayoutManagerStore;
+    StoreRVAdapter rv_Store_Adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         //item recycler view
         setContentView(R.layout.activity_main);
         rv_Items = findViewById(R.id.horizontalRV);
@@ -47,40 +50,77 @@ public class MainActivity extends AppCompatActivity {
         rv_Items_Data.add("item 2");
         rv_Items_Data.add("item 3");
         rv_Items_Data.add("item 4");
-        rv_Items_Data.add("item 5");
-        rv_Items_Data.add("item 6");
 
-        linearLayoutManager = new LinearLayoutManager(MainActivity.this,LinearLayoutManager.HORIZONTAL,false);
+        linearLayoutManagerItems = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
         rv_Items_Adapter = new RVAdapter(rv_Items_Data);
-        rv_Items.setLayoutManager(linearLayoutManager);
+        rv_Items.setLayoutManager(linearLayoutManagerItems);
         rv_Items.setAdapter(rv_Items_Adapter);
-    }
-    class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyHolder>{
-        ArrayList<String> data;
-        public RVAdapter(ArrayList<String> data){
-            this.data = data;
 
+        //store recycler view
+        rv_Store = findViewById(R.id.storelistRV);
+
+        rv_Store_Data = new ArrayList<>();
+        rv_Store_Data.add("item 1");
+        rv_Store_Data.add("item 2");
+        rv_Store_Data.add("item 3");
+        rv_Store_Data.add("item 4");
+
+        linearLayoutManagerStore = new LinearLayoutManager(MainActivity.this,LinearLayoutManager.VERTICAL,false);
+        rv_Store_Adapter = new StoreRVAdapter(rv_Store_Data);
+        rv_Store.setLayoutManager(linearLayoutManagerStore);
+        rv_Store.setAdapter(rv_Store_Adapter);
+
+    }
+
+    class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyHolder> {
+        ArrayList<String> data;
+        public RVAdapter(ArrayList<String> data) {
+            this.data = data;
         }
         @NonNull
         @Override
         public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.recycler_items,null,false);
-            return new MyHolder(view);
+            View itemview = LayoutInflater.from(MainActivity.this).inflate(R.layout.recycler_items, null, false);
+            return new MyHolder(itemview);
         }
-
         @Override
         public void onBindViewHolder(@NonNull MyHolder holder, int position) {
             holder.tvTitle.setText(data.get(position));
         }
-
         @Override
         public int getItemCount() {
             return data.size();
         }
-
-        class MyHolder extends RecyclerView.ViewHolder{
+        class MyHolder extends RecyclerView.ViewHolder {
             TextView tvTitle;
-            public MyHolder(@NonNull View itemView){
+            public MyHolder(@NonNull View itemView) {
+                super(itemView);
+                tvTitle = itemView.findViewById(R.id.tvTitle);
+            }
+        }
+    }
+    class StoreRVAdapter extends RecyclerView.Adapter<StoreRVAdapter.MyHolder> {
+        ArrayList<String> data;
+        public StoreRVAdapter(ArrayList<String> data) {
+            this.data = data;
+        }
+        @NonNull
+        @Override
+        public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View itemview = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_store, null, false);
+            return new MyHolder(itemview);
+        }
+        @Override
+        public void onBindViewHolder(@NonNull MyHolder holder, int position) {
+            holder.tvTitle.setText(data.get(position));
+        }
+        @Override
+        public int getItemCount() {
+            return data.size();
+        }
+        class MyHolder extends RecyclerView.ViewHolder {
+            TextView tvTitle;
+            public MyHolder(@NonNull View itemView) {
                 super(itemView);
                 tvTitle = itemView.findViewById(R.id.tvTitle);
             }
