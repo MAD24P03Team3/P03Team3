@@ -1,11 +1,11 @@
 package sg.edu.np.mad.myapplication;
 
 public class User {
-    String name;
-    int password;
+    String studentId;
+    String password;
 
-    public User(String name, int password){
-        this.name = name;
+    public User(String studentId, String password){
+        this.studentId = studentId;
         this.password = password;
     }
 }
