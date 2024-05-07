@@ -7,7 +7,7 @@ public class menuModel {
     int image;
 
 
-    public menuModel(String itemdesc, String itemName, int image) {
+    public menuModel(String itemName, String itemdesc, int image) {
         this.itemdesc = itemdesc;
         this.itemName = itemName;
         this.image = image;
