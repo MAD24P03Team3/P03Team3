@@ -65,65 +65,10 @@ public  class MainActivity extends AppCompatActivity {
         rv_Store_Data.add("Coffee connect");
         rv_Store_Data.add("Acai den");
 
-        linearLayoutManagerStore = new LinearLayoutManager(MainActivity.this,LinearLayoutManager.VERTICAL,false);
+        linearLayoutManagerStore = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false);
         rv_Store_Adapter = new StoreRVAdapter(rv_Store_Data);
         rv_Store.setLayoutManager(linearLayoutManagerStore);
         rv_Store.setAdapter(rv_Store_Adapter);
 
-    }
-
-    class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyHolder> {
-        ArrayList<String> data;
-        public RVAdapter(ArrayList<String> data) {
-            this.data = data;
-        }
-        @NonNull
-        @Override
-        public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View itemview = LayoutInflater.from(MainActivity.this).inflate(R.layout.recycler_items, null, false);
-            return new MyHolder(itemview);
-        }
-        @Override
-        public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-            holder.tvTitle.setText(data.get(position));
-        }
-        @Override
-        public int getItemCount() {
-            return data.size();
-        }
-        class MyHolder extends RecyclerView.ViewHolder {
-            TextView tvTitle;
-            public MyHolder(@NonNull View itemView) {
-                super(itemView);
-                tvTitle = itemView.findViewById(R.id.tvTitle);
-            }
-        }
-    }
-    class StoreRVAdapter extends RecyclerView.Adapter<StoreRVAdapter.MyHolder> {
-        ArrayList<String> data;
-        public StoreRVAdapter(ArrayList<String> data) {
-            this.data = data;
-        }
-        @NonNull
-        @Override
-        public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View itemview = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_store, null, false);
-            return new MyHolder(itemview);
-        }
-        @Override
-        public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-            holder.tvTitle.setText(data.get(position));
-        }
-        @Override
-        public int getItemCount() {
-            return data.size();
-        }
-        class MyHolder extends RecyclerView.ViewHolder {
-            TextView tvTitle;
-            public MyHolder(@NonNull View itemView) {
-                super(itemView);
-                tvTitle = itemView.findViewById(R.id.tvTitle);
-            }
-        }
     }
 }
