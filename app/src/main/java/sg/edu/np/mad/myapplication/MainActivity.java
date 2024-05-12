@@ -48,6 +48,24 @@ public  class MainActivity extends AppCompatActivity {
         });
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        /*
+        bottomNavView.setOnItemSelectedListener(item ->{
+            switch (item.getItemId()){
+                case R.id.page_1://account
+
+                    break;
+                case R.id.page_2://menu
+                    break;
+                case R.id.page_3://home
+                    break;
+                case R.id.page_4://rewards
+                    break;
+                case R.id.page_4://cart
+                    break;
+            };
+        });
+
+         */
 
 
 
