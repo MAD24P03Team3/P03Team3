@@ -15,7 +15,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
+
+import sg.edu.np.mad.myapplication.databinding.ActivityMainBinding;
 
 public  class MainActivity extends AppCompatActivity {
     //product items recycler view
@@ -29,6 +33,8 @@ public  class MainActivity extends AppCompatActivity {
     ArrayList<String> rv_Store_Data;
     LinearLayoutManager linearLayoutManagerStore;
     StoreRVAdapter rv_Store_Adapter;
+    ActivityMainBinding binding;
+    BottomNavigationView bottomNavView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,10 @@ public  class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+
 
         //item recycler view
         setContentView(R.layout.activity_main);
