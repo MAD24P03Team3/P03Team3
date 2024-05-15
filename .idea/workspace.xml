@@ -5,6 +5,11 @@
       <config />
     </shared>
     <layouts>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_cart.xml">
+        <config>
+          <theme>@style/Theme.MyApplication</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_foodmenu.xml">
         <config>
           <theme>@style/Theme.MyApplication</theme>
@@ -20,7 +25,7 @@
           <theme>@style/Theme.MyApplication</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up_page.xml">
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_rewards.xml">
         <config>
           <theme>@style/Theme.MyApplication</theme>
         </config>
@@ -52,13 +57,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39eb89c9-b0c2-4177-b484-de25b432035d" name="Changes" comment="main page">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/login_page.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/account.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/oval_shape.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up_page.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/loginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/signUp_page.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login_page.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login_page.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,9 +91,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="layoutResourceFile" />
-        <option value="Class" />
         <option value="resourceFile" />
+        <option value="Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -121,34 +120,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "Isaac's-branch",
-    "last_opened_file_path": "C:/Year 2/Semester 1/Mobile Applications Development/Assignment 1/P03Team3/app/src/main/res/drawable",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default"
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Year 2\Semester 1\Mobile Applications Development\Assignment 1\P03Team3\app\src\main\res\drawable" />
-      <recent name="C:\Year 2\Semester 1\Mobile Applications Development\Assignment 1\P03Team3\app\src\main\res\layout" />
-      <recent name="C:\Year 2\Semester 1\Mobile Applications Development\Assignment 1\P03Team3\app\src\main\java\sg\edu\np\mad\myapplication" />
     </key>
     <key name="android.template.-815017675">
       <recent name="sg.edu.np.mad.myapplication" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Year 2\Semester 1\Mobile Applications Development\Assignment 1\P03Team3\app\src\main\java\sg\edu\np\mad\myapplication" />
-      <recent name="C:\Year 2\Semester 1\Mobile Applications Development\Assignment 1\P03Team3\app\src\main\res\layout" />
       <recent name="C:\Year 2\Semester 1\Mobile Applications Development\Assignment 1\P03Team3\app\src\main\res\drawable" />
     </key>
     <key name="android.template.-284524150">
@@ -449,7 +430,47 @@
       <option name="project" value="LOCAL" />
       <updated>1715348651319</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="main page">
+      <option name="closed" value="true" />
+      <created>1715409192797</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1715409192797</updated>
+    </task>
+    <task id="LOCAL-00011" summary="main page">
+      <option name="closed" value="true" />
+      <created>1715415357862</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1715415357862</updated>
+    </task>
+    <task id="LOCAL-00012" summary="main page">
+      <option name="closed" value="true" />
+      <created>1715475810300</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1715475810300</updated>
+    </task>
+    <task id="LOCAL-00013" summary="main page">
+      <option name="closed" value="true" />
+      <created>1715497117703</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1715497117703</updated>
+    </task>
+    <task id="LOCAL-00014" summary="main page">
+      <option name="closed" value="true" />
+      <created>1715597993814</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1715597993814</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -470,5 +491,16 @@
     <MESSAGE value="commited workspace.xml" />
     <MESSAGE value="main page" />
     <option name="LAST_COMMIT_MESSAGE" value="main page" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/MainActivity.java</url>
+          <line>90</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
