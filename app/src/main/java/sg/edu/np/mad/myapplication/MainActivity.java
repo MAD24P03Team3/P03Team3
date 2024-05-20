@@ -52,11 +52,11 @@ public  class MainActivity extends AppCompatActivity {
         bottomNavView.setOnItemSelectedListener(item ->{
             switch (item.getItemId()){
                 case R.id.page_1://account
-                    Intent Page1 = new Intent(MainActivity.this,main_activity.class);
+                    Intent Page1 = new Intent(Account.this,main_activity.class);
                     startActivity(Page1);
                     break;
                 case R.id.page_2://menu
-                    Intent Page1 = new Intent(MainActivity.this,main_activity.class);
+                    Intent Page1 = new Intent(Menu.this,main_activity.class);
                     startActivity(Page1);
                     break;
                 case R.id.page_3://home
@@ -64,11 +64,11 @@ public  class MainActivity extends AppCompatActivity {
                     startActivity(Page1);
                     break;
                 case R.id.page_4://rewards
-                    Intent Page1 = new Intent(MainActivity.this,main_activity.class);
+                    Intent Page1 = new Intent(Rewards.this,main_activity.class);
                     startActivity(Page1);
                     break;
                 case R.id.page_4://cart
-                    Intent Page1 = new Intent(MainActivity.this,main_activity.class);
+                    Intent Page1 = new Intent(Cart.this,main_activity.class);
                     startActivity(Page1);
                     break;
             };

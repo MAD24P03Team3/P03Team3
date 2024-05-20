@@ -18,22 +18,22 @@ class VoucherRVAdapter extends RecyclerView.Adapter<VoucherRVAdapter.MyHolder> {
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemview = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_items, null, false);
+        View itemview = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_voucher, null, false);
         return new MyHolder(itemview);
     }
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-        holder.tvTitle.setText(data.get(position));
+        holder.vouchername.setText(data.get(position));
     }
     @Override
     public int getItemCount() {
         return data.size();
     }
     class MyHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle;
+        TextView vouchername;
         public MyHolder(@NonNull View itemView) {
             super(itemView);
-            tvTitle = itemView.findViewById(R.id.tvTitle);
+            vouchername = itemView.findViewById(R.id.vouchername);
         }
     }
 }

@@ -15,13 +15,8 @@ import java.util.ArrayList;
 public class Rewards extends AppCompatActivity {
 
 
-    LinearLayoutManager linearLayoutManagerItems;
-    RVAdapter rv_Items_Adapter;
 
 
-
-
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +30,8 @@ public class Rewards extends AppCompatActivity {
         voucherData.add("item 3");
         voucherData.add("item 4");
 
-        linearLayoutManagerItems = new LinearLayoutManager(Rewards.this, LinearLayoutManager.VERTICAL, false);
-        RVAdapter rv_Items_Adapter = new RVAdapter(voucherData);
+        LinearLayoutManager linearLayoutManagerItems = new LinearLayoutManager(Rewards.this, LinearLayoutManager.VERTICAL, false);
+        VoucherRVAdapter rv_Items_Adapter = new VoucherRVAdapter(voucherData);
         recyclerView.setLayoutManager(linearLayoutManagerItems);
         recyclerView.setAdapter(rv_Items_Adapter);
 
