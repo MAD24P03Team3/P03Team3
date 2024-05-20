@@ -31,7 +31,7 @@ public class menu_recyclerviewAdapter extends RecyclerView.Adapter <menu_recycle
     // This is where you will inflate layout and give look to each row
     public menu_recyclerviewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.recycler_layout_menu, parent, false);
+        View view = inflater.inflate(R.layout.menurecyclerview, parent, false);
         return new menu_recyclerviewAdapter.MyViewHolder(view);
     }
 
@@ -46,7 +46,6 @@ public class menu_recyclerviewAdapter extends RecyclerView.Adapter <menu_recycle
         // set the text of the Text view name, get the position of the element in arrayList, return that item
         holder.tvName.setText(menuData.get(position).getItemName());
         holder.tvDesc.setText(menuData.get(position).getItemdesc());
-        holder.imageView.setImageResource(menuData.get(position).getImage());
 
     }
 
