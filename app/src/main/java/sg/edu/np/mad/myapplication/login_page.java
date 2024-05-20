@@ -2,6 +2,7 @@ package sg.edu.np.mad.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,18 +10,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class login_page extends AppCompatActivity {
-
+    private FirebaseAuth mAuth;
+    private String TAG = "login_page";
     String StudentId = "S1089067J";
     String passwd = "NQ2KZINAS8HE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // return the firebase authenticator instance
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login_page);
@@ -46,27 +57,43 @@ public class login_page extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), signUp_page.class);
             }
         });
-        loginBtn.setOnClickListener(new View.OnClickListener(){
 
-            @Override
-            public void onClick(View v) {
-                String userId = etStudentId.getText().toString();
-                String userPsswd = etpsswd.getText().toString();
-                if(userId != null && userPsswd != null){
-                    if(userId.equals(StudentId) && userPsswd.equals(passwd)){
-                        Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
-                    }
-                    else{
-                        Toast.makeText(getApplicationContext(), "Unsucessful Login Please Try Again", Toast.LENGTH_SHORT).show();
-                    }
+        if(currentUser != null){
+            loginBtn.setOnClickListener(new View.OnClickListener(){
+
+                @Override
+                public void onClick(View v) {
+                    String email = etStudentId.getText().toString();
+                    String password = etpsswd.getText().toString();
+                    // implment login firebase authentication
+                    mAuth.signInWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, display message for sucessful and pass data to mainActivity
+                                        Log.d(TAG, "signInWithEmail:success");
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        Toast.makeText(login_page.this,"Login is successful welcome back",Toast.LENGTH_SHORT).show();
+                                        Intent toMainActivity = new Intent(login_page.this, MainActivity.class);
+                                        toMainActivity.putExtra("name",user.getDisplayName());
+                                        startActivity(toMainActivity);
+                                        Log.i(TAG,user.getDisplayName());
+
+
+                                    }
+                                    else {
+                                        // If sign in fails, display a message to the user.
+                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                        Toast.makeText(login_page.this, "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                 }
-                else{
-                    Toast.makeText(getApplicationContext(),"Login Required",Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+            });
+        }
+
 
     }
 
