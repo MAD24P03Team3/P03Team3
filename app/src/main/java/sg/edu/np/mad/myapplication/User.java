@@ -8,4 +8,20 @@ public class User {
         this.studentId = studentId;
         this.password = password;
     }
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
 }
