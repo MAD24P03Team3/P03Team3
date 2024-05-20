@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 
 
-class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyHolder> {
+class   RVAdapter extends RecyclerView.Adapter<RVAdapter.MyHolder> {
     ArrayList<String> data;
     public RVAdapter(ArrayList<String> data) {
         this.data = data;

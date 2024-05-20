@@ -11,17 +11,15 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
 
 public class menu_recyclerviewAdapter extends RecyclerView.Adapter <menu_recyclerviewAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<menuModel> menuData;
+    ArrayList<MenuModel> menuData;
 
     // Constructor that has these variables
-    public menu_recyclerviewAdapter(Context context, ArrayList<menuModel> menuData){
+    public menu_recyclerviewAdapter(Context context, ArrayList<MenuModel> menuData){
         this.context = context;
         this.menuData = menuData;
     }

@@ -1,13 +1,13 @@
 package sg.edu.np.mad.myapplication;
 
-public class menuModel {
+public class MenuModel {
     String itemdesc;
     String itemName;
 
     int image;
 
 
-    public menuModel(String itemName, String itemdesc, int image) {
+    public MenuModel(String itemName, String itemdesc, int image) {
         this.itemdesc = itemdesc;
         this.itemName = itemName;
         this.image = image;
