@@ -6,4 +6,21 @@
     </style>
 
     <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />
+
+
+
+    <style name="Theme.App" parent="Theme.AppCompat.Light">
+        ...
+        <item name="colorPrimary">@color/Red</item>
+        <item name="colorSurface">@color/Yellow</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="textAppearanceButton">@style/TextAppearance.App.Button</item>
+    </style>
+
+    <style name="TextAppearance.App.Button" parent="TextAppearance.MaterialComponents.Button">
+
+    </style>
+
+
+
 </resources>
