@@ -1,6 +1,5 @@
 package sg.edu.np.mad.myapplication;
 
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
 
-public class signUp_page extends AppCompatActivity {
+public class SignupActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private final String TAG = "signUp_page";
 
@@ -51,7 +50,7 @@ public class signUp_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_sign_up_page);
+        setContentView(R.layout.activity_signup);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -84,7 +83,7 @@ public class signUp_page extends AppCompatActivity {
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                    Toast.makeText(signUp_page.this, "Authentication failed.",
+                                    Toast.makeText(SignupActivity.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
 
                                 }

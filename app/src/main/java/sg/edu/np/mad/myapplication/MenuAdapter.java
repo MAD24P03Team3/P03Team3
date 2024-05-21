@@ -11,17 +11,15 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
 
-public class menu_recyclerviewAdapter extends RecyclerView.Adapter <menu_recyclerviewAdapter.MyViewHolder> {
+public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<menuModel> menuData;
+    ArrayList<MenuModel> menuData;
 
     // Constructor that has these variables
-    public menu_recyclerviewAdapter(Context context, ArrayList<menuModel> menuData){
+    public MenuAdapter(Context context, ArrayList<MenuModel> menuData){
         this.context = context;
         this.menuData = menuData;
     }
@@ -29,10 +27,10 @@ public class menu_recyclerviewAdapter extends RecyclerView.Adapter <menu_recycle
     @Override
 
     // This is where you will inflate layout and give look to each row
-    public menu_recyclerviewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MenuAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.menurecyclerview, parent, false);
-        return new menu_recyclerviewAdapter.MyViewHolder(view);
+        return new MenuAdapter.MyViewHolder(view);
     }
 
     @Override
