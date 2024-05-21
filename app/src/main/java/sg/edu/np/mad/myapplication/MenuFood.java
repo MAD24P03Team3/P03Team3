@@ -15,11 +15,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
-public class foodmenu extends AppCompatActivity {
+public class MenuFood extends AppCompatActivity {
 
-    ArrayList<menuModel> menuData = new ArrayList<>();
+    ArrayList<MenuModel> menuData = new ArrayList<>();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    ArrayList<menuModel> ma = new ArrayList<menuModel>();
+    ArrayList<MenuModel> ma = new ArrayList<MenuModel>();
 
 
 

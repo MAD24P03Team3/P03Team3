@@ -1,14 +1,11 @@
 package sg.edu.np.mad.myapplication;
 
 import android.util.Log;
-import android.view.MenuItem;
 
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 
@@ -20,7 +17,7 @@ public class menuDatabase {
     //
     // *for other methods do database query (to show only specific results)
 
-    public static void retriveAllMenu(FirebaseFirestore db, ArrayList<menuModel> md){
+    public static void retriveAllMenu(FirebaseFirestore db, ArrayList<MenuModel> md){
         DocumentReference dr = db.collection("Stores").document("Prata-Boy");
         dr.get().addOnSuccessListener(documentSnapshot -> {
             if(documentSnapshot.exists()){

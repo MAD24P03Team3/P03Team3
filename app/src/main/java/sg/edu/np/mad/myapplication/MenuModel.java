@@ -1,6 +1,6 @@
 package sg.edu.np.mad.myapplication;
 
-public class menuModel {
+public class MenuModel {
     String itemdesc;
     String itemName;
 
@@ -9,7 +9,7 @@ public class menuModel {
     int image;
 
 
-    public menuModel(String itemName, String itemdesc, Double price) {
+    public MenuModel(String itemName, String itemdesc, Double price) {
         this.itemdesc = itemdesc;
         this.itemName = itemName;
         this.Price = price;
