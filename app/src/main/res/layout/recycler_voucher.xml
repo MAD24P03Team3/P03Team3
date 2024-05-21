@@ -51,10 +51,5 @@
             android:text="Redeem Voucher"
             app:icon="@drawable/add" />
 
-
-
-
-
     </RelativeLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
