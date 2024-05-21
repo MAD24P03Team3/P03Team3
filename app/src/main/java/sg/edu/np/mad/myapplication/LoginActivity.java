@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class login_page extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private String TAG = "login_page";
     String StudentId = "S1089067J";
@@ -34,7 +34,7 @@ public class login_page extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_login_page);
+        setContentView(R.layout.activity_login);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -54,7 +54,7 @@ public class login_page extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), signUp_page.class);
+                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
             }
         });
 
@@ -74,8 +74,8 @@ public class login_page extends AppCompatActivity {
                                         // Sign in success, display message for sucessful and pass data to mainActivity
                                         Log.d(TAG, "signInWithEmail:success");
                                         FirebaseUser user = mAuth.getCurrentUser();
-                                        Toast.makeText(login_page.this,"Login is successful welcome back",Toast.LENGTH_SHORT).show();
-                                        Intent toMainActivity = new Intent(login_page.this, MainActivity.class);
+                                        Toast.makeText(LoginActivity.this,"Login is successful welcome back",Toast.LENGTH_SHORT).show();
+                                        Intent toMainActivity = new Intent(LoginActivity.this, MainActivity.class);
                                         toMainActivity.putExtra("name",user.getDisplayName());
                                         startActivity(toMainActivity);
                                         Log.i(TAG,user.getDisplayName());
@@ -85,7 +85,7 @@ public class login_page extends AppCompatActivity {
                                     else {
                                         // If sign in fails, display a message to the user.
                                         Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                        Toast.makeText(login_page.this, "Authentication failed.",
+                                        Toast.makeText(LoginActivity.this, "Authentication failed.",
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                 }
