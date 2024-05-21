@@ -1,6 +1,6 @@
 package sg.edu.np.mad.myapplication;
 
-public class User {
+abstract class User {
     String studentId;
     String password;
 
@@ -8,7 +8,6 @@ public class User {
         this.studentId = studentId;
         this.password = password;
     }
-
     public String getStudentId() {
         return studentId;
     }

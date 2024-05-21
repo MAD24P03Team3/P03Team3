@@ -37,7 +37,7 @@ public class MenuFood extends AppCompatActivity {
 
         //pass our menuData and our context (application)
 
-        menu_recyclerviewAdapter adapter = new menu_recyclerviewAdapter(this,menuData);
+        MenuAdapter adapter = new MenuAdapter(this,menuData);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
