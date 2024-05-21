@@ -16,7 +16,7 @@
             android:name=".MenuFood"
             android:exported="true" />
         <activity
-            android:name=".signUp_page"
+            android:name=".SignupActivity"
             android:exported="true" />
         <activity android:name=".LoginActivity"
             android:exported="true"/>
@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RewardsViewHolder"
+            android:name=".RewardsActivity"
             android:exported="true"/>
     </application>
 

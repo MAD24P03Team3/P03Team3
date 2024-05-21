@@ -26,13 +26,13 @@ public  class MainActivity extends AppCompatActivity {
     RecyclerView rv_Items;
     ArrayList<String> rv_Items_Data;
     LinearLayoutManager linearLayoutManagerItems;
-    RVAdapter rv_Items_Adapter;
+    ItemAdapter rv_Items_Adapter;
 
     //store list recycler view
     RecyclerView rv_Store;
     ArrayList<String> rv_Store_Data;
     LinearLayoutManager linearLayoutManagerStore;
-    StoreRVAdapter rv_Store_Adapter;
+    StoreAdapter rv_Store_Adapter;
     ActivityMainBinding binding;
     BottomNavigationView bottomNavView;
 
@@ -89,7 +89,7 @@ public  class MainActivity extends AppCompatActivity {
         rv_Items_Data.add("item 4");
 
         linearLayoutManagerItems = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        rv_Items_Adapter = new RVAdapter(rv_Items_Data);
+        rv_Items_Adapter = new ItemAdapter(rv_Items_Data);
         rv_Items.setLayoutManager(linearLayoutManagerItems);
         rv_Items.setAdapter(rv_Items_Adapter);
 
@@ -103,7 +103,7 @@ public  class MainActivity extends AppCompatActivity {
         rv_Store_Data.add("Acai den");
 
         linearLayoutManagerStore = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false);
-        rv_Store_Adapter = new StoreRVAdapter(rv_Store_Data);
+        rv_Store_Adapter = new StoreAdapter(rv_Store_Data);
         rv_Store.setLayoutManager(linearLayoutManagerStore);
         rv_Store.setAdapter(rv_Store_Adapter);
 
