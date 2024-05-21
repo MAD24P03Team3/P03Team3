@@ -11,17 +11,15 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
 
 public class menu_recyclerviewAdapter extends RecyclerView.Adapter <menu_recyclerviewAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<menuModel> menuData;
+    ArrayList<MenuModel> menuData;
 
     // Constructor that has these variables
-    public menu_recyclerviewAdapter(Context context, ArrayList<menuModel> menuData){
+    public menu_recyclerviewAdapter(Context context, ArrayList<MenuModel> menuData){
         this.context = context;
         this.menuData = menuData;
     }
@@ -31,7 +29,7 @@ public class menu_recyclerviewAdapter extends RecyclerView.Adapter <menu_recycle
     // This is where you will inflate layout and give look to each row
     public menu_recyclerviewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.recycler_layout_menu, parent, false);
+        View view = inflater.inflate(R.layout.menurecyclerview, parent, false);
         return new menu_recyclerviewAdapter.MyViewHolder(view);
     }
 
@@ -46,7 +44,6 @@ public class menu_recyclerviewAdapter extends RecyclerView.Adapter <menu_recycle
         // set the text of the Text view name, get the position of the element in arrayList, return that item
         holder.tvName.setText(menuData.get(position).getItemName());
         holder.tvDesc.setText(menuData.get(position).getItemdesc());
-        holder.imageView.setImageResource(menuData.get(position).getImage());
 
     }
 

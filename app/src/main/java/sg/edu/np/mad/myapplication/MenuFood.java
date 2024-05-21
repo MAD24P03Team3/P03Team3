@@ -12,16 +12,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class foodmenu extends AppCompatActivity {
+public class MenuFood extends AppCompatActivity {
 
-    ArrayList<menuModel> menuData = new ArrayList<>();
+    ArrayList<MenuModel> menuData = new ArrayList<>();
 
     private void makeModel(){
         String[] menuNames = getResources().getStringArray(R.array.names_of_product);
         String [] menuDesc = getResources().getStringArray(R.array.desc);
         int img = R.drawable.img4;
         for(int i = 0; i<menuNames.length; i++){
-            menuData.add(new menuModel(menuNames[i],menuDesc[i],img));
+            menuData.add(new MenuModel(menuNames[i],menuDesc[i],img));
         }
     }
 

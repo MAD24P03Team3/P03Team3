@@ -15,7 +15,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
+
+import sg.edu.np.mad.myapplication.databinding.ActivityMainBinding;
 
 public  class MainActivity extends AppCompatActivity {
     //product items recycler view
@@ -29,6 +33,8 @@ public  class MainActivity extends AppCompatActivity {
     ArrayList<String> rv_Store_Data;
     LinearLayoutManager linearLayoutManagerStore;
     StoreRVAdapter rv_Store_Adapter;
+    ActivityMainBinding binding;
+    BottomNavigationView bottomNavView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,37 @@ public  class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        /*
+        bottomNavView.setOnItemSelectedListener(item ->{
+            switch (item.getItemId()){
+                case R.id.page_1://account
+                    Intent Page1 = new Intent(Account.this,main_activity.class);
+                    startActivity(Page1);
+                    break;
+                case R.id.page_2://menu
+                    Intent Page1 = new Intent(Menu.this,main_activity.class);
+                    startActivity(Page1);
+                    break;
+                case R.id.page_3://home
+                    Intent Page1 = new Intent(MainActivity.this,main_activity.class);
+                    startActivity(Page1);
+                    break;
+                case R.id.page_4://rewards
+                    Intent Page1 = new Intent(Rewards.this,main_activity.class);
+                    startActivity(Page1);
+                    break;
+                case R.id.page_4://cart
+                    Intent Page1 = new Intent(Cart.this,main_activity.class);
+                    startActivity(Page1);
+                    break;
+            };
+        });
+
+         */
+
+
 
         //item recycler view
         setContentView(R.layout.activity_main);
@@ -65,65 +102,10 @@ public  class MainActivity extends AppCompatActivity {
         rv_Store_Data.add("Coffee connect");
         rv_Store_Data.add("Acai den");
 
-        linearLayoutManagerStore = new LinearLayoutManager(MainActivity.this,LinearLayoutManager.VERTICAL,false);
+        linearLayoutManagerStore = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false);
         rv_Store_Adapter = new StoreRVAdapter(rv_Store_Data);
         rv_Store.setLayoutManager(linearLayoutManagerStore);
         rv_Store.setAdapter(rv_Store_Adapter);
 
-    }
-
-    class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyHolder> {
-        ArrayList<String> data;
-        public RVAdapter(ArrayList<String> data) {
-            this.data = data;
-        }
-        @NonNull
-        @Override
-        public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View itemview = LayoutInflater.from(MainActivity.this).inflate(R.layout.recycler_items, null, false);
-            return new MyHolder(itemview);
-        }
-        @Override
-        public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-            holder.tvTitle.setText(data.get(position));
-        }
-        @Override
-        public int getItemCount() {
-            return data.size();
-        }
-        class MyHolder extends RecyclerView.ViewHolder {
-            TextView tvTitle;
-            public MyHolder(@NonNull View itemView) {
-                super(itemView);
-                tvTitle = itemView.findViewById(R.id.tvTitle);
-            }
-        }
-    }
-    class StoreRVAdapter extends RecyclerView.Adapter<StoreRVAdapter.MyHolder> {
-        ArrayList<String> data;
-        public StoreRVAdapter(ArrayList<String> data) {
-            this.data = data;
-        }
-        @NonNull
-        @Override
-        public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View itemview = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_store, null, false);
-            return new MyHolder(itemview);
-        }
-        @Override
-        public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-            holder.tvTitle.setText(data.get(position));
-        }
-        @Override
-        public int getItemCount() {
-            return data.size();
-        }
-        class MyHolder extends RecyclerView.ViewHolder {
-            TextView tvTitle;
-            public MyHolder(@NonNull View itemView) {
-                super(itemView);
-                tvTitle = itemView.findViewById(R.id.tvTitle);
-            }
-        }
     }
 }
