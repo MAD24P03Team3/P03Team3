@@ -29,7 +29,7 @@ public class menuDatabase {
                     String name = item.get("name");
                     String itemDesc = item.get("itemDesc");
                     Double price = Double.parseDouble(item.get("price"));
-                    md.add(new menuModel(name,itemDesc,price));
+                    md.add(new MenuModel(name,itemDesc,price));
 
 
                 }
