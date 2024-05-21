@@ -8,6 +8,9 @@
       <entry key="foodmenu">
         <State />
       </entry>
+      <entry key="loginPage">
+        <State />
+      </entry>
     </value>
   </component>
 </project>

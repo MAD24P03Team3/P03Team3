@@ -44,8 +44,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="@mipmap/ic_launcher_round"
-                android:scaleType="centerCrop"
+                android:background="@drawable/prata"
+
                 />
 
 <!--           Here is our content of the buisness (Title, opening hours, reviews-->
@@ -189,15 +189,17 @@
     </com.google.android.material.tabs.TabLayout>
 
     <!-- res/layout/example_activity.xml -->
-    <androidx.fragment.app.FragmentContainerView
+
+    <androidx.viewpager2.widget.ViewPager2
         android:layout_marginTop="20dp"
-        android:id="@+id/food"
+        android:id="@+id/view_pageFood"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tabs"
         app:layout_constraintStart_toStartOf="parent">
-    </androidx.fragment.app.FragmentContainerView>
+
+    </androidx.viewpager2.widget.ViewPager2>
 
 
 
