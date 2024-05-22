@@ -56,7 +56,8 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
             }
         });
-
+//        Not wrong but a bug in logic
+        // Need to allow users to go to login page even tough currentUser is null
         if(currentUser != null){
             loginBtn.setOnClickListener(new View.OnClickListener(){
 

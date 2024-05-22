@@ -42,7 +42,7 @@
 
             <LinearLayout
                 android:id="@+id/textlin"
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
