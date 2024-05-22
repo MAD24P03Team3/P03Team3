@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,11 +49,10 @@ public class fullmenu extends Fragment {
         ArrayList<Item> ma = new ArrayList<>();
         View view = inflater.inflate(R.layout.fragment_fullmenu, container, false);
         RecyclerView rc = view.findViewById(R.id.recyclemenu);
-        layoutManager = new LinearLayoutManager(getContext());
+        layoutManager = new GridLayoutManager(getContext(),2);
         rc.setLayoutManager(layoutManager);
         MenuAdapter menuAdapter = new MenuAdapter(ma);
         rc.setAdapter(menuAdapter);
-        rc.setLayoutManager(layoutManager);
         MenuDatabase.retrieveMenuData(db,ma,menuAdapter);
 
         return  view;

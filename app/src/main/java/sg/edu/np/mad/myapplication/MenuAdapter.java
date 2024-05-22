@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.ImageView;
 import android.widget.Button;
@@ -29,7 +30,7 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.menurecyclerview, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardrecyler, parent, false);
         return new MyViewHolder(v);
     }
 
@@ -44,7 +45,7 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         // set the text of the Text view name, get the position of the element in arrayList, return that item
         holder.tvName.setText(menuData.get(position).name);
-        holder.tvDesc.setText(menuData.get(position).description);
+//        holder.tvDesc.setText(menuData.get(position).description);
         Double price = menuData.get(position).price;
         holder.tvItemPrice.setText(price.toString());
 
@@ -60,7 +61,7 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
         // retreiving views from recyler_view layout
 
         ImageView imageView;
-        TextView tvName, tvDesc , tvItemPrice;
+        TextView tvName,  tvItemPrice;
 
         Button plus;
 
@@ -71,9 +72,8 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
 
             imageView = itemView.findViewById(R.id.foodimg);
             tvName = itemView.findViewById(R.id.foodname);
-            tvDesc = itemView.findViewById(R.id.fooddesc);
             tvItemPrice = itemView.findViewById(R.id.itemPrice);
-            plus = itemView.findViewById(R.id.elevatedButton);
+            plus = itemView.findViewById(R.id.plus);
 
         }
     }

@@ -30,6 +30,11 @@
           <theme>@style/Theme.MyApplication</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/cardrecyler.xml">
+        <config>
+          <theme>@style/Theme.MyApplication</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_drinks_menu.xml">
         <config>
           <theme>@style/Theme.MyApplication</theme>
@@ -66,27 +71,22 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39eb89c9-b0c2-4177-b484-de25b432035d" name="Changes" comment="renaming conflicts fixed">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/ViewPageAdapter.java" afterDir="false" />
+    <list default="true" id="39eb89c9-b0c2-4177-b484-de25b432035d" name="Changes" comment="fixed error in recyclerview data not showing and added prata image">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/cardrecyler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_5_15_2024_2_44_PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_5_15_2024_2_44_PM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/LoginActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/MenuAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/MenuAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/MenuFood.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/MenuFood.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/MenuModel.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/fullmenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/fullmenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/menuDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/MenuDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_foodmenu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_foodmenu.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/menurecyclerview.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/menurecyclerview.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +96,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\isaac\.android\avd\Pixel_6_Pro_API_34.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\isaac\.android\avd\Pixel_Fold_API_34.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -121,8 +121,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="resourceFile" />
-        <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -149,25 +149,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "Isaac's-branch",
-    "last_opened_file_path": "C:/Year 2/Semester 1/Mobile Applications Development/Assignment 1/P03Team3",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Isaac's-branch&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Year 2/Semester 1/Mobile Applications Development/Assignment 1/P03Team3/app/src/main/res/drawable&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Year 2\Semester 1\Mobile Applications Development\Assignment 1\P03Team3\app\src\main\res\drawable" />
+      <recent name="C:\Year 2\Semester 1\Mobile Applications Development\Assignment 1\P03Team3\app\src\main\res\layout" />
     </key>
     <key name="android.template.-815017675">
       <recent name="sg.edu.np.mad.myapplication" />
@@ -474,7 +475,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716263510540</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="fixed error in recyclerview data not showing and added prata image">
+      <option name="closed" value="true" />
+      <created>1716309730819</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1716309730819</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -496,7 +505,8 @@
     <MESSAGE value="Created the MenuDatabse class and added methods to read from database" />
     <MESSAGE value="main page" />
     <MESSAGE value="renaming conflicts fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="renaming conflicts fixed" />
+    <MESSAGE value="fixed error in recyclerview data not showing and added prata image" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed error in recyclerview data not showing and added prata image" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
