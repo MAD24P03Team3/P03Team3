@@ -65,7 +65,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/Add"
             android:backgroundTint="#FFC529"
-            app:icon="@drawable/liked"
+            app:icon="@drawable/baseline_add_24"
             app:iconGravity="textTop"
             app:iconSize="24dp"
             android:layout_width="40dp"
