@@ -10,17 +10,24 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
 public class MenuFood extends AppCompatActivity {
 
-    ArrayList<MenuModel> menuData = new ArrayList<>();
+    ArrayList<Item> menuData = new ArrayList<>();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    ArrayList<MenuModel> ma = new ArrayList<MenuModel>();
+    ArrayList<Item> menuItems = new ArrayList<Item>();
+    private String[] titles = new String[]{"Menu","Drinks","Praffles"};
+    ViewPageAdapter viewPageAdapter;
+    TabLayout tabLayout;
 
+    ViewPager2 viewPager2;
 
 
 //    private void makeModel(){
@@ -38,23 +45,30 @@ public class MenuFood extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_foodmenu);
-//        RecyclerView recyclerView = findViewById(R.id.recyclemenu);
-//
-//        makeModel();
-//
-//        //pass our menuData and our context (application)
-//
-//        menu_recyclerviewAdapter adapter = new menu_recyclerviewAdapter(this,menuData);
-//        recyclerView.setAdapter(adapter);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
 
 
+
+
+
+
+
         });
-        menuDatabase.retriveAllMenu(db,ma);
+
+        //set up the tab layouts
+
+        viewPager2 = findViewById(R.id.view_pageFood);
+        tabLayout = findViewById(R.id.tabs);
+        viewPageAdapter = new ViewPageAdapter(this);
+        viewPager2.setAdapter(viewPageAdapter);
+        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> tab.setText(titles[position])).attach();
+
+
+
+        Log.d("End of the activity","Success");
 
 
 
@@ -62,4 +76,6 @@ public class MenuFood extends AppCompatActivity {
 
 
     }
+
+
 }
