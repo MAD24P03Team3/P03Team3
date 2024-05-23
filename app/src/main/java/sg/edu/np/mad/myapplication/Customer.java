@@ -8,4 +8,5 @@ public class Customer {
     ArrayList<Item> cart;
     ArrayList<Order> currentOrder;
     ArrayList<Order> orderHistory;
+    Rewards rewards;
 }

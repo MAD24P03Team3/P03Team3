@@ -49,21 +49,27 @@
             android:layout_below="@id/tvDesc"
             android:text="$69.69"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/Like"
             android:backgroundTint="#FE742C"
+            app:icon="@drawable/liked"
+            app:iconGravity="textTop"
 
+            app:iconSize="24dp"
             android:layout_width="40dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="30dp"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/Add"
             android:backgroundTint="#FFC529"
+            app:icon="@drawable/baseline_add_24"
+            app:iconGravity="textTop"
+            app:iconSize="24dp"
             android:layout_width="40dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="30dp"/>
