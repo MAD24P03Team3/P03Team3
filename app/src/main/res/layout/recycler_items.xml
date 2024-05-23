@@ -34,6 +34,7 @@
             android:gravity="left"
             android:text="Item1"
             android:textSize="24dp" />
+
         <TextView
             android:id="@+id/tvDesc"
             android:layout_marginLeft="10dp"
