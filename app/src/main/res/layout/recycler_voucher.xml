@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <ImageView
+            android:id="@+id/voucherimg"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/round_image" />
+
+        <TextView
+            android:id="@+id/vouchername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$2 off Strawberry Praffle"
+            android:layout_toRightOf="@id/voucherimg"
+            android:layout_margin="20dp"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/fooddesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This voucher very nice"
+            android:layout_toRightOf="@id/voucherimg"
+            android:layout_below="@id/vouchername"
+            android:layout_marginStart="20dp"
+            android:textSize="12dp"
+            android:textStyle="italic"
+            android:textColor="@color/LightSteelBlue"/>
+
+        <Button
+            android:id="@+id/elevatedButton"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:text="Redeem Voucher"
+            app:icon="@drawable/add" />
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
