@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
+    android:background="@drawable/menubg"
     android:layout_height="match_parent"
     tools:context=".orderFood">
 
@@ -23,8 +24,8 @@
 
     <GridLayout
         android:id="@+id/business"
-        android:layout_width="340dp"
-        android:layout_height="474dp"
+        android:layout_width="406dp"
+        android:layout_height="472dp"
         android:layout_margin="40dp"
         android:columnCount="2"
         android:rowCount="2"
@@ -34,17 +35,18 @@
         app:layout_constraintTop_toBottomOf="@id/textheading">
 
         <androidx.cardview.widget.CardView
-            android:layout_margin="10dp"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
+            android:layout_margin="10dp"
             app:cardCornerRadius="5dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <ImageView
@@ -54,14 +56,13 @@
                     android:background="@drawable/pb" />
 
                 <TextView
-                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
                     android:text="Prataboy"
                     android:textSize="20sp" />
             </LinearLayout>
-
 
 
         </androidx.cardview.widget.CardView>
@@ -70,14 +71,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
-            android:layout_margin="10dp"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
+            android:layout_margin="10dp"
             app:cardCornerRadius="5dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <ImageView
@@ -88,30 +89,30 @@
 
                 <TextView
 
-                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
                     android:text="Oishi Daily"
                     android:textSize="20sp" />
             </LinearLayout>
 
 
-
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_margin="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
+            android:layout_margin="10dp"
             app:cardCornerRadius="5dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <ImageView
@@ -121,30 +122,29 @@
                     android:background="@drawable/cofeeconnect" />
 
                 <TextView
-                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
                     android:text="Cofee Connect"
                     android:textSize="20sp" />
             </LinearLayout>
 
 
-
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_margin="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
+            android:layout_margin="10dp"
             app:cardCornerRadius="5dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <ImageView
@@ -154,14 +154,13 @@
                     android:background="@drawable/acaiden" />
 
                 <TextView
-                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
                     android:text="Acai Den"
                     android:textSize="20sp" />
             </LinearLayout>
-
 
 
         </androidx.cardview.widget.CardView>

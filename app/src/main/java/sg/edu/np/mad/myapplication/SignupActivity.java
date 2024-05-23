@@ -68,6 +68,7 @@ public class SignupActivity extends AppCompatActivity {
                 String name = etSName.getText().toString();
                 String email = etEmail.getText().toString();
                 String password = etPsswd.getText().toString();
+//                Add to document
                 mAuth.createUserWithEmailAndPassword(email,password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
