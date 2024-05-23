@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".foodmenu">
+    tools:context=".MenuFood">
 
     <FrameLayout
         android:layout_width="80dp"
@@ -81,8 +81,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5 Stars"
-                        />
+                        android:text="5 Stars" />
 
                     <ImageView
                         android:layout_marginLeft="20dp"
@@ -109,9 +108,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/star"/>
-
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
@@ -131,46 +128,55 @@
                         android:text="Open now: closes at 5pm"/>
 
                 </LinearLayout>
-
-
-
-
-
-
-
-
             </LinearLayout>
-
-
-
-
         </LinearLayout>
-
-
-
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/tvMenu"
-        android:paddingLeft="16dp"
+<!--    <TextView-->
+<!--        android:id="@+id/tvMenu"-->
+<!--        android:paddingLeft="16dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Menu"-->
+<!--        android:textStyle="bold"-->
+<!--        android:fontFamily="monospace"-->
+<!--        android:textSize="30sp"-->
+<!--        android:background="#F5F5DC"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/cardMenu"/>-->
+
+    <!-- Add the tablayout for categories-->
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Menu"
-        android:textStyle="bold"
-        android:fontFamily="monospace"
-        android:textSize="30sp"
-        android:background="#F5F5DC"
-        app:layout_constraintTop_toBottomOf="@id/cardMenu"/>
+        app:layout_constraintTop_toBottomOf="@id/cardMenu">
 
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Menu" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclemenu"
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Praffles"/>
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Drinks"/>
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <!-- res/layout/example_activity.xml -->
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_marginTop="20dp"
+        android:id="@+id/food"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvMenu"
-        android:layout_marginTop="16dp"/>
-
-
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tabs"
+        app:layout_constraintStart_toStartOf="parent">
+    </androidx.fragment.app.FragmentContainerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

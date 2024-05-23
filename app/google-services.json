@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "41281322614",
+    "project_id": "mad-p03-team-3-foodapp",
+    "storage_bucket": "mad-p03-team-3-foodapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41281322614:android:87bec01afbb62a079f2957",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARVZFUDTFXV05OBcAulSvNBrBRZ_Ss1Tk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41281322614:android:a8d63570998eb6b59f2957",
+        "android_client_info": {
+          "package_name": "sg.edu.np.mad.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARVZFUDTFXV05OBcAulSvNBrBRZ_Ss1Tk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

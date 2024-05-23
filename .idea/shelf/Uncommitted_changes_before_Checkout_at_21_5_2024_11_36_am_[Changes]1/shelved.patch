@@ -1,0 +1,1052 @@
+Index: app/src/main/java/sg/edu/np/mad/myapplication/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sg.edu.np.mad.myapplication;\r\n\r\nimport android.os.Bundle;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.graphics.Insets;\r\nimport androidx.core.view.ViewCompat;\r\nimport androidx.core.view.WindowInsetsCompat;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic  class MainActivity extends AppCompatActivity {\r\n    //product items recycler view\r\n    RecyclerView rv_Items;\r\n    ArrayList<String> rv_Items_Data;\r\n    LinearLayoutManager linearLayoutManagerItems;\r\n    RVAdapter rv_Items_Adapter;\r\n\r\n    //store list recycler view\r\n    RecyclerView rv_Store;\r\n    ArrayList<String> rv_Store_Data;\r\n    LinearLayoutManager linearLayoutManagerStore;\r\n    StoreRVAdapter rv_Store_Adapter;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.activity_main);\r\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {\r\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\r\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\r\n            return insets;\r\n        });\r\n\r\n        //item recycler view\r\n        setContentView(R.layout.activity_main);\r\n        rv_Items = findViewById(R.id.horizontalRV);\r\n\r\n        rv_Items_Data = new ArrayList<>();\r\n        rv_Items_Data.add(\"item 1\");\r\n        rv_Items_Data.add(\"item 2\");\r\n        rv_Items_Data.add(\"item 3\");\r\n        rv_Items_Data.add(\"item 4\");\r\n\r\n        linearLayoutManagerItems = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);\r\n        rv_Items_Adapter = new RVAdapter(rv_Items_Data);\r\n        rv_Items.setLayoutManager(linearLayoutManagerItems);\r\n        rv_Items.setAdapter(rv_Items_Adapter);\r\n\r\n        //store recycler view\r\n        rv_Store = findViewById(R.id.storelistRV);\r\n\r\n        rv_Store_Data = new ArrayList<>();\r\n        rv_Store_Data.add(\"Prata boy\");\r\n        rv_Store_Data.add(\"Oishii daily\");\r\n        rv_Store_Data.add(\"Coffee connect\");\r\n        rv_Store_Data.add(\"Acai den\");\r\n\r\n        linearLayoutManagerStore = new LinearLayoutManager(MainActivity.this,LinearLayoutManager.VERTICAL,false);\r\n        rv_Store_Adapter = new StoreRVAdapter(rv_Store_Data);\r\n        rv_Store.setLayoutManager(linearLayoutManagerStore);\r\n        rv_Store.setAdapter(rv_Store_Adapter);\r\n\r\n    }\r\n\r\n    class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyHolder> {\r\n        ArrayList<String> data;\r\n        public RVAdapter(ArrayList<String> data) {\r\n            this.data = data;\r\n        }\r\n        @NonNull\r\n        @Override\r\n        public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\r\n            View itemview = LayoutInflater.from(MainActivity.this).inflate(R.layout.recycler_items, null, false);\r\n            return new MyHolder(itemview);\r\n        }\r\n        @Override\r\n        public void onBindViewHolder(@NonNull MyHolder holder, int position) {\r\n            holder.tvTitle.setText(data.get(position));\r\n        }\r\n        @Override\r\n        public int getItemCount() {\r\n            return data.size();\r\n        }\r\n        class MyHolder extends RecyclerView.ViewHolder {\r\n            TextView tvTitle;\r\n            public MyHolder(@NonNull View itemView) {\r\n                super(itemView);\r\n                tvTitle = itemView.findViewById(R.id.tvTitle);\r\n            }\r\n        }\r\n    }\r\n    class StoreRVAdapter extends RecyclerView.Adapter<StoreRVAdapter.MyHolder> {\r\n        ArrayList<String> data;\r\n        public StoreRVAdapter(ArrayList<String> data) {\r\n            this.data = data;\r\n        }\r\n        @NonNull\r\n        @Override\r\n        public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\r\n            View itemview = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_store, null, false);\r\n            return new MyHolder(itemview);\r\n        }\r\n        @Override\r\n        public void onBindViewHolder(@NonNull MyHolder holder, int position) {\r\n            holder.tvTitle.setText(data.get(position));\r\n        }\r\n        @Override\r\n        public int getItemCount() {\r\n            return data.size();\r\n        }\r\n        class MyHolder extends RecyclerView.ViewHolder {\r\n            TextView tvTitle;\r\n            public MyHolder(@NonNull View itemView) {\r\n                super(itemView);\r\n                tvTitle = itemView.findViewById(R.id.tvTitle);\r\n            }\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/sg/edu/np/mad/myapplication/MainActivity.java b/app/src/main/java/sg/edu/np/mad/myapplication/MainActivity.java
+--- a/app/src/main/java/sg/edu/np/mad/myapplication/MainActivity.java	
++++ b/app/src/main/java/sg/edu/np/mad/myapplication/MainActivity.java	
+@@ -15,8 +15,12 @@
+ import androidx.core.view.ViewCompat;
+ import androidx.core.view.WindowInsetsCompat;
+ 
++import com.google.android.material.bottomnavigation.BottomNavigationView;
++
+ import java.util.ArrayList;
+ 
++import sg.edu.np.mad.myapplication.databinding.ActivityMainBinding;
++
+ public  class MainActivity extends AppCompatActivity {
+     //product items recycler view
+     RecyclerView rv_Items;
+@@ -29,6 +33,8 @@
+     ArrayList<String> rv_Store_Data;
+     LinearLayoutManager linearLayoutManagerStore;
+     StoreRVAdapter rv_Store_Adapter;
++    ActivityMainBinding binding;
++    BottomNavigationView bottomNavView;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+@@ -40,6 +46,37 @@
+             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+             return insets;
+         });
++        binding = ActivityMainBinding.inflate(getLayoutInflater());
++        setContentView(binding.getRoot());
++        /*
++        bottomNavView.setOnItemSelectedListener(item ->{
++            switch (item.getItemId()){
++                case R.id.page_1://account
++                    Intent Page1 = new Intent(Account.this,main_activity.class);
++                    startActivity(Page1);
++                    break;
++                case R.id.page_2://menu
++                    Intent Page1 = new Intent(Menu.this,main_activity.class);
++                    startActivity(Page1);
++                    break;
++                case R.id.page_3://home
++                    Intent Page1 = new Intent(MainActivity.this,main_activity.class);
++                    startActivity(Page1);
++                    break;
++                case R.id.page_4://rewards
++                    Intent Page1 = new Intent(Rewards.this,main_activity.class);
++                    startActivity(Page1);
++                    break;
++                case R.id.page_4://cart
++                    Intent Page1 = new Intent(Cart.this,main_activity.class);
++                    startActivity(Page1);
++                    break;
++            };
++        });
++
++         */
++
++
+ 
+         //item recycler view
+         setContentView(R.layout.activity_main);
+@@ -65,65 +102,10 @@
+         rv_Store_Data.add("Coffee connect");
+         rv_Store_Data.add("Acai den");
+ 
+-        linearLayoutManagerStore = new LinearLayoutManager(MainActivity.this,LinearLayoutManager.VERTICAL,false);
++        linearLayoutManagerStore = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false);
+         rv_Store_Adapter = new StoreRVAdapter(rv_Store_Data);
+         rv_Store.setLayoutManager(linearLayoutManagerStore);
+         rv_Store.setAdapter(rv_Store_Adapter);
+ 
+-    }
+-
+-    class RVAdapter extends RecyclerView.Adapter<RVAdapter.MyHolder> {
+-        ArrayList<String> data;
+-        public RVAdapter(ArrayList<String> data) {
+-            this.data = data;
+-        }
+-        @NonNull
+-        @Override
+-        public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+-            View itemview = LayoutInflater.from(MainActivity.this).inflate(R.layout.recycler_items, null, false);
+-            return new MyHolder(itemview);
+-        }
+-        @Override
+-        public void onBindViewHolder(@NonNull MyHolder holder, int position) {
+-            holder.tvTitle.setText(data.get(position));
+-        }
+-        @Override
+-        public int getItemCount() {
+-            return data.size();
+-        }
+-        class MyHolder extends RecyclerView.ViewHolder {
+-            TextView tvTitle;
+-            public MyHolder(@NonNull View itemView) {
+-                super(itemView);
+-                tvTitle = itemView.findViewById(R.id.tvTitle);
+-            }
+-        }
+-    }
+-    class StoreRVAdapter extends RecyclerView.Adapter<StoreRVAdapter.MyHolder> {
+-        ArrayList<String> data;
+-        public StoreRVAdapter(ArrayList<String> data) {
+-            this.data = data;
+-        }
+-        @NonNull
+-        @Override
+-        public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+-            View itemview = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_store, null, false);
+-            return new MyHolder(itemview);
+-        }
+-        @Override
+-        public void onBindViewHolder(@NonNull MyHolder holder, int position) {
+-            holder.tvTitle.setText(data.get(position));
+-        }
+-        @Override
+-        public int getItemCount() {
+-            return data.size();
+-        }
+-        class MyHolder extends RecyclerView.ViewHolder {
+-            TextView tvTitle;
+-            public MyHolder(@NonNull View itemView) {
+-                super(itemView);
+-                tvTitle = itemView.findViewById(R.id.tvTitle);
+-            }
+-        }
+     }
+ }
+Index: app/src/main/java/sg/edu/np/mad/myapplication/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sg.edu.np.mad.myapplication;\r\n\r\npublic class User {\r\n    String studentId;\r\n    String password;\r\n\r\n    public User(String studentId, String password){\r\n        this.studentId = studentId;\r\n        this.password = password;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/sg/edu/np/mad/myapplication/User.java b/app/src/main/java/sg/edu/np/mad/myapplication/User.java
+--- a/app/src/main/java/sg/edu/np/mad/myapplication/User.java	
++++ b/app/src/main/java/sg/edu/np/mad/myapplication/User.java	
+@@ -8,4 +8,20 @@
+         this.studentId = studentId;
+         this.password = password;
+     }
++
++    public String getStudentId() {
++        return studentId;
++    }
++
++    public void setPassword(String password) {
++        this.password = password;
++    }
++
++    public String getPassword() {
++        return password;
++    }
++
++    public void setStudentId(String studentId) {
++        this.studentId = studentId;
++    }
+ }
+Index: app/src/main/java/sg/edu/np/mad/myapplication/signUp_page.java
+===================================================================
+diff --git a/app/src/main/java/sg/edu/np/mad/myapplication/signUp_page.java b/app/src/main/java/sg/edu/np/mad/myapplication/signUp_page.java
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/sg/edu/np/mad/myapplication/signUp_page.java	
+@@ -0,0 +1,99 @@
++package sg.edu.np.mad.myapplication;
++
++import android.nfc.Tag;
++import android.os.Bundle;
++import android.util.Log;
++import android.view.View;
++import android.widget.Button;
++import android.widget.EditText;
++import android.widget.Toast;
++
++import androidx.activity.EdgeToEdge;
++import androidx.annotation.NonNull;
++import androidx.appcompat.app.AppCompatActivity;
++import androidx.core.graphics.Insets;
++import androidx.core.view.ViewCompat;
++import androidx.core.view.WindowInsetsCompat;
++
++import com.google.android.gms.tasks.OnCompleteListener;
++import com.google.android.gms.tasks.Task;
++import com.google.firebase.auth.AuthResult;
++import com.google.firebase.auth.FirebaseAuth;
++import com.google.firebase.auth.FirebaseUser;
++import com.google.firebase.auth.UserProfileChangeRequest;
++
++
++public class signUp_page extends AppCompatActivity {
++    private FirebaseAuth mAuth;
++    private final String TAG = "signUp_page";
++
++    public void updateUserProfile(FirebaseUser user, String name ){
++        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
++                .setDisplayName(name)
++                .build();
++        user.updateProfile(profileUpdates)
++                .addOnCompleteListener(new OnCompleteListener<Void>() {
++                    @Override
++                    public void onComplete(@NonNull Task<Void> task) {
++                        if (task.isSuccessful()) {
++                            Log.d(TAG, "User profile updated.");
++                        }
++                    }
++                });
++
++    }
++
++
++
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        mAuth = FirebaseAuth.getInstance();
++        EdgeToEdge.enable(this);
++        setContentView(R.layout.activity_sign_up_page);
++        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
++            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
++            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
++            return insets;
++        });
++        Button signUp = findViewById(R.id.SignUp);
++        EditText etSName = findViewById(R.id.etsName);
++        EditText etEmail = findViewById(R.id.etStudentId);
++        EditText etPsswd = findViewById(R.id.etpasswd);
++
++//      Before initiating Sign Up process check if the user exists
++        signUp.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                String name = etSName.getText().toString();
++                String email = etEmail.getText().toString();
++                String password = etPsswd.getText().toString();
++                mAuth.createUserWithEmailAndPassword(email,password)
++                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
++                            @Override
++                            public void onComplete(@NonNull Task<AuthResult> task) {
++                                if (task.isSuccessful()) {
++                                    // Sign in success, update UI with the signed-in user's information
++                                    Log.d(TAG, "createUserWithEmail:success");
++                                    FirebaseUser user = mAuth.getCurrentUser();
++                                    // update the user's profile
++                                    updateUserProfile(user,name);
++
++
++                                } else {
++                                    // If sign in fails, display a message to the user.
++                                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
++                                    Toast.makeText(signUp_page.this, "Authentication failed.",
++                                            Toast.LENGTH_SHORT).show();
++
++                                }
++                            }
++                        });
++
++
++            }
++        });
++
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_drinks_menu.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_drinks_menu.xml b/app/src/main/res/layout/fragment_drinks_menu.xml
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/res/layout/fragment_drinks_menu.xml	
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="utf-8"?>
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".drinksMenu">
++
++    <!-- TODO: Update blank fragment layout -->
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:text="@string/hello_blank_fragment" />
++
++</FrameLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_rewards.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_rewards.xml b/app/src/main/res/layout/activity_rewards.xml
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/res/layout/activity_rewards.xml	
+@@ -0,0 +1,53 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    xmlns:app="http://schemas.android.com/apk/res-auto">
++    <TextView
++        android:id="@+id/RewardsTitle"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="25dp"
++        android:text="Rewards"
++        app:layout_constraintTop_toTopOf="parent"
++        android:textSize="40dp"
++        android:gravity="center"/>
++    <RelativeLayout
++        android:id="@+id/PointsCard"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        app:layout_constraintTop_toBottomOf="@+id/RewardsTitle"
++        android:layout_marginLeft="50dp"
++        android:layout_marginRight="50dp"
++        android:background="#CCCCCC">
++        <TextView
++            android:id="@+id/points"
++            android:layout_marginTop="10dp"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_centerInParent="true"
++            android:layout_alignParentTop="true"
++            android:text="Points"
++            android:textSize="30dp"
++            />
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_centerInParent="true"
++            android:text="20"
++            android:textSize="40dp"
++            android:layout_below="@+id/points"/>
++
++    </RelativeLayout>
++    <androidx.recyclerview.widget.RecyclerView
++        android:id="@+id/recycler_items"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        app:layout_constraintTop_toBottomOf="@+id/PointsCard"
++        android:layout_margin="20dp"
++        >
++
++    </androidx.recyclerview.widget.RecyclerView>
++
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/sg/edu/np/mad/myapplication/LoginActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/sg/edu/np/mad/myapplication/LoginActivity.java b/app/src/main/java/sg/edu/np/mad/myapplication/LoginActivity.java
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/sg/edu/np/mad/myapplication/LoginActivity.java	
+@@ -0,0 +1,108 @@
++package sg.edu.np.mad.myapplication;
++
++import android.content.Intent;
++import android.os.Bundle;
++import android.util.Log;
++import android.view.View;
++import android.widget.Button;
++import android.widget.EditText;
++import android.widget.TextView;
++import android.widget.Toast;
++
++import androidx.activity.EdgeToEdge;
++import androidx.annotation.NonNull;
++import androidx.appcompat.app.AppCompatActivity;
++import androidx.core.graphics.Insets;
++import androidx.core.view.ViewCompat;
++import androidx.core.view.WindowInsetsCompat;
++import com.google.android.gms.tasks.OnCompleteListener;
++import com.google.android.gms.tasks.Task;
++import com.google.firebase.auth.AuthResult;
++import com.google.firebase.auth.FirebaseAuth;
++import com.google.firebase.auth.FirebaseUser;
++
++
++public class LoginActivity extends AppCompatActivity {
++    private FirebaseAuth mAuth;
++    private String TAG = "login_page";
++    String StudentId = "S1089067J";
++    String passwd = "NQ2KZINAS8HE";
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        // return the firebase authenticator instance
++        mAuth = FirebaseAuth.getInstance();
++        FirebaseUser currentUser = mAuth.getCurrentUser();
++        super.onCreate(savedInstanceState);
++        EdgeToEdge.enable(this);
++        setContentView(R.layout.activity_login_page);
++        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
++            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
++            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
++            return insets;
++        });
++        // Hardcoded password validation (database CRUD implmented later)
++        EditText etStudentId = findViewById(R.id.etSId);
++
++        EditText etpsswd = findViewById(R.id.etpsswd);
++
++
++        Button loginBtn = findViewById(R.id.login);
++
++
++        TextView signUp = findViewById(R.id.signUpText);
++
++        signUp.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                Intent intent = new Intent(getApplicationContext(), signUp_page.class);
++            }
++        });
++
++        if(currentUser != null){
++            loginBtn.setOnClickListener(new View.OnClickListener(){
++
++                @Override
++                public void onClick(View v) {
++                    String email = etStudentId.getText().toString();
++                    String password = etpsswd.getText().toString();
++                    // implment login firebase authentication
++                    mAuth.signInWithEmailAndPassword(email, password)
++                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
++                                @Override
++                                public void onComplete(@NonNull Task<AuthResult> task) {
++                                    if (task.isSuccessful()) {
++                                        // Sign in success, display message for sucessful and pass data to mainActivity
++                                        Log.d(TAG, "signInWithEmail:success");
++                                        FirebaseUser user = mAuth.getCurrentUser();
++                                        Toast.makeText(LoginActivity.this,"Login is successful welcome back",Toast.LENGTH_SHORT).show();
++                                        Intent toMainActivity = new Intent(LoginActivity.this, MainActivity.class);
++                                        toMainActivity.putExtra("name",user.getDisplayName());
++                                        startActivity(toMainActivity);
++                                        Log.i(TAG,user.getDisplayName());
++
++
++                                    }
++                                    else {
++                                        // If sign in fails, display a message to the user.
++                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
++                                        Toast.makeText(LoginActivity.this, "Authentication failed.",
++                                                Toast.LENGTH_SHORT).show();
++                                    }
++                                }
++                            });
++                }
++            });
++        }
++
++
++    }
++
++
++
++
++
++
++
++
++
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_sign_up_page.xml
+===================================================================
+diff --git a/app/src/main/res/layout/activity_sign_up_page.xml b/app/src/main/res/layout/activity_sign_up_page.xml
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/res/layout/activity_sign_up_page.xml	
+@@ -0,0 +1,133 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    android:id="@+id/main"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".LoginActivity"
++    android:background="#FFC529">
++
++    <ImageView
++        android:id="@+id/accimage"
++        android:layout_width="100dp"
++        android:layout_height="100dp"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        android:background="@drawable/account"
++        android:layout_margin="16dp" />
++
++
++
++    <TextView
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="Create an Account"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@id/accimage"
++        android:textSize="30sp"
++        android:textStyle="bold"
++        android:layout_margin="16dp"/>
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="vertical"
++        app:layout_constraintBottom_toBottomOf="parent"
++        android:background="@drawable/oval_shape">
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:textSize="30sp"
++            android:text="Sign Up"
++            android:layout_gravity="center"
++            android:layout_margin="16dp"
++            android:textStyle="bold"/>
++
++        <com.google.android.material.textfield.TextInputLayout
++            android:id="@+id/sName"
++            app:endIconMode="custom"
++            app:endIconDrawable="@drawable/account"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_margin="16dp"
++            android:hint="Name">
++
++            <com.google.android.material.textfield.TextInputEditText
++                android:id="@+id/etsName"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                />
++
++        </com.google.android.material.textfield.TextInputLayout>
++
++
++        <com.google.android.material.textfield.TextInputLayout
++            android:id="@+id/studentId"
++            app:endIconMode="password_toggle"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_margin="16dp"
++            android:hint="StudentId">
++
++            <com.google.android.material.textfield.TextInputEditText
++                android:id="@+id/etStudentId"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                />
++
++        </com.google.android.material.textfield.TextInputLayout>
++
++        <com.google.android.material.textfield.TextInputLayout
++            android:id="@+id/passwrd"
++            app:endIconMode="password_toggle"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_margin="16dp"
++            android:hint="password">
++
++            <com.google.android.material.textfield.TextInputEditText
++                android:id="@+id/etpasswd"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                />
++
++        </com.google.android.material.textfield.TextInputLayout>
++
++        <com.google.android.material.button.MaterialButton
++            android:id="@+id/SignUp"
++            android:layout_width="match_parent"
++            android:layout_height="60dp"
++            android:layout_margin="16dp"
++            app:cornerRadius="5dp"
++            android:backgroundTint="@color/black"
++            android:textSize="20sp"
++            android:text="Sign Up"/>
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:padding="5dp"
++            android:layout_marginBottom="10dp"
++            android:background="@android:color/white"
++            android:layout_gravity="center"
++            android:text="Already have an account?" />
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Login Now"
++            android:textColor="@android:color/holo_blue_dark"
++            android:layout_gravity="center"
++            android:textSize="15sp"
++            android:layout_marginBottom="10dp"/>
++
++
++
++    </LinearLayout>
++
++
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/sg/edu/np/mad/myapplication/drinksMenu.java
+===================================================================
+diff --git a/app/src/main/java/sg/edu/np/mad/myapplication/drinksMenu.java b/app/src/main/java/sg/edu/np/mad/myapplication/drinksMenu.java
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/sg/edu/np/mad/myapplication/drinksMenu.java	
+@@ -0,0 +1,64 @@
++package sg.edu.np.mad.myapplication;
++
++import android.os.Bundle;
++
++import androidx.fragment.app.Fragment;
++
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++
++/**
++ * A simple {@link Fragment} subclass.
++ * Use the {@link drinksMenu#newInstance} factory method to
++ * create an instance of this fragment.
++ */
++public class drinksMenu extends Fragment {
++
++    // TODO: Rename parameter arguments, choose names that match
++    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
++    private static final String ARG_PARAM1 = "param1";
++    private static final String ARG_PARAM2 = "param2";
++
++    // TODO: Rename and change types of parameters
++    private String mParam1;
++    private String mParam2;
++
++    public drinksMenu() {
++        // Required empty public constructor
++    }
++
++    /**
++     * Use this factory method to create a new instance of
++     * this fragment using the provided parameters.
++     *
++     * @param param1 Parameter 1.
++     * @param param2 Parameter 2.
++     * @return A new instance of fragment drinksMenu.
++     */
++    // TODO: Rename and change types and number of parameters
++    public static drinksMenu newInstance(String param1, String param2) {
++        drinksMenu fragment = new drinksMenu();
++        Bundle args = new Bundle();
++        args.putString(ARG_PARAM1, param1);
++        args.putString(ARG_PARAM2, param2);
++        fragment.setArguments(args);
++        return fragment;
++    }
++
++    @Override
++    public void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        if (getArguments() != null) {
++            mParam1 = getArguments().getString(ARG_PARAM1);
++            mParam2 = getArguments().getString(ARG_PARAM2);
++        }
++    }
++
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container,
++                             Bundle savedInstanceState) {
++        // Inflate the layout for this fragment
++        return inflater.inflate(R.layout.fragment_drinks_menu, container, false);
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/sg/edu/np/mad/myapplication/Voucher.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/sg/edu/np/mad/myapplication/Voucher.java b/app/src/main/java/sg/edu/np/mad/myapplication/Voucher.java
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/sg/edu/np/mad/myapplication/Voucher.java	
+@@ -0,0 +1,19 @@
++package sg.edu.np.mad.myapplication;
++
++import java.util.Date;
++
++public class Voucher {
++    int storeID;
++    int discount;
++    Date valid;
++    Date expiry;
++    String description;
++
++    public Voucher(int input_storeID, int input_discount, Date input_valid, Date input_expiry, String input_description){
++        storeID = input_storeID;
++        discount = input_discount;
++        valid = input_valid;
++        expiry = input_expiry;
++        description = input_description;
++    }
++}
+Index: app/src/main/java/sg/edu/np/mad/myapplication/RewardsViewHolder.java
+===================================================================
+diff --git a/app/src/main/java/sg/edu/np/mad/myapplication/RewardsViewHolder.java b/app/src/main/java/sg/edu/np/mad/myapplication/RewardsViewHolder.java
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/sg/edu/np/mad/myapplication/RewardsViewHolder.java	
+@@ -0,0 +1,34 @@
++package sg.edu.np.mad.myapplication;
++
++import android.os.Bundle;
++
++import androidx.activity.EdgeToEdge;
++import androidx.appcompat.app.AppCompatActivity;
++import androidx.recyclerview.widget.LinearLayoutManager;
++import androidx.recyclerview.widget.RecyclerView;
++
++import java.util.ArrayList;
++
++public class RewardsViewHolder extends AppCompatActivity {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        EdgeToEdge.enable(this);
++        setContentView(R.layout.activity_rewards);
++        RecyclerView recyclerView = findViewById(R.id.recycler_items);
++
++        ArrayList<String> voucherData = new ArrayList<>();
++        voucherData.add("item 1");
++        voucherData.add("item 2");
++        voucherData.add("item 3");
++        voucherData.add("item 4");
++
++        LinearLayoutManager linearLayoutManagerItems = new LinearLayoutManager(RewardsViewHolder.this, LinearLayoutManager.VERTICAL, false);
++        VoucherRVAdapter rv_Items_Adapter = new VoucherRVAdapter(voucherData);
++        recyclerView.setLayoutManager(linearLayoutManagerItems);
++        recyclerView.setAdapter(rv_Items_Adapter);
++
++
++    }
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AndroidLayouts\">\r\n    <shared>\r\n      <config />\r\n    </shared>\r\n    <layouts>\r\n      <layout url=\"file://$PROJECT_DIR$/app/src/main/res/layout/activity_foodmenu.xml\">\r\n        <config>\r\n          <theme>@style/Theme.MyApplication</theme>\r\n        </config>\r\n      </layout>\r\n      <layout url=\"file://$PROJECT_DIR$/app/src/main/res/layout/activity_login_page.xml\">\r\n        <config>\r\n          <theme>@style/Theme.MyApplication</theme>\r\n        </config>\r\n      </layout>\r\n      <layout url=\"file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml\">\r\n        <config>\r\n          <theme>@style/Theme.MyApplication</theme>\r\n        </config>\r\n      </layout>\r\n      <layout url=\"file://$PROJECT_DIR$/app/src/main/res/layout/recycler_items.xml\">\r\n        <config>\r\n          <theme>@style/Theme.MyApplication</theme>\r\n        </config>\r\n      </layout>\r\n      <layout url=\"file://$PROJECT_DIR$/app/src/main/res/layout/recycler_layout_menu.xml\">\r\n        <config>\r\n          <theme>@style/Theme.MyApplication</theme>\r\n        </config>\r\n      </layout>\r\n      <layout url=\"file://$PROJECT_DIR$/app/src/main/res/layout/recycler_store.xml\">\r\n        <config>\r\n          <theme>@style/Theme.MyApplication</theme>\r\n        </config>\r\n      </layout>\r\n    </layouts>\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"NONE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"39eb89c9-b0c2-4177-b484-de25b432035d\" name=\"Changes\" comment=\"main page\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ClangdSettings\">\r\n    <option name=\"formatViaClangd\" value=\"false\" />\r\n  </component>\r\n  <component name=\"ExecutionTargetManager\" SELECTED_TARGET=\"device_and_snapshot_combo_box_target[C:\\Users\\liang\\.android\\avd\\Pixel_8_API_30.avd]\" />\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"ExternalProjectsManager\">\r\n    <system id=\"GRADLE\">\r\n      <state>\r\n        <task path=\"$PROJECT_DIR$/app\">\r\n          <activation />\r\n        </task>\r\n        <projects_view>\r\n          <tree_state>\r\n            <expand />\r\n            <select />\r\n          </tree_state>\r\n        </projects_view>\r\n      </state>\r\n    </system>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"resourceFile\" />\r\n        <option value=\"layoutResourceFile\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 6\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2g3EZZGxu3dQAKjuqsdIdieu9vT\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,\r\n    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Year 2/Semester 1/Mobile Applications Development/Assignment 1/P03Team3&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,\r\n    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Year 2\\Semester 1\\Mobile Applications Development\\Assignment 1\\P03Team3\\app\\src\\main\\res\\drawable\" />\r\n    </key>\r\n    <key name=\"android.template.-815017675\">\r\n      <recent name=\"sg.edu.np.mad.myapplication\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Year 2\\Semester 1\\Mobile Applications Development\\Assignment 1\\P03Team3\\app\\src\\main\\res\\drawable\" />\r\n    </key>\r\n    <key name=\"android.template.-284524150\">\r\n      <recent name=\"sg.edu.np.mad.myapplication\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Android App.app\">\r\n    <configuration name=\"app\" type=\"AndroidRunConfigurationType\" factoryName=\"Android App\">\r\n      <module name=\"My_Application.app.main\" />\r\n      <option name=\"DEPLOY\" value=\"true\" />\r\n      <option name=\"DEPLOY_APK_FROM_BUNDLE\" value=\"false\" />\r\n      <option name=\"DEPLOY_AS_INSTANT\" value=\"false\" />\r\n      <option name=\"ARTIFACT_NAME\" value=\"\" />\r\n      <option name=\"PM_INSTALL_OPTIONS\" value=\"\" />\r\n      <option name=\"ALL_USERS\" value=\"false\" />\r\n      <option name=\"ALWAYS_INSTALL_WITH_PM\" value=\"false\" />\r\n      <option name=\"CLEAR_APP_STORAGE\" value=\"false\" />\r\n      <option name=\"DYNAMIC_FEATURES_DISABLED_LIST\" value=\"\" />\r\n      <option name=\"ACTIVITY_EXTRA_FLAGS\" value=\"\" />\r\n      <option name=\"MODE\" value=\"default_activity\" />\r\n      <option name=\"CLEAR_LOGCAT\" value=\"false\" />\r\n      <option name=\"SHOW_LOGCAT_AUTOMATICALLY\" value=\"false\" />\r\n      <option name=\"INSPECTION_WITHOUT_ACTIVITY_RESTART\" value=\"false\" />\r\n      <option name=\"TARGET_SELECTION_MODE\" value=\"DEVICE_AND_SNAPSHOT_COMBO_BOX\" />\r\n      <option name=\"SELECTED_CLOUD_MATRIX_CONFIGURATION_ID\" value=\"-1\" />\r\n      <option name=\"SELECTED_CLOUD_MATRIX_PROJECT_ID\" value=\"\" />\r\n      <option name=\"DEBUGGER_TYPE\" value=\"Auto\" />\r\n      <Auto>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Auto>\r\n      <Hybrid>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Hybrid>\r\n      <Java>\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Java>\r\n      <Native>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Native>\r\n      <Profilers>\r\n        <option name=\"ADVANCED_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_CPU_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_CPU_PROFILING_CONFIGURATION_NAME\" value=\"Java/Kotlin Method Sample (legacy)\" />\r\n        <option name=\"STARTUP_NATIVE_MEMORY_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"NATIVE_MEMORY_SAMPLE_RATE_BYTES\" value=\"2048\" />\r\n      </Profilers>\r\n      <option name=\"DEEP_LINK\" value=\"\" />\r\n      <option name=\"ACTIVITY_CLASS\" value=\"\" />\r\n      <option name=\"SEARCH_ACTIVITY_IN_GLOBAL_SCOPE\" value=\"false\" />\r\n      <option name=\"SKIP_ACTIVITY_VALIDATION\" value=\"false\" />\r\n      <method v=\"2\">\r\n        <option name=\"Android.Gradle.BeforeRunTask\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"foodmenu\" type=\"AndroidRunConfigurationType\" factoryName=\"Android App\">\r\n      <module name=\"My_Application.app.main\" />\r\n      <option name=\"DEPLOY\" value=\"true\" />\r\n      <option name=\"DEPLOY_APK_FROM_BUNDLE\" value=\"false\" />\r\n      <option name=\"DEPLOY_AS_INSTANT\" value=\"false\" />\r\n      <option name=\"ARTIFACT_NAME\" value=\"\" />\r\n      <option name=\"PM_INSTALL_OPTIONS\" value=\"\" />\r\n      <option name=\"ALL_USERS\" value=\"false\" />\r\n      <option name=\"ALWAYS_INSTALL_WITH_PM\" value=\"false\" />\r\n      <option name=\"CLEAR_APP_STORAGE\" value=\"false\" />\r\n      <option name=\"DYNAMIC_FEATURES_DISABLED_LIST\" value=\"\" />\r\n      <option name=\"ACTIVITY_EXTRA_FLAGS\" value=\"\" />\r\n      <option name=\"MODE\" value=\"specific_activity\" />\r\n      <option name=\"CLEAR_LOGCAT\" value=\"false\" />\r\n      <option name=\"SHOW_LOGCAT_AUTOMATICALLY\" value=\"false\" />\r\n      <option name=\"INSPECTION_WITHOUT_ACTIVITY_RESTART\" value=\"false\" />\r\n      <option name=\"TARGET_SELECTION_MODE\" value=\"SHOW_DIALOG\" />\r\n      <option name=\"SELECTED_CLOUD_MATRIX_CONFIGURATION_ID\" value=\"-1\" />\r\n      <option name=\"SELECTED_CLOUD_MATRIX_PROJECT_ID\" value=\"\" />\r\n      <option name=\"DEBUGGER_TYPE\" value=\"Auto\" />\r\n      <Auto>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Auto>\r\n      <Hybrid>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Hybrid>\r\n      <Java>\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Java>\r\n      <Native>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Native>\r\n      <Profilers>\r\n        <option name=\"ADVANCED_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_CPU_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_CPU_PROFILING_CONFIGURATION_NAME\" value=\"Java/Kotlin Method Sample (legacy)\" />\r\n        <option name=\"STARTUP_NATIVE_MEMORY_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"NATIVE_MEMORY_SAMPLE_RATE_BYTES\" value=\"2048\" />\r\n      </Profilers>\r\n      <option name=\"DEEP_LINK\" value=\"\" />\r\n      <option name=\"ACTIVITY_CLASS\" value=\"sg.edu.np.mad.myapplication.foodmenu\" />\r\n      <option name=\"SEARCH_ACTIVITY_IN_GLOBAL_SCOPE\" value=\"false\" />\r\n      <option name=\"SKIP_ACTIVITY_VALIDATION\" value=\"false\" />\r\n      <method v=\"2\">\r\n        <option name=\"Android.Gradle.BeforeRunTask\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"loginPage\" type=\"AndroidRunConfigurationType\" factoryName=\"Android App\" temporary=\"true\">\r\n      <module name=\"My_Application.app.main\" />\r\n      <option name=\"DEPLOY\" value=\"true\" />\r\n      <option name=\"DEPLOY_APK_FROM_BUNDLE\" value=\"false\" />\r\n      <option name=\"DEPLOY_AS_INSTANT\" value=\"false\" />\r\n      <option name=\"ARTIFACT_NAME\" value=\"\" />\r\n      <option name=\"PM_INSTALL_OPTIONS\" value=\"\" />\r\n      <option name=\"ALL_USERS\" value=\"false\" />\r\n      <option name=\"ALWAYS_INSTALL_WITH_PM\" value=\"false\" />\r\n      <option name=\"CLEAR_APP_STORAGE\" value=\"false\" />\r\n      <option name=\"DYNAMIC_FEATURES_DISABLED_LIST\" value=\"\" />\r\n      <option name=\"ACTIVITY_EXTRA_FLAGS\" value=\"\" />\r\n      <option name=\"MODE\" value=\"specific_activity\" />\r\n      <option name=\"CLEAR_LOGCAT\" value=\"false\" />\r\n      <option name=\"SHOW_LOGCAT_AUTOMATICALLY\" value=\"false\" />\r\n      <option name=\"INSPECTION_WITHOUT_ACTIVITY_RESTART\" value=\"false\" />\r\n      <option name=\"TARGET_SELECTION_MODE\" value=\"DEVICE_AND_SNAPSHOT_COMBO_BOX\" />\r\n      <option name=\"SELECTED_CLOUD_MATRIX_CONFIGURATION_ID\" value=\"-1\" />\r\n      <option name=\"SELECTED_CLOUD_MATRIX_PROJECT_ID\" value=\"\" />\r\n      <option name=\"DEBUGGER_TYPE\" value=\"Auto\" />\r\n      <Auto>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Auto>\r\n      <Hybrid>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Hybrid>\r\n      <Java>\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Java>\r\n      <Native>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Native>\r\n      <Profilers>\r\n        <option name=\"ADVANCED_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_CPU_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_CPU_PROFILING_CONFIGURATION_NAME\" value=\"Java/Kotlin Method Sample (legacy)\" />\r\n        <option name=\"STARTUP_NATIVE_MEMORY_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"NATIVE_MEMORY_SAMPLE_RATE_BYTES\" value=\"2048\" />\r\n      </Profilers>\r\n      <option name=\"DEEP_LINK\" value=\"\" />\r\n      <option name=\"ACTIVITY_CLASS\" value=\"sg.edu.np.mad.myapplication.loginPage\" />\r\n      <option name=\"SEARCH_ACTIVITY_IN_GLOBAL_SCOPE\" value=\"false\" />\r\n      <option name=\"SKIP_ACTIVITY_VALIDATION\" value=\"true\" />\r\n      <method v=\"2\">\r\n        <option name=\"Android.Gradle.BeforeRunTask\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Android App.app\" />\r\n      <item itemvalue=\"Android App.foodmenu\" />\r\n      <item itemvalue=\"Android App.loginPage\" />\r\n    </list>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Android App.loginPage\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"39eb89c9-b0c2-4177-b484-de25b432035d\" name=\"Changes\" comment=\"\" />\r\n      <created>1714917916812</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1714917916812</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Isaac's branch merged\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1714918419777</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1714918419777</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Did the login page and order page\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715042755163</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715042755163</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"commited workspace.xml\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715043073115</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715043073115</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"main page\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715080029365</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715080029365</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Isaac's branch merged\" />\r\n    <MESSAGE value=\"Added the login page in the login view\" />\r\n    <MESSAGE value=\"Did the login page and order page\" />\r\n    <MESSAGE value=\"commited workspace.xml\" />\r\n    <MESSAGE value=\"main page\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"main page\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -20,17 +20,22 @@
+           <theme>@style/Theme.MyApplication</theme>
+         </config>
+       </layout>
+-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/recycler_items.xml">
++      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/menurecyclerview.xml">
+         <config>
+           <theme>@style/Theme.MyApplication</theme>
+         </config>
+       </layout>
+-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/recycler_layout_menu.xml">
++      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/recycler_items.xml">
+         <config>
+           <theme>@style/Theme.MyApplication</theme>
+         </config>
+       </layout>
+       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/recycler_store.xml">
++        <config>
++          <theme>@style/Theme.MyApplication</theme>
++        </config>
++      </layout>
++      <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/bottom_navigation_menu.xml">
+         <config>
+           <theme>@style/Theme.MyApplication</theme>
+         </config>
+@@ -41,7 +46,32 @@
+     <option name="autoReloadType" value="NONE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="39eb89c9-b0c2-4177-b484-de25b432035d" name="Changes" comment="main page" />
++    <list default="true" id="39eb89c9-b0c2-4177-b484-de25b432035d" name="Changes" comment="main page">
++      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/RewardsViewHolder.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/Voucher.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/8.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/checksums/checksums.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/executionHistory.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/Items_RVAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/Items_RVAdapter.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/Rewards.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/Rewards.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/foodmenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/MenuFood.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/login_page.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/LoginActivity.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/menuModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/MenuModel.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/menu_recyclerviewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/menu_recyclerviewAdapter.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_foodmenu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_foodmenu.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login_page.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login_page.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up_page.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up_page.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -50,7 +80,7 @@
+   <component name="ClangdSettings">
+     <option name="formatViaClangd" value="false" />
+   </component>
+-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\liang\.android\avd\Pixel_8_API_30.avd]" />
++  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\jakec\.android\avd\Pixel_3a_API_34.avd]" />
+   <component name="ExternalProjectsData">
+     <projectState path="$PROJECT_DIR$">
+       <ProjectState />
+@@ -261,7 +291,7 @@
+         <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+       </Profilers>
+       <option name="DEEP_LINK" value="" />
+-      <option name="ACTIVITY_CLASS" value="sg.edu.np.mad.myapplication.foodmenu" />
++      <option name="ACTIVITY_CLASS" value="sg.edu.np.mad.myapplication.MenuFood" />
+       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+       <method v="2">
+@@ -387,7 +417,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1715080029365</updated>
+     </task>
+-    <option name="localTasksCounter" value="5" />
++    <task id="LOCAL-00005" summary="main page">
++      <option name="closed" value="true" />
++      <created>1715080274661</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1715080274661</updated>
++    </task>
++    <option name="localTasksCounter" value="6" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+Index: app/src/main/java/sg/edu/np/mad/myapplication/Voucher_RVAdapter.java
+===================================================================
+diff --git a/app/src/main/java/sg/edu/np/mad/myapplication/Voucher_RVAdapter.java b/app/src/main/java/sg/edu/np/mad/myapplication/Voucher_RVAdapter.java
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/sg/edu/np/mad/myapplication/Voucher_RVAdapter.java	
+@@ -0,0 +1,39 @@
++package sg.edu.np.mad.myapplication;
++
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.TextView;
++
++import androidx.annotation.NonNull;
++import androidx.recyclerview.widget.RecyclerView;
++
++import java.util.ArrayList;
++
++class VoucherRVAdapter extends RecyclerView.Adapter<VoucherRVAdapter.MyHolder> {
++    ArrayList<String> data;
++    public VoucherRVAdapter(ArrayList<String> data) {
++        this.data = data;
++    }
++    @NonNull
++    @Override
++    public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
++        View itemview = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_voucher, null, false);
++        return new MyHolder(itemview);
++    }
++    @Override
++    public void onBindViewHolder(@NonNull MyHolder holder, int position) {
++        holder.vouchername.setText(data.get(position));
++    }
++    @Override
++    public int getItemCount() {
++        return data.size();
++    }
++    class MyHolder extends RecyclerView.ViewHolder {
++        TextView vouchername;
++        public MyHolder(@NonNull View itemView) {
++            super(itemView);
++            vouchername = itemView.findViewById(R.id.vouchername);
++        }
++    }
++}
+Index: app/src/main/java/sg/edu/np/mad/myapplication/Stores_RVAdapter.java
+===================================================================
+diff --git a/app/src/main/java/sg/edu/np/mad/myapplication/Stores_RVAdapter.java b/app/src/main/java/sg/edu/np/mad/myapplication/Stores_RVAdapter.java
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/sg/edu/np/mad/myapplication/Stores_RVAdapter.java	
+@@ -0,0 +1,40 @@
++package sg.edu.np.mad.myapplication;
++
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.TextView;
++
++import androidx.annotation.NonNull;
++import androidx.recyclerview.widget.RecyclerView;
++
++import java.util.ArrayList;
++
++
++class StoreRVAdapter extends RecyclerView.Adapter<StoreRVAdapter.MyHolder> {
++    ArrayList<String> data;
++    public StoreRVAdapter(ArrayList<String> data) {
++        this.data = data;
++    }
++    @NonNull
++    @Override
++    public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
++        View itemview = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_store, null, false);
++        return new MyHolder(itemview);
++    }
++    @Override
++    public void onBindViewHolder(@NonNull MyHolder holder, int position) {
++        holder.tvTitle.setText(data.get(position));
++    }
++    @Override
++    public int getItemCount() {
++        return data.size();
++    }
++    class MyHolder extends RecyclerView.ViewHolder {
++        TextView tvTitle;
++        public MyHolder(@NonNull View itemView) {
++            super(itemView);
++            tvTitle = itemView.findViewById(R.id.tvTitle);
++        }
++    }
++}
+Index: app/src/main/java/sg/edu/np/mad/myapplication/Items_RVAdapter.java
+===================================================================
+diff --git a/app/src/main/java/sg/edu/np/mad/myapplication/Items_RVAdapter.java b/app/src/main/java/sg/edu/np/mad/myapplication/Items_RVAdapter.java
+new file mode 100644
+--- /dev/null	
++++ b/app/src/main/java/sg/edu/np/mad/myapplication/Items_RVAdapter.java	
+@@ -0,0 +1,41 @@
++package sg.edu.np.mad.myapplication;
++
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.TextView;
++
++import androidx.annotation.NonNull;
++import androidx.recyclerview.widget.RecyclerView;
++
++import java.util.ArrayList;
++
++
++
++class   RVAdapter extends RecyclerView.Adapter<RVAdapter.MyHolder> {
++    ArrayList<String> data;
++    public RVAdapter(ArrayList<String> data) {
++        this.data = data;
++    }
++    @NonNull
++    @Override
++    public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
++        View itemview = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_items, null, false);
++        return new MyHolder(itemview);
++    }
++    @Override
++    public void onBindViewHolder(@NonNull MyHolder holder, int position) {
++        holder.tvTitle.setText(data.get(position));
++    }
++    @Override
++    public int getItemCount() {
++        return data.size();
++    }
++    class MyHolder extends RecyclerView.ViewHolder {
++        TextView tvTitle;
++        public MyHolder(@NonNull View itemView) {
++            super(itemView);
++            tvTitle = itemView.findViewById(R.id.tvTitle);
++        }
++    }
++}
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.MyApplication\"\r\n        tools:targetApi=\"31\">\r\n        <activity\r\n            android:name=\".foodmenu\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".loginPage\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".MainActivity\"\r\n            android:exported=\"true\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	
++++ b/app/src/main/AndroidManifest.xml	
+@@ -13,20 +13,26 @@
+         android:theme="@style/Theme.MyApplication"
+         tools:targetApi="31">
+         <activity
+-            android:name=".foodmenu"
++            android:name=".MenuFood"
+             android:exported="true" />
+         <activity
+-            android:name=".loginPage"
++            android:name=".signUp_page"
+             android:exported="true" />
++        <activity android:name=".LoginActivity"
++            android:exported="true"/>
+         <activity
+             android:name=".MainActivity"
+             android:exported="true">
++
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+ 
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+         </activity>
++        <activity
++            android:name=".RewardsViewHolder"
++            android:exported="true"/>
+     </application>
+ 
+ </manifest>
+\ No newline at end of file
