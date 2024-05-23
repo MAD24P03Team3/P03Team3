@@ -21,11 +21,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private String TAG = "login_page";
-
+    String studentId = "S1089067J";
+    String password = "NQ2KZINAS8HE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // return the firebase authenticator instance
@@ -39,39 +39,63 @@ public class LoginActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        // Hardcoded password validation (database CRUD implmented later)
-        EditText etStudentId = findViewById(R.id.etSId);
 
-        EditText etpsswd = findViewById(R.id.etpsswd);
-
-
+        // Hardcoded password validation (database CRUD implemented later)
+        EditText inputStudentEmail = findViewById(R.id.inputStudentEmail);
+        EditText inputPassword = findViewById(R.id.inputPassword);
         Button loginBtn = findViewById(R.id.login);
+        TextView signupTxt = findViewById(R.id.signupText);
 
-
-        TextView signUp = findViewById(R.id.signUpText);
-
-        signUp.setOnClickListener(new View.OnClickListener() {
+        signupTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+                Intent toSignupActivity = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivity(toSignupActivity);
+                finish();
             }
         });
-//        Not wrong but a bug in logic
-        // Need to allow users to go to login page even tough currentUser is null
-        if(currentUser != null){
-            loginBtn.setOnClickListener(new View.OnClickListener(){
 
-                @Override
-                public void onClick(View v) {
-                    String email = etStudentId.getText().toString();
-                    String password = etpsswd.getText().toString();
-                    // implment login firebase authentication
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = inputStudentEmail.getText().toString();
+                String password = inputPassword.getText().toString();
+                if (email.isEmpty() || password.isEmpty()){
+                    Toast.makeText(LoginActivity.this, "StudentEmail & Password cannot be empty.", Toast.LENGTH_SHORT).show();
+                }
+                else {
                     mAuth.signInWithEmailAndPassword(email, password)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        // Sign in success, display message for sucessful and pass data to mainActivity
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        Toast.makeText(LoginActivity.this, "Successful login.", Toast.LENGTH_SHORT).show();
+                                        Intent toMainActivity = new Intent(LoginActivity.this, MainActivity.class);
+                                        startActivity(toMainActivity);
+                                    }
+                                    else {
+                                        Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                }
+            }
+        });
+        /*if(currentUser != null){
+            loginBtn.setOnClickListener(new View.OnClickListener(){
+
+                @Override
+                public void onClick(View v) {
+                    String email = inputStudentID.getText().toString();
+                    String password = inputPassword.getText().toString();
+                    // implement login firebase authentication
+                    mAuth.signInWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, display message for successful and pass data to mainActivity
                                         Log.d(TAG, "signInWithEmail:success");
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         Toast.makeText(LoginActivity.this,"Login is successful welcome back",Toast.LENGTH_SHORT).show();
@@ -92,17 +116,6 @@ public class LoginActivity extends AppCompatActivity {
                             });
                 }
             });
-        }
-
-
+        }*/
     }
-
-
-
-
-
-
-
-
-
 }
