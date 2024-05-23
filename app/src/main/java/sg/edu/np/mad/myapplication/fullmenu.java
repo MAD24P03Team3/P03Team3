@@ -5,6 +5,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +23,14 @@ public class fullmenu extends Fragment {
 
 
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+
+    private RecyclerView.LayoutManager layoutManager;
+
+
+
 
 
 
@@ -28,19 +39,37 @@ public class fullmenu extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pratamenu, container, false);
+        ArrayList<Item> ma = new ArrayList<>();
+        View view = inflater.inflate(R.layout.fragment_fullmenu, container, false);
+        RecyclerView rc = view.findViewById(R.id.recyclemenu);
+        layoutManager = new GridLayoutManager(getContext(),2);
+        rc.setLayoutManager(layoutManager);
+        MenuAdapter menuAdapter = new MenuAdapter(ma);
+        rc.setAdapter(menuAdapter);
+        MenuDatabase.retrieveMenuData(db,ma,menuAdapter);
+
+        return  view;
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // find the recyclerView
-        // add data to it
+
+
+
+
+
+
+
+
+
     }
 }
