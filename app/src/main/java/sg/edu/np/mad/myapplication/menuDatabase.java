@@ -30,20 +30,11 @@ public class menuDatabase {
                     String itemDesc = item.get("itemDesc");
                     Double price = Double.parseDouble(item.get("price"));
                     md.add(new MenuModel(name,itemDesc,price));
-
-
                 }
-
-
-
 
                 // log successful retrieval
                 Log.d("This is my map",Menuitems.toString());
             }
-
-
         });
-
     }
-
 }

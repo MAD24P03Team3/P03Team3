@@ -18,20 +18,17 @@
     tools:context=".MainActivity"
     android:fillViewport="true">
 
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <View
             android:layout_width="match_parent"
             android:layout_height="120dp"
             app:layout_constraintBottom_toTopOf="@id/searchbar"/>
 
-
         <EditText
-
             android:id="@+id/searchbar"
             android:layout_width="250dp"
             android:layout_height="48dp"
@@ -78,7 +75,6 @@
                 android:paddingBottom="10dp"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp">
-
 
                 <ImageView
                     android:id="@+id/imageView3"
@@ -147,6 +143,7 @@
             app:layout_anchorGravity="top|center">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomnavbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -154,6 +151,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="parent"
                 app:menu="@menu/bottom_navigation_menu" />
+
         </com.google.android.material.bottomappbar.BottomAppBar>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
