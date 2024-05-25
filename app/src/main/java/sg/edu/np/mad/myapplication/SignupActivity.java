@@ -87,7 +87,6 @@ public class SignupActivity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 
     public void updateUserProfile(FirebaseUser user, String name ){
