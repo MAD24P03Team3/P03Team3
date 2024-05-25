@@ -20,21 +20,8 @@ import java.util.ArrayList;
 
 
 public class fullmenu extends Fragment {
-
-
-
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-
-
     private RecyclerView.LayoutManager layoutManager;
-
-
-
-
-
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +30,7 @@ public class fullmenu extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ArrayList<Item> ma = new ArrayList<>();
         View view = inflater.inflate(R.layout.fragment_fullmenu, container, false);
@@ -53,23 +39,12 @@ public class fullmenu extends Fragment {
         rc.setLayoutManager(layoutManager);
         MenuAdapter menuAdapter = new MenuAdapter(ma);
         rc.setAdapter(menuAdapter);
-        MenuDatabase.retrieveMenuData(db,ma,menuAdapter);
-
+        //menuDatabase.retrieveMenuData(db,ma,menuAdapter);
         return  view;
-
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
-
-
-
-
-
-
-
     }
 }
