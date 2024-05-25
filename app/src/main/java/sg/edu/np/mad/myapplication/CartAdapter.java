@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
-    ArrayList<String> data;
-    public CartAdapter(ArrayList<String> data) {
-        this.data = data;
+    ArrayList<Item> itemArrayList;
+    public CartAdapter(ArrayList<Item> itemArrayList) {
+        this.itemArrayList = itemArrayList;
     }
 
     public CartViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -22,16 +22,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     }
 
     public void onBindViewHolder(CartViewHolder holder, int position) {
-        String store = data.get(position);
-        holder.dataName.setText(store);
+        Item item = itemArrayList.get(position);
+        holder.contentName.setText(item.name);
     }
 
-    public int getItemCount() { return data.size(); }
+    public int getItemCount() { return itemArrayList.size(); }
     public class CartViewHolder extends RecyclerView.ViewHolder{
-        TextView dataName;
+        TextView contentName;
         public CartViewHolder(View itemView) {
             super(itemView);
-            dataName = itemView.findViewById(R.id.contentName);
+            contentName = itemView.findViewById(R.id.contentName);
         }
     }
 }

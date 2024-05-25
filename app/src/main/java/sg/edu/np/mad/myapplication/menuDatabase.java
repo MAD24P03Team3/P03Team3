@@ -17,7 +17,7 @@ public class menuDatabase {
     //
     // *for other methods do database query (to show only specific results)
 
-    public static void retriveAllMenu(FirebaseFirestore db, ArrayList<MenuModel> md){
+    public static void retrieveAllMenu(FirebaseFirestore db, ArrayList<Item> md){
         DocumentReference dr = db.collection("Stores").document("Prata-Boy");
         dr.get().addOnSuccessListener(documentSnapshot -> {
             if(documentSnapshot.exists()){
@@ -28,22 +28,13 @@ public class menuDatabase {
                 for(Map<String,String> item: Menuitems){
                     String name = item.get("name");
                     String itemDesc = item.get("itemDesc");
+                    String itemID = item.get("itemID");
                     Double price = Double.parseDouble(item.get("price"));
-                    md.add(new MenuModel(name,itemDesc,price));
-
-
+                    md.add(new Item(itemID,name,itemDesc,price));
                 }
-
-
-
-
                 // log successful retrieval
                 Log.d("This is my map",Menuitems.toString());
             }
-
-
         });
-
     }
-
 }

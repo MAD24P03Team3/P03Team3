@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 
 public class RewardsActivity extends AppCompatActivity {
@@ -19,6 +21,9 @@ public class RewardsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rewards);
 
         ArrayList<String> voucherData = new ArrayList<>();
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
         voucherData.add("item 1");
         voucherData.add("item 2");
         voucherData.add("item 3");
