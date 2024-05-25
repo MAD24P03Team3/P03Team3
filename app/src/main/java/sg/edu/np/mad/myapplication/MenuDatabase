@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 
-public class menuDatabase {
+public class MenuDatabase {
 
 
     // TODO:
