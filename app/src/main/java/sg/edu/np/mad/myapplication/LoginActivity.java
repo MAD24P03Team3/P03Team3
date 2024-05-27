@@ -24,8 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private String TAG = "login_page";
-    String studentId = "S1089067J";
-    String password = "NQ2KZINAS8HE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // return the firebase authenticator instance
