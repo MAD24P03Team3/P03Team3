@@ -5,7 +5,6 @@ public class Item {
     String name;
     String description;
     int quantity;
-
     double price;
 
     public Item(String input_storeID, String input_name, String input_description, double input_price){
