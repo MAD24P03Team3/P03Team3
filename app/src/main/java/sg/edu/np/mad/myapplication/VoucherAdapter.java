@@ -32,4 +32,7 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherViewHolder> {
 
     @Override
     public int getItemCount() { return data.size(); }
+
+
+
 }
