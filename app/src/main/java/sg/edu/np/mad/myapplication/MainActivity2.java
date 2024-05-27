@@ -10,7 +10,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import sg.edu.np.mad.myapplication.databinding.ActivityCartBinding;
 import sg.edu.np.mad.myapplication.databinding.ActivityMain2Binding;
 
 public class MainActivity2 extends AppCompatActivity {
