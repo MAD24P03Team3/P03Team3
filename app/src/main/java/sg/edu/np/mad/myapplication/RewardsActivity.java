@@ -32,6 +32,7 @@ public class RewardsActivity extends AppCompatActivity {
                 for (Voucher voucher : vouchers) {
                     voucherName.add(voucher.description);
                     String description = voucher.description;
+                    voucherName.add(description);
                     Log.w("RewardsActivity", description);
                 }
             } else {
