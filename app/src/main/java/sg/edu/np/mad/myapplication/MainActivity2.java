@@ -10,9 +10,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import sg.edu.np.mad.myapplication.databinding.ActivityMainBinding;
 import sg.edu.np.mad.myapplication.databinding.ActivityMain2Binding;
 
 public class MainActivity2 extends AppCompatActivity {
+
+    //ActivityMain2Binding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +29,25 @@ public class MainActivity2 extends AppCompatActivity {
         });
 
         ActivityMain2Binding binding = ActivityMain2Binding.inflate(getLayoutInflater());
-        BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
+        setContentView(binding.getRoot());
+        //BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
 
-        //binding.bot
+        //binding.navView
 
-        bottomNavigationView.setOnItemSelectedListener(bottomNavView -> {
+        binding.navView.setOnItemSelectedListener(bottomNavView -> {
+            /*switch (bottomNavView.getItemId()) {
+                case R.id.navigation_Home:
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.nav_host_fragment, new HomeFragment())
+                            .commit();
+                    break;
+
+                case R.id.navigation_Cart:
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.nav_host_fragment, new CartFragment())
+                            .commit();
+                    break;
+            }*/
             if (bottomNavView.getItemId() == R.id.navigation_Home) {
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.nav_host_fragment, new HomeFragment())
@@ -41,12 +58,11 @@ public class MainActivity2 extends AppCompatActivity {
                         .replace(R.id.nav_host_fragment, new CartFragment())
                         .commit();
             }
-            return false;
+            return true;
         });
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    //.add(R.layout.fragment_cart, container, null)
                     .add(R.id.nav_host_fragment, HomeFragment.class, null)
                     .setReorderingAllowed(true)
                     .addToBackStack(null)
