@@ -23,8 +23,13 @@ public class RewardsActivity extends AppCompatActivity {
 
         ArrayList<String> voucherName = new ArrayList<>();
 
-        voucherName.add("item1");
-        voucherName.add("item2");
+        RecyclerView recyclerView = findViewById(R.id.recycler_items);
+        VoucherAdapter rv_Items_Adapter = new VoucherAdapter(voucherName);
+        LinearLayoutManager LayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+
+        recyclerView.setLayoutManager(LayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(rv_Items_Adapter);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         RetrieveVouchers.retrieveVouchers(db).addOnCompleteListener(task -> {
@@ -36,18 +41,13 @@ public class RewardsActivity extends AppCompatActivity {
                     voucherName.add(description);
                     Log.w("RewardsActivity", description);
                 }
+                rv_Items_Adapter.notifyDataSetChanged();
             } else {
 
                 Log.w("RewardsActivity", "Error retrieving vouchers", task.getException());
             }
         });
 
-        RecyclerView recyclerView = findViewById(R.id.recycler_items);
-        VoucherAdapter rv_Items_Adapter = new VoucherAdapter(voucherName);
-        LinearLayoutManager LayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
-        recyclerView.setLayoutManager(LayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(rv_Items_Adapter);
     }
 }
