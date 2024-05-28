@@ -22,7 +22,9 @@ public class RewardsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rewards);
 
         ArrayList<String> voucherName = new ArrayList<>();
+
         voucherName.add("item1");
+        voucherName.add("item2");
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         RetrieveVouchers.retrieveVouchers(db).addOnCompleteListener(task -> {
@@ -30,7 +32,6 @@ public class RewardsActivity extends AppCompatActivity {
                 Log.w("RewardsActivity", "Retrieved vouchers", task.getException());
                 ArrayList<Voucher> vouchers = task.getResult();
                 for (Voucher voucher : vouchers) {
-                    voucherName.add(voucher.description);
                     String description = voucher.description;
                     voucherName.add(description);
                     Log.w("RewardsActivity", description);
