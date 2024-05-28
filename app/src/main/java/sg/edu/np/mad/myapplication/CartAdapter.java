@@ -27,6 +27,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     }
 
     public int getItemCount() { return itemArrayList.size(); }
+
     public class CartViewHolder extends RecyclerView.ViewHolder{
         TextView contentName;
         public CartViewHolder(View itemView) {

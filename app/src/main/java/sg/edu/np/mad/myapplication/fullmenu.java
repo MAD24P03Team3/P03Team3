@@ -39,7 +39,7 @@ public class fullmenu extends Fragment {
         rc.setLayoutManager(layoutManager);
         MenuAdapter menuAdapter = new MenuAdapter(ma);
         rc.setAdapter(menuAdapter);
-        //menuDatabase.retrieveMenuData(db,ma,menuAdapter);
+        //MenuDatabase.retrieveMenuData(db,ma,menuAdapter);
         return  view;
     }
 
