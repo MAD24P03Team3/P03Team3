@@ -15,15 +15,28 @@
             android:id="@+id/nav_host_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/nav_view" />
+            android:layout_above="@id/nav_layout"/>
         <!-- 4700app:defaultNavHost="true"
        app:navGraph="@navigation/nav_graph" /> -->
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/nav_view"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/nav_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            app:menu="@menu/bottom_navigation_menu" />
+            android:layout_alignParentBottom="true">
+                <com.google.android.material.bottomappbar.BottomAppBar
+                    android:id="@+id/nav_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom">
+                        <com.google.android.material.bottomnavigation.BottomNavigationView
+                            android:id="@+id/nav_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="-40dp"
+                            android:layout_alignParentBottom="true"
+                            app:menu="@menu/bottom_navigation_menu" />
+                </com.google.android.material.bottomappbar.BottomAppBar>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 </RelativeLayout>
