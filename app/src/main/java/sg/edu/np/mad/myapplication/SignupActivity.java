@@ -43,6 +43,7 @@ public class SignupActivity extends AppCompatActivity {
 
     // Handle email and password validation
 
+    // Check if password is strong
     private boolean validatePassword(String password){
         // Check if password contains password and numbers
         boolean upper = false;
@@ -71,6 +72,7 @@ public class SignupActivity extends AppCompatActivity {
         return false;
     }
 
+    // Check if the fields required are not empty
     private boolean notEmpty(String password,String email, String name) {
         if (password.equals(null) || email.equals(null) || name.equals(null)) {
             Log.d(TAG,"Empty fields");
@@ -107,12 +109,15 @@ public class SignupActivity extends AppCompatActivity {
         }
     }
 
+    // Add user details to firestore database, create a new document with user's name once user sign up
     private void addUserToDb(Customer c, FirebaseFirestore db){
         //Add data fields and data value
         Map<String,Object> data = new HashMap<>();
         data.put("name",c.name);
         data.put("cid",c.cid);
         data.put("Student email",c.studentId);
+
+        // Get the reffrence document and handle the adding of data
         db.collection("Customer").document(c.name)
                 .set(data)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
