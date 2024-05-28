@@ -16,14 +16,37 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private String TAG = "login_page";
+
+    // method to validate if user entered the correct password
+    public void validateCurrentUser(Exception e, FirebaseUser user){
+        // upcast the exception to the superclass
+        if(e instanceof  FirebaseAuthException){
+            FirebaseAuthException authException = (FirebaseAuthException) e;
+            String errorMessage = authException.getErrorCode();
+            switch (errorMessage){
+                // invalid credential
+                case "ERROR_INVALID_CREDENTIAL":
+                    Toast.makeText(LoginActivity.this,"Please enter the correct email",Toast.LENGTH_SHORT).show();
+                    break;
+                case "ERROR_WRONG_PASSWORD":
+                    Toast.makeText(LoginActivity.this,"Please enter the correct password",Toast.LENGTH_SHORT).show();
+            }
+        }
+        else{
+            Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+        }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,15 +90,26 @@ public class LoginActivity extends AppCompatActivity {
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        FirebaseUser user = mAuth.getCurrentUser();
-                                        Toast.makeText(LoginActivity.this, "Successful login.", Toast.LENGTH_SHORT).show();
-                                        Intent toMainActivity = new Intent(LoginActivity.this, MainActivity.class);
-                                        startActivity(toMainActivity);
+                                    try{
+                                        if (task.isSuccessful()) {
+                                            FirebaseUser user = mAuth.getCurrentUser();
+                                            Toast.makeText(LoginActivity.this, "Successful login.", Toast.LENGTH_SHORT).show();
+                                            Intent toMainActivity = new Intent(LoginActivity.this, MainActivity.class);
+                                            startActivity(toMainActivity);
+                                        }
                                     }
-                                    else {
-                                        Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                    catch (Exception e){
+                                        Log.d(TAG,e.getMessage());
                                     }
+                                    task.addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            validateCurrentUser(e, currentUser);
+                                        }
+                                    });
+
+
+
                                 }
                             });
                 }

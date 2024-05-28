@@ -43,19 +43,41 @@ public class SignupActivity extends AppCompatActivity {
 
     // Handle email and password validation
 
-    private boolean isEmailPasswordValid(String email, String password){
-        if(email.contains("@")){
-            if(password.length() == 6){
-                return true;
+    private boolean validatePassword(String password){
+        // Check if password contains password and numbers
+        boolean upper = false;
+        boolean lower = false;
+        boolean alphanumeric = false;
+        for(Character c : password.toCharArray()){
+            if(Character.isUpperCase(c) ){
+                upper = true;
             }
-            else{
-                Toast.makeText(SignupActivity.this, "Invalid password", Toast.LENGTH_SHORT).show();
+            if(Character.isLowerCase(c)){
+                lower = true;
             }
+
+            if(Character.isLetterOrDigit(c)){
+                alphanumeric = true;
+            }
+        }
+        if(upper && lower && alphanumeric){
+            return true;
         }
         else{
-            Toast.makeText(SignupActivity.this, "Invalid email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignupActivity.this,"Please enter a strong and unique password",Toast.LENGTH_SHORT).show();
         }
+
+        // Check if password is alphanumeric
         return false;
+    }
+
+    private boolean notEmpty(String password,String email, String name) {
+        if (password.equals(null) || email.equals(null) || name.equals(null)) {
+            Log.d(TAG,"Empty fields");
+            return false;
+
+        }
+        return true;
 
     }
 
@@ -141,46 +163,56 @@ public class SignupActivity extends AppCompatActivity {
                 String email = inputStudentEmail.getText().toString();
                 String password = inputPassword.getText().toString();
 
-                if (name.isEmpty() || email.isEmpty() || password.isEmpty()){
-                    Toast.makeText(SignupActivity.this, "Username, StudentEmail & Password cannot be empty.", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    mAuth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    try{
-                                        if (task.isSuccessful()) {
-                                            // Sign in success, update UI with the signed-in user's information
-                                            Log.d(TAG, "createUserWithEmail:success");
-                                            FirebaseUser user = mAuth.getCurrentUser();
-                                            // Add current user to the database
+                if (notEmpty(password,email,name)) {
+                    Log.d(TAG,"Not empty fields");
+                    if(validatePassword(password)){
+                        mAuth.createUserWithEmailAndPassword(email, password)
+                                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        try{
+                                            if (task.isSuccessful()) {
+                                                // Sign in success, update UI with the signed-in user's information
+                                                Log.d(TAG, "createUserWithEmail:success");
+                                                FirebaseUser user = mAuth.getCurrentUser();
+                                                // Add current user to the database
 
-                                            // create new customer class
+                                                // create new customer class
 
-                                            Customer c = new Customer(name,email,password,user.getUid());
+                                                Customer c = new Customer(name,email,password,user.getUid());
 
 
-                                            addUserToDb(c,db);
-                                            // update the user's profile
-                                            updateUserProfile(user, name);
-                                            Toast.makeText(SignupActivity.this, "Account created.", Toast.LENGTH_SHORT).show();
+                                                addUserToDb(c,db);
+                                                // update the user's profile
+                                                updateUserProfile(user, name);
+                                                Intent goToLogin = new Intent(SignupActivity.this, LoginActivity.class);
+                                                startActivity(goToLogin);
+                                                Toast.makeText(SignupActivity.this, "Account created.", Toast.LENGTH_SHORT).show();
+
+
+                                            }
+                                            task.addOnFailureListener(exception -> {
+                                                userExist(exception);
+                                            });
 
 
                                         }
-                                        task.addOnFailureListener(exception -> {
-                                            userExist(exception);
-                                        });
-
+                                        catch (Exception e ){
+                                            e.getStackTrace();
+                                        }
 
                                     }
-                                    catch (Exception e ){
-                                        e.getStackTrace();
-                                    }
-
-                                }
-                            });
+                                });
+                    }
+                    else{
+                        Toast.makeText(SignupActivity.this,"Please use a strong password",Toast.LENGTH_SHORT).show();
+                    }
                 }
+                else{
+                    Toast.makeText(SignupActivity.this,"Please fill in all the required fields",Toast.LENGTH_SHORT).show();
+                }
+
+
             }
         });
 
