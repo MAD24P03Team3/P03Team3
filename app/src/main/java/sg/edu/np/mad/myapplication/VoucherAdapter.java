@@ -27,9 +27,12 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull VoucherViewHolder holder, int position) {
         String voucher = data.get(position);
-        holder.voucherName.setText(voucher);
+        holder.voucherDesc.setText(voucher);
     }
 
     @Override
     public int getItemCount() { return data.size(); }
+
+
+
 }
