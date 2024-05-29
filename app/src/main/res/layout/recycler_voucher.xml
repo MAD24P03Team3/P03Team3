@@ -13,7 +13,7 @@
 
 
         <TextView
-            android:id="@+id/vouchername"
+            android:id="@+id/voucherName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="$2 off Strawberry Praffle"
@@ -21,11 +21,11 @@
             android:textSize="20dp"/>
 
         <TextView
-            android:id="@+id/fooddesc"
+            android:id="@+id/voucherDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="This voucher very nice"
-            android:layout_below="@id/vouchername"
+            android:layout_below="@id/voucherName"
             android:layout_marginStart="20dp"
             android:textSize="12dp"
             android:textStyle="italic"

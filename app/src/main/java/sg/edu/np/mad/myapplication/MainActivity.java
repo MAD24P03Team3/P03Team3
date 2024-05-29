@@ -53,14 +53,21 @@ public  class MainActivity extends AppCompatActivity {
         bottomNavView = findViewById(R.id.bottomnavbar);
 
         /*bottomNavView.setOnItemSelectedListener(item ->{
-            if (item.getItemId() == R.id.navigation_Account) {
+            *//*if (item.getItemId() == R.id.navigation_Account) {
                 Intent toMenu = new Intent(main_activity.this, pratamenu.class);
                 startActivity(toMenu);
             } else if (item.getItemId() == R.id.navigation_Menu) {
                 // Handle dashboard navigation
             } else if (item.getItemId() == R.id.navigation_notifications) {
                 // Handle notifications navigation
+            }*//*
+
+            switch (item.getItemId()) {
+                case R.id.navigation_Home:
+
             }
+
+            return true;
         });*/
 
         //item recycler view
