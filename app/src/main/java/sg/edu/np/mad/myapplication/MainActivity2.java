@@ -4,13 +4,13 @@ import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import sg.edu.np.mad.myapplication.databinding.ActivityMainBinding;
 import sg.edu.np.mad.myapplication.databinding.ActivityMain2Binding;
 
 public class MainActivity2 extends AppCompatActivity {
@@ -32,10 +32,11 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(binding.getRoot());
         //BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
 
-        //binding.navView
-
         binding.navView.setOnItemSelectedListener(bottomNavView -> {
             /*switch (bottomNavView.getItemId()) {
+                default:
+                    return false;
+
                 case R.id.navigation_Home:
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.nav_host_fragment, new HomeFragment())
@@ -47,15 +48,28 @@ public class MainActivity2 extends AppCompatActivity {
                             .replace(R.id.nav_host_fragment, new CartFragment())
                             .commit();
                     break;
+
             }*/
+            Fragment switchFragment = null;
+
             if (bottomNavView.getItemId() == R.id.navigation_Home) {
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.nav_host_fragment, new HomeFragment())
-                        .commit();
+                switchFragment =  new HomeFragment();
             }
-            if (bottomNavView.getItemId() == R.id.navigation_Cart) {
+            else if (bottomNavView.getItemId() == R.id.navigation_Menu) {
+                switchFragment =  new MenuFragment();
+            }
+            else if (bottomNavView.getItemId() == R.id.navigation_Cart) {
+                switchFragment =  new CartFragment();
+            }
+            else if (bottomNavView.getItemId() == R.id.navigation_Rewards) {
+                switchFragment =  new RewardsFragment();
+            }
+            else if (bottomNavView.getItemId() == R.id.navigation_Account) {
+                switchFragment =  new AccountFragment();
+            }
+            if (switchFragment != null) {
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.nav_host_fragment, new CartFragment())
+                        .replace(R.id.nav_host_fragment, switchFragment)
                         .commit();
             }
             return true;

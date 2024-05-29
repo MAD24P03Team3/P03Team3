@@ -3,62 +3,39 @@ package sg.edu.np.mad.myapplication;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link RewardsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
 public class RewardsFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public RewardsFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment RewardsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static RewardsFragment newInstance(String param1, String param2) {
-        RewardsFragment fragment = new RewardsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View View = inflater.inflate(R.layout.fragment_rewards, container, false);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rewards, container, false);
+        Date validDate = new Date(2024, Calendar.MAY, 1);
+        Date expiryDate = new Date(2025, Calendar.MAY, 1);
+        ArrayList<Voucher> recycler_VoucherList = new ArrayList<>();
+        recycler_VoucherList.add(new Voucher("P000001", "001", 2.0, validDate, expiryDate, "Come to prata boy to use this voucher for $2 off any purchase."));
+        recycler_VoucherList.add(new Voucher("P000002", "002", 5.0, validDate, expiryDate, "Come to prata boy to use this voucher for $5 off any purchase."));
+        recycler_VoucherList.add(new Voucher("P000003", "003", 10.0, validDate, expiryDate, "Come to prata boy to use this voucher for $10 off any purchase."));
+
+        RecyclerView recyclerView = View.findViewById(R.id.recycler_items);
+        VoucherAdapter VoucherAdapter = new VoucherAdapter(recycler_VoucherList);
+        LinearLayoutManager voucherLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+
+        recyclerView.setLayoutManager(voucherLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(VoucherAdapter);
+
+        return View;
     }
 }
