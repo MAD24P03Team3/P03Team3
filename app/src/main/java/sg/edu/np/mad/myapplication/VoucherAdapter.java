@@ -10,10 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class VoucherAdapter extends RecyclerView.Adapter<VoucherViewHolder> {
-    private ArrayList<String> data;
-    public VoucherAdapter(ArrayList<String> input_data) {
-        data = input_data;
+public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherViewHolder>{
+
+    private ArrayList<Voucher> voucherArrayList;
+    public VoucherAdapter(ArrayList<Voucher> input_data) {
+        voucherArrayList = input_data;
     }
 
     @Override
@@ -26,13 +27,21 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull VoucherViewHolder holder, int position) {
-        String voucher = data.get(position);
-        holder.voucherDesc.setText(voucher);
+        Voucher voucher = voucherArrayList.get(position);
+        holder.voucherName.setText(voucher.voucherID);
+        holder.voucherDesc.setText(voucher.description);
     }
 
     @Override
-    public int getItemCount() { return data.size(); }
+    public int getItemCount() { return voucherArrayList.size(); }
 
-
-
+    public class VoucherViewHolder extends RecyclerView.ViewHolder {
+        TextView voucherName;
+        TextView voucherDesc;
+        public VoucherViewHolder(@NonNull View itemView) {
+            super(itemView);
+            voucherName = itemView.findViewById(R.id.voucherName);
+            voucherDesc = itemView.findViewById(R.id.voucherDescription);
+        }
+    }
 }
