@@ -129,7 +129,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39eb89c9-b0c2-4177-b484-de25b432035d" name="Changes" comment="main page">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_5_2024_10_30_pm__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/LoginActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +184,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -225,7 +228,7 @@
       <recent name="sg.edu.np.mad.myapplication" />
     </key>
   </component>
-  <component name="RunManager" selected="Android App.MainActivity2">
+  <component name="RunManager" selected="Android App.LoginActivity">
     <configuration name="LoginActivity" type="AndroidRunConfigurationType" factoryName="Android App" temporary="true">
       <module name="My_Application.app.main" />
       <option name="DEPLOY" value="true" />
@@ -774,10 +777,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Android App.LoginActivity" />
         <item itemvalue="Android App.MainActivity2" />
         <item itemvalue="Android App.MainActivity" />
         <item itemvalue="Android App.loginPage" />
-        <item itemvalue="Android App.LoginActivity" />
         <item itemvalue="Android App.SignupActivity" />
       </list>
     </recent_temporary>
@@ -927,7 +930,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716876852955</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="main page">
+      <option name="closed" value="true" />
+      <created>1716947749909</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1716947749910</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
