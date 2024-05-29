@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
 
@@ -15,8 +14,6 @@
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            app:layout_constraintBottom_toTopOf="@+id/coordinator"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="1dp"
@@ -103,9 +100,8 @@
                             android:layout_weight="1"
                             app:srcCompat="@drawable/img3" />
                     </LinearLayout>
-
-
                 </HorizontalScrollView>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:background="#CDCDCD"
                     android:id="@+id/horizontalRV"
@@ -113,6 +109,7 @@
                     android:layout_height="wrap_content"
                     android:scrollbars="horizontal"
                     app:layout_constraintTop_toBottomOf="@id/advHorizontalScroll" />
+
                 <TextView
                     android:id="@+id/tvStoreList"
                     android:layout_width="match_parent"
@@ -130,36 +127,6 @@
                     app:layout_constraintTop_toBottomOf="@id/tvStoreList"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </ScrollView>
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/coordinator"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/scrollView"
-            android:layout_marginBottom="70dp">
-
-            <com.google.android.material.bottomappbar.BottomAppBar
-                android:id="@+id/bottomappbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                app:layout_anchor="@+id/bottomappbar"
-                app:layout_anchorGravity="top|center">
-
-                <com.google.android.material.bottomnavigation.BottomNavigationView
-                    android:id="@+id/bottomnavbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="parent"
-                    app:menu="@menu/bottom_navigation_menu" />
-
-            </com.google.android.material.bottomappbar.BottomAppBar>
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </FrameLayout>

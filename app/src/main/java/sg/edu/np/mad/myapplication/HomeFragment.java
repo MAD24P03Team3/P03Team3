@@ -3,10 +3,16 @@ package sg.edu.np.mad.myapplication;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,9 +62,37 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View View = inflater.inflate(R.layout.fragment_home, container, false);
+
+        ArrayList<String> recycler_ItemList = new ArrayList<>();
+        recycler_ItemList.add("item 1");
+        recycler_ItemList.add("item 2");
+        recycler_ItemList.add("item 3");
+        recycler_ItemList.add("item 4");
+
+        RecyclerView recyclerView_Item = View.findViewById(R.id.horizontalRV);
+        ItemAdapter itemAdapter = new ItemAdapter(recycler_ItemList);
+        LinearLayoutManager itemLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+
+        recyclerView_Item.setLayoutManager(itemLayoutManager);
+        recyclerView_Item.setItemAnimator(new DefaultItemAnimator());
+        recyclerView_Item.setAdapter(itemAdapter);
+
+        ArrayList<String> recycler_StoreList = new ArrayList<>();
+        recycler_StoreList.add("Prata boy");
+        recycler_StoreList.add("Oishii daily");
+        recycler_StoreList.add("Coffee connect");
+        recycler_StoreList.add("Acai den");
+
+        RecyclerView recyclerView_Store = View.findViewById(R.id.storelistRV);
+        StoreAdapter storeAdapter = new StoreAdapter(recycler_StoreList);
+        LinearLayoutManager storeLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+
+        recyclerView_Store.setLayoutManager(storeLayoutManager);
+        recyclerView_Store.setItemAnimator(new DefaultItemAnimator());
+        recyclerView_Store.setAdapter(storeAdapter);
+
+        return View;
     }
 }
