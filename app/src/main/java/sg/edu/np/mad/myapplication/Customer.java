@@ -15,8 +15,8 @@ public class Customer extends User{
     String cid;
 
 
-    public Customer(String name, String studentId, String password, String cid) {
-        super(name,studentId, password);
+    public Customer(String name, String email, String password, String cid) {
+        super(name,email, password);
         this.cid = cid;
     }
 
@@ -28,9 +28,9 @@ public class Customer extends User{
         this.cid = cid;
     }
 
-    public static synchronized Customer getInstance(String name, String studentId, String password, String cid) {
+    public static synchronized Customer getInstance(String name, String email, String password, String cid) {
         if (instance == null) {
-            instance = new Customer(name, studentId, password, cid);
+            instance = new Customer(name, email, password, cid);
         }
         return instance;
     }
