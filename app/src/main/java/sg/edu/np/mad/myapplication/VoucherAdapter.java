@@ -1,5 +1,6 @@
 package sg.edu.np.mad.myapplication;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,14 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherV
             super(itemView);
             voucherName = itemView.findViewById(R.id.voucherName);
             voucherDesc = itemView.findViewById(R.id.voucherDescription);
+
+            //TODO
+            itemView.findViewById(R.id.elevatedButton).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("Voucher button", "Voucher button onClick: ");
+                }
+            });
         }
     }
 }
