@@ -104,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                                                         Customer.setCurrrentCustomer(currentCustomer);
 
                                                         Toast.makeText(LoginActivity.this, "Successful login.", Toast.LENGTH_SHORT).show();
-                                                        Intent toMainActivity = new Intent(LoginActivity.this, MainActivity.class);
+                                                        Intent toMainActivity = new Intent(LoginActivity.this, MainActivity2.class);
                                                         startActivity(toMainActivity);
                                                         finish();
                                                     } else {
