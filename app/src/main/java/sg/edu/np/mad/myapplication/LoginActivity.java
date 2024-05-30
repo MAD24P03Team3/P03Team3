@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         loginBtn.setOnClickListener(v -> {
-            String email = inputStudentEmail.getText().toString();
+            String email = inputStudentEmail.getText().toString().toLowerCase();
             String password = inputPassword.getText().toString();
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(LoginActivity.this, "StudentEmail & Password cannot be empty.", Toast.LENGTH_SHORT).show();
@@ -92,14 +92,14 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 if (user != null) {
-                                    db.collection("users").document(user.getUid())
+                                    db.collection("Customer").document(email)
                                             .get()
                                             .addOnCompleteListener(userTask -> {
                                                 if (userTask.isSuccessful()) {
                                                     DocumentSnapshot document = userTask.getResult();
-                                                    if (document.exists()) {
+                                                    if (document.exists()) { // document does not exist TODO
                                                         String name = document.getString("name");
-                                                        String studentEmail = document.getString("email");
+                                                        String studentEmail = document.getString("Student email");
                                                         Customer currentCustomer = Customer.getInstance(name, studentEmail, password, user.getUid());
                                                         Customer.setCurrrentCustomer(currentCustomer);
 
