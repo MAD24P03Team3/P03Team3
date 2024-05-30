@@ -110,15 +110,18 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     // Add user details to firestore database, create a new document with user's name once user sign up
-    private void addUserToDb(Customer c, FirebaseFirestore db){
+    private void addUserToDb(Customer c,String email, FirebaseFirestore db){
         //Add data fields and data value
         Map<String,Object> data = new HashMap<>();
         data.put("name",c.name);
         data.put("cid",c.cid);
-        data.put("Student email",c.studentId);
+        data.put("Student email",email);
+        data.put("likes",c.likes);
+        data.put("current orders",c.currentOrder);
+        data.put("order history",c.orderHistory);
 
         // Get the reffrence document and handle the adding of data
-        db.collection("Customer").document(c.name)
+        db.collection("Customer").document(email)
                 .set(data)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -165,7 +168,7 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String name = inputUsername.getText().toString();
-                String email = inputStudentEmail.getText().toString();
+                String email = inputStudentEmail.getText().toString().toLowerCase();
                 String password = inputPassword.getText().toString();
 
                 if (notEmpty(password,email,name)) {
@@ -187,7 +190,7 @@ public class SignupActivity extends AppCompatActivity {
                                                 Customer c = new Customer(name,email,password,user.getUid());
 
 
-                                                addUserToDb(c,db);
+                                                addUserToDb(c,email,db);
                                                 // update the user's profile
                                                 updateUserProfile(user, name);
                                                 Intent goToLogin = new Intent(SignupActivity.this, LoginActivity.class);
