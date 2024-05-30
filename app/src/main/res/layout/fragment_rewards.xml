@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RewardsFragment" >
+    tools:context=".RewardsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
             android:id="@+id/RewardsTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+
             android:text="Rewards"
             app:layout_constraintTop_toTopOf="parent"
             android:textSize="40sp"
@@ -48,9 +48,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_items"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@+id/PointsCard"
-            android:layout_margin="20dp" >
+            >
         </androidx.recyclerview.widget.RecyclerView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
