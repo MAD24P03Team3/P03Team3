@@ -56,6 +56,7 @@
                 android:id="@+id/contentSubtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:text="Subtotal"
                 android:textSize="30sp"
                 android:textStyle="bold"
@@ -66,7 +67,8 @@
                 android:id="@+id/contentTotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="$110"
+                android:layout_marginRight="20dp"
+                android:text="$0"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -76,18 +78,9 @@
                 android:id="@+id/contentButton01"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Order more"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/contentButton02"/>
-
-            <Button
-                android:id="@+id/contentButton02"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:text="Checkout"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/contentButton01"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
