@@ -185,7 +185,7 @@ public class SignupActivity extends AppCompatActivity {
 
                                                 // create new customer class
 
-                                                Customer c = new Customer(name,email,password,user.getUid());
+                                                Customer c = Customer.getInstance(name, email, password, user.getUid());
 
 
                                                 addUserToDb(c,email,db);
