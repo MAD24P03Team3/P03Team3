@@ -12,10 +12,12 @@ public class Customer extends User{
 
     String cid;
 
-    public Customer(String name, String studentId, String password, String cid) {
-        super(name,studentId, password);
+    public Customer(String name, String studentId,String cid) {
+        super(name,studentId);
         this.cid = cid;
     }
+
+    // createOwner in this class
 
     public String getCid() {
         return cid;

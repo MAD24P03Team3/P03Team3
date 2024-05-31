@@ -30,6 +30,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -110,15 +111,33 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     // Add user details to firestore database, create a new document with user's name once user sign up
-    private void addUserToDb(Customer c, FirebaseFirestore db){
+    private void addUserToDb(String name, String cid, String email, FirebaseFirestore db){
         //Add data fields and data value
+        ArrayList<Item> likes = new ArrayList<Item>();
+        ArrayList<Order> OrderHistory = new ArrayList<Order>();
+        ArrayList<Order> Orders = new ArrayList<Order>();
+
         Map<String,Object> data = new HashMap<>();
-        data.put("name",c.name);
-        data.put("cid",c.cid);
-        data.put("Student email",c.studentId);
+        data.put("name",name);
+        data.put("cid",cid);
+        data.put("Student email",email);
+        data.put("likes",likes);
+        data.put("Order History",OrderHistory);
+        data.put("Orders",Orders);
+        //TODO
+        /*
+        * likes
+        * order history
+        * orders
+        * new collection rewards card
+        *   -rewards card:
+        * -points
+        * -vouchers
+        *
+        * */
 
         // Get the reffrence document and handle the adding of data
-        db.collection("Customer").document(c.name)
+        db.collection("Customer").document(email)
                 .set(data)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -184,13 +203,14 @@ public class SignupActivity extends AppCompatActivity {
 
                                                 // create new customer class
 
-                                                Customer c = new Customer(name,email,password,user.getUid());
+//                                                Customer c = new Customer(name,email,password,user.getUid());
 
 
-                                                addUserToDb(c,db);
+                                                addUserToDb(name,user.getUid(),email,db);
                                                 // update the user's profile
                                                 updateUserProfile(user, name);
                                                 Intent goToLogin = new Intent(SignupActivity.this, LoginActivity.class);
+                                                goToLogin.putExtra("name",email);
                                                 startActivity(goToLogin);
                                                 Toast.makeText(SignupActivity.this, "Account created.", Toast.LENGTH_SHORT).show();
 

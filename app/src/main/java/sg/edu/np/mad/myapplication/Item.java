@@ -2,6 +2,8 @@ package sg.edu.np.mad.myapplication;
 
 public class Item {
     String storeID;
+
+    String itemId;
     String name;
     String description;
     int quantity;
