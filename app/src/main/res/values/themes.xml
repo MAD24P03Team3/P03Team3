@@ -20,7 +20,15 @@
     <style name="TextAppearance.App.Button" parent="TextAppearance.MaterialComponents.Button">
 
     </style>
+    <style name = "dialogenters">
 
+        <item name="android:windowEnterAnimation"
+            >@anim/slide_in
+
+        </item>
+
+
+    </style>
 
 
 </resources>
