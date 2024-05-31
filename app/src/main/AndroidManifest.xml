@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".ownerHome"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity2"
             android:exported="true" />
         <activity
@@ -24,8 +27,9 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true" />
-        <activity android:name=".RewardsActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".RewardsActivity"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -37,5 +41,8 @@
         </activity>
 
     </application>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 
 </manifest>
