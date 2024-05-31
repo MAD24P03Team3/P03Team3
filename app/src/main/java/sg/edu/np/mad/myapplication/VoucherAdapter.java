@@ -50,6 +50,7 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherV
                 public void onClick(View v) {
                     Log.d("Voucher button", "Voucher button onClick: ");
                 }
+                //Customer currentCustomer = Customer.getCurrrentCustomer();
             });
         }
     }

@@ -101,7 +101,9 @@ public class LoginActivity extends AppCompatActivity {
                                                         String name = document.getString("name");
                                                         String studentEmail = document.getString("Student email");
                                                         Customer currentCustomer = Customer.getInstance(name, studentEmail, password, user.getUid());
-                                                        Customer.setCurrrentCustomer(currentCustomer);
+
+                                                        // Save the customer instance to SharedPreferences
+                                                        currentCustomer.saveInstance(LoginActivity.this);
 
                                                         Toast.makeText(LoginActivity.this, "Successful login.", Toast.LENGTH_SHORT).show();
                                                         Intent toMainActivity = new Intent(LoginActivity.this, MainActivity2.class);
