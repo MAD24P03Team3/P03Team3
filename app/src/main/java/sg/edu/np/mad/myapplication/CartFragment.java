@@ -51,6 +51,13 @@ public class CartFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(cartAdapter);
 
+        double subtotal = 0;
+        for (Item item : cart) {
+            subtotal += item.price;
+        }
+        TextView contentTotal = view.findViewById(R.id.contentTotal);
+        contentTotal.setText("$" + Math.round(subtotal));
+
         /*cartAdapter.OnCartUpdatedListener() {
             @Override
             public void onCartUpdated(ArrayList<Item> cartArrayList) {
