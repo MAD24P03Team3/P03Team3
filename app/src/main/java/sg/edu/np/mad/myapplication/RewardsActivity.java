@@ -1,5 +1,7 @@
 package sg.edu.np.mad.myapplication;
 
+import static java.security.AccessController.getContext;
+
 import android.os.Bundle;
 import android.util.Log;
 
@@ -24,7 +26,7 @@ public class RewardsActivity extends AppCompatActivity {
         ArrayList<Voucher> voucherName = new ArrayList<>();
 
         RecyclerView recyclerView = findViewById(R.id.recycler_items);
-        VoucherAdapter rv_Items_Adapter = new VoucherAdapter(voucherName);
+        VoucherAdapter rv_Items_Adapter = new VoucherAdapter(this, voucherName);
         LinearLayoutManager LayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         recyclerView.setLayoutManager(LayoutManager);

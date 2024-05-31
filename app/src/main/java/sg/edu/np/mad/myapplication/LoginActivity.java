@@ -1,6 +1,7 @@
 package sg.edu.np.mad.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +31,16 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private static final String TAG = "login_page";
+
+    private static final String PREFS_NAME = "customer";
+    private static final String KEY_NAME = "email";
+
+    private void saveEmailToSharedPreferences(String email) {
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_NAME, email);
+        editor.apply();
+    }
 
     // method to validate if user entered the correct password
     public void validateCurrentUser(Exception e, FirebaseUser user) {
@@ -104,6 +115,10 @@ public class LoginActivity extends AppCompatActivity {
 
                                                         // Save the customer instance to SharedPreferences
                                                         currentCustomer.saveInstance(LoginActivity.this);
+                                                        Log.d(TAG,currentCustomer.name);
+
+                                                        saveEmailToSharedPreferences(studentEmail);
+
 
                                                         Toast.makeText(LoginActivity.this, "Successful login.", Toast.LENGTH_SHORT).show();
                                                         Intent toMainActivity = new Intent(LoginActivity.this, MainActivity2.class);
