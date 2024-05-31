@@ -1,5 +1,9 @@
 package sg.edu.np.mad.myapplication;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +17,20 @@ import java.util.ArrayList;
 
 public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherViewHolder>{
 
+    private static final String PREFS_NAME = "customer";
+    private static final String KEY_NAME = "email";
+
+    private Context context;
     private ArrayList<Voucher> voucherArrayList;
-    public VoucherAdapter(ArrayList<Voucher> input_data) {
-        voucherArrayList = input_data;
+
+    public VoucherAdapter(Context context, ArrayList<Voucher> input_data) {
+        this.context = context;
+        this.voucherArrayList = input_data;
+    }
+
+    private String loadEmailFromSharedPreferences() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_NAME, "No name found");
     }
 
     @Override
@@ -29,7 +44,7 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherV
     @Override
     public void onBindViewHolder(@NonNull VoucherViewHolder holder, int position) {
         Voucher voucher = voucherArrayList.get(position);
-        holder.voucherName.setText(voucher.voucherID);
+        holder.voucherName.setText(voucher.voucherName);
         holder.voucherDesc.setText(voucher.description);
     }
 
@@ -44,13 +59,13 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherV
             voucherName = itemView.findViewById(R.id.voucherName);
             voucherDesc = itemView.findViewById(R.id.voucherDescription);
 
-            //TODO
             itemView.findViewById(R.id.elevatedButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    String customerEmail = loadEmailFromSharedPreferences();
+                    Log.d("Voucher Adapter", "Customer email: " + customerEmail);
                     Log.d("Voucher button", "Voucher button onClick: ");
                 }
-                //Customer currentCustomer = Customer.getCurrrentCustomer();
             });
         }
     }

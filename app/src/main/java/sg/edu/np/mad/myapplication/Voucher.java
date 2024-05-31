@@ -16,14 +16,18 @@ import java.util.Map;
 public class Voucher {
     String storeID;
     String voucherID;
+    String voucherName;
+    double points;
     double discount;
     Date valid;
     Date expiry;
     String description;
 
-    public Voucher(String input_storeID, String input_voucherID, double input_discount, Date input_valid, Date input_expiry, String input_description){
+    public Voucher(String input_storeID, String input_voucherID, String voucherName, double points, double input_discount, Date input_valid, Date input_expiry, String input_description){
         storeID = input_storeID;
         voucherID = input_voucherID;
+        voucherName = voucherName;
+        points = points;
         discount = input_discount;
         valid = input_valid;
         expiry = input_expiry;
@@ -45,6 +49,11 @@ public class Voucher {
                         Map<String, Object> voucherDetails = document.getData();
                         String storeID = (String) voucherDetails.get("storeID");
                         String voucherId = (String) voucherDetails.get("voucherID");
+                        String voucherName = (String) voucherDetails.get("name");
+
+                        Number pointsNumber = (Number) voucherDetails.get("points");
+                        Double points = pointsNumber != null ? pointsNumber.doubleValue() : null;
+
 
                         Number discountNumber = (Number) voucherDetails.get("discount");
                         Double discount = discountNumber != null ? discountNumber.doubleValue() : null;
@@ -56,7 +65,7 @@ public class Voucher {
 
                         String description = (String) voucherDetails.get("description");
 
-                        vouchers.add(new Voucher(storeID, voucherId, discount, validityDate, expireDate, description));
+                        vouchers.add(new Voucher(storeID, voucherId, voucherName, points, discount,  validityDate, expireDate, description));
                         Log.d("RetrieveVouchers", "Added voucher: " + voucherId);
                     } catch (Exception e) {
                         Log.e("RetrieveVouchers", "Error processing document: " + document.getId(), e);

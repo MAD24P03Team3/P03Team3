@@ -30,6 +30,11 @@ public class RetrieveVouchers {
                         Map<String, Object> voucherDetails = document.getData();
                         String storeID = (String) voucherDetails.get("storeID");
                         String voucherId = (String) voucherDetails.get("voucherID");
+                        String voucherName = (String) voucherDetails.get("name");
+
+                        Number pointsNumber = (Number) voucherDetails.get("points");
+                        Double points = pointsNumber != null ? pointsNumber.doubleValue() : null;
+
 
                         Number discountNumber = (Number) voucherDetails.get("discount");
                         Double discount = discountNumber != null ? discountNumber.doubleValue() : null;
@@ -41,7 +46,7 @@ public class RetrieveVouchers {
 
                         String description = (String) voucherDetails.get("description");
 
-                        vouchers.add(new Voucher(storeID, voucherId, discount, validityDate, expireDate, description));
+                        vouchers.add(new Voucher(storeID, voucherId, voucherName, discount, points, validityDate, expireDate, description));
                         Log.d("RetrieveVouchers", "Added voucher: " + voucherId);
                     } catch (Exception e) {
                         Log.e("RetrieveVouchers", "Error processing document: " + document.getId(), e);
