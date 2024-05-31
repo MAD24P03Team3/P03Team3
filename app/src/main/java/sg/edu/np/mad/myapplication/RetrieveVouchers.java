@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -23,18 +24,28 @@ public class RetrieveVouchers {
         vouchersRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 ArrayList<Voucher> vouchers = new ArrayList<>();
-                Log.w("RetrieveVouchers", "Start Getting documents: ", task.getException());
+                Log.d("RetrieveVouchers", "Start Getting documents");
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    Map<String, Object> voucherDetails = document.getData();
-                    String storeID = (String) voucherDetails.get("storeID");
-                    String voucherId = (String) voucherDetails.get("voucherID");
-                    Double discount = (Double) voucherDetails.get("discount");
-                    Date validityString = (Date) voucherDetails.get("validity");
-                    Date expireString = (Date) voucherDetails.get("expire");
-                    String description = (String) voucherDetails.get("description");
-                    vouchers.add(new Voucher(storeID, voucherId, discount, validityString, expireString, description));
-                    Log.w("RetrieveVouchers", "Getting documents: ", task.getException());
+                    try {
+                        Map<String, Object> voucherDetails = document.getData();
+                        String storeID = (String) voucherDetails.get("storeID");
+                        String voucherId = (String) voucherDetails.get("voucherID");
 
+                        Number discountNumber = (Number) voucherDetails.get("discount");
+                        Double discount = discountNumber != null ? discountNumber.doubleValue() : null;
+
+                        Timestamp validityTimestamp = (Timestamp) voucherDetails.get("validity");
+                        Timestamp expireTimestamp = (Timestamp) voucherDetails.get("expire");
+                        Date validityDate = validityTimestamp != null ? validityTimestamp.toDate() : null;
+                        Date expireDate = expireTimestamp != null ? expireTimestamp.toDate() : null;
+
+                        String description = (String) voucherDetails.get("description");
+
+                        vouchers.add(new Voucher(storeID, voucherId, discount, validityDate, expireDate, description));
+                        Log.d("RetrieveVouchers", "Added voucher: " + voucherId);
+                    } catch (Exception e) {
+                        Log.e("RetrieveVouchers", "Error processing document: " + document.getId(), e);
+                    }
                 }
                 taskCompletionSource.setResult(vouchers);
             } else {

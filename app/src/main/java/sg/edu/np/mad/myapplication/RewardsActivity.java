@@ -21,24 +21,7 @@ public class RewardsActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_rewards);
 
-        ArrayList<String> voucherName = new ArrayList<>();
-        voucherName.add("item1");
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        RetrieveVouchers.retrieveVouchers(db).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                Log.w("RewardsActivity", "Retrieved vouchers", task.getException());
-                ArrayList<Voucher> vouchers = task.getResult();
-                for (Voucher voucher : vouchers) {
-                    voucherName.add(voucher.description);
-                    String description = voucher.description;
-                    Log.w("RewardsActivity", description);
-                }
-            } else {
-
-                Log.w("RewardsActivity", "Error retrieving vouchers", task.getException());
-            }
-        });
+        ArrayList<Voucher> voucherName = new ArrayList<>();
 
         RecyclerView recyclerView = findViewById(R.id.recycler_items);
         VoucherAdapter rv_Items_Adapter = new VoucherAdapter(voucherName);
@@ -47,5 +30,22 @@ public class RewardsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(LayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(rv_Items_Adapter);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        RetrieveVouchers.retrieveVouchers(db).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Log.w("RewardsActivity", "Retrieved vouchers", task.getException());
+                ArrayList<Voucher> vouchers = task.getResult();
+                for (Voucher voucher : vouchers) {
+                    voucherName.add(voucher);
+                }
+                rv_Items_Adapter.notifyDataSetChanged();
+            } else {
+
+                Log.w("RewardsActivity", "Error retrieving vouchers", task.getException());
+            }
+        });
+
+
     }
 }

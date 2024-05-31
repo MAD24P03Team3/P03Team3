@@ -84,7 +84,6 @@ public class CartFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(userAdapter);
 
-        // Inflate the layout for this fragment
         return View;
     }
 }
