@@ -28,7 +28,7 @@ public class Customer extends User {
 
     // Private constructor to enforce singleton pattern
     public Customer(String name, String email, String password, String cid) {
-        super(name,email,password);
+        super(name, email, password);  // Call to the new constructor in User
         this.cid = cid;
         this.likes = new ArrayList<>();
         this.cart = new ArrayList<>();
@@ -72,8 +72,6 @@ public class Customer extends User {
 
         Log.d("Customer", "Saved Customer: " + name + ", " + email + ", " + cid);
     }
-
-
 
     public String getCid() {
         return cid;
