@@ -1,6 +1,8 @@
 package sg.edu.np.mad.myapplication;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,14 +18,30 @@ import sg.edu.np.mad.myapplication.databinding.ActivityMain2Binding;
 public class MainActivity2 extends AppCompatActivity {
 
     //ActivityMain2Binding binding;
+    private static final String PREFS_NAME = "customer";
+    private static final String KEY_NAME = "email";
+
+    private String loadEmailFromSharedPreferences() {
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_NAME, "No name found");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Load the customer instance from SharedPreferences
-        Customer.loadInstance(this);
+        String customerEmail = loadEmailFromSharedPreferences();
+        Log.d("MainActivity2", "Customer email: " + customerEmail);
 
+
+        // Load the customer instance from SharedPreferences
+        Customer customer = Customer.loadInstance(this);
+        if (customer != null) {
+            Log.d("MainActivity2", "Customer name: " + customer.name);
+        } else {
+            Log.d("MainActivity2", "Customer is null");
+        }
+        // Retrieve the customer object
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main2);
