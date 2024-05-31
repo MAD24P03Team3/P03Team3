@@ -20,6 +20,10 @@ public class MainActivity2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Load the customer instance from SharedPreferences
+        Customer.loadInstance(this);
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main2);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.nav_host_fragment), (v, insets) -> {
