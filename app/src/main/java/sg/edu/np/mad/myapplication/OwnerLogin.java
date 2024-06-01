@@ -1,6 +1,8 @@
 package sg.edu.np.mad.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +27,23 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class OwnerLogin extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
+
+    private static final String PREFS_NAME = "customer";
+    private static final String KEY_NAME = "email";
+
+    private void saveEmailToSharedPreferences(String email) {
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_NAME, email);
+        editor.apply();
+    }
+    /*
+    private String loadEmailFromSharedPreferences() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_NAME, "No name found");
+    }
+
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,25 +75,29 @@ public class OwnerLogin extends AppCompatActivity {
                     return;
                 }
 
-                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                // First check if email exists in the "Owner" collection
+                db.collection("Owner").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            db.collection("Owner").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful() && task.getResult().exists()) {
+                            // If email exists in "Owner" collection, proceed with FirebaseAuth signIn
+                            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
-                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                    if (task.isSuccessful() && task.getResult().exists()) {
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
                                         Intent toOwnerMain = new Intent(OwnerLogin.this, ownerHome.class);
+                                        saveEmailToSharedPreferences(email);
                                         Toast.makeText(OwnerLogin.this, "The owner has successfully logged in", Toast.LENGTH_SHORT).show();
                                         startActivity(toOwnerMain);
                                         finish();
                                     } else {
-                                        Toast.makeText(OwnerLogin.this, "Owner does not exist.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(OwnerLogin.this, "Login failed.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
                         } else {
-                            Toast.makeText(OwnerLogin.this, "Login failed.", Toast.LENGTH_SHORT).show();
+                            // If email does not exist in "Owner" collection, show a toast message
+                            Toast.makeText(OwnerLogin.this, "Owner does not exist.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
