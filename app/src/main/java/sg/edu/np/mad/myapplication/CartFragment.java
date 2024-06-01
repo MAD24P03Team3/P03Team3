@@ -32,7 +32,6 @@ public class CartFragment extends Fragment {
     }
 
     public void onViewCreated(View view, Bundle savedInstanceState){
-
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.contentRecycler);
