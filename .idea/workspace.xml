@@ -127,11 +127,6 @@
           <theme>@style/Theme.MyApplication</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/recycler_myrewards.xml">
-        <config>
-          <theme>@style/Theme.MyApplication</theme>
-        </config>
-      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/recycler_store.xml">
         <config>
           <theme>@style/Theme.MyApplication</theme>
@@ -158,14 +153,18 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39eb89c9-b0c2-4177-b484-de25b432035d" name="Changes" comment="main page">
+    <list default="true" id="39eb89c9-b0c2-4177-b484-de25b432035d" name="Changes" comment="Managed to fix the issue with the retrival of menu Items for the recyclerview for menu">
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/HomeFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/ItemAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/ItemAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/CartFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/CartFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/MenuAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/MenuAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/MenuFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/MenuFragment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +174,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\liang\.android\avd\Pixel_8_API_30.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\jakec\.android\avd\Pixel_3a_API_34.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -236,7 +235,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Jake's-branch",
     "last_opened_file_path": "C:/Year 2/Semester 1/Mobile Applications Development/Assignment 1/P03Team3",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.17",
@@ -261,7 +260,7 @@
       <recent name="sg.edu.np.mad.myapplication" />
     </key>
   </component>
-  <component name="RunManager" selected="Android App.MainActivity2">
+  <component name="RunManager" selected="Android App.LoginActivity">
     <configuration name="LoginActivity" type="AndroidRunConfigurationType" factoryName="Android App" temporary="true">
       <module name="My_Application.app.main" />
       <option name="DEPLOY" value="true" />
@@ -810,8 +809,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Android App.MainActivity2" />
         <item itemvalue="Android App.LoginActivity" />
+        <item itemvalue="Android App.MainActivity2" />
         <item itemvalue="Android App.MainActivity" />
         <item itemvalue="Android App.loginPage" />
         <item itemvalue="Android App.SignupActivity" />
@@ -979,23 +978,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717228915683</updated>
     </task>
-    <task id="LOCAL-00020" summary="main page">
+    <task id="LOCAL-00020" summary="Cart">
       <option name="closed" value="true" />
-      <created>1717239170557</created>
+      <created>1717239300605</created>
       <option name="number" value="00020" />
       <option name="presentableId" value="LOCAL-00020" />
       <option name="project" value="LOCAL" />
-      <updated>1717239170557</updated>
+      <updated>1717239300605</updated>
     </task>
-    <task id="LOCAL-00021" summary="main page">
-      <option name="closed" value="true" />
-      <created>1717242968870</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1717242968870</updated>
-    </task>
-    <option name="localTasksCounter" value="22" />
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -1020,22 +1011,23 @@
     <MESSAGE value="workspace" />
     <MESSAGE value="Edited the menu recycler item" />
     <MESSAGE value="Bottom Nav Bar Implementation" />
+    <MESSAGE value="main page" />
     <MESSAGE value="Finished the retrival of menu Items for the recyclerview for menu" />
     <MESSAGE value="Managed to fix the issue with the retrival of menu Items for the recyclerview for menu" />
-    <MESSAGE value="main page" />
-    <option name="LAST_COMMIT_MESSAGE" value="main page" />
+    <MESSAGE value="Cart" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cart" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/MenuAdapter.java</url>
-          <line>101</line>
+          <line>88</line>
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/myapplication/MenuAdapter.java</url>
-          <line>102</line>
+          <line>89</line>
           <option name="timeStamp" value="52" />
         </line-breakpoint>
       </breakpoints>
