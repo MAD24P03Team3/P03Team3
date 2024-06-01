@@ -54,8 +54,8 @@ public class CustomerMyRewards extends AppCompatActivity {
 
         MaterialButton backButton = findViewById(R.id.rewardsButton);
         backButton.setOnClickListener(v -> {
-            Intent intent = new Intent(CustomerMyRewards.this, MainActivity2.class);
-            startActivity(intent);
+            /*Intent intent = new Intent(CustomerMyRewards.this, MainActivity2.class);
+            startActivity(intent);*/
             finish(); // Optional: Close the current activity so it is removed from the back stack.
         });
 

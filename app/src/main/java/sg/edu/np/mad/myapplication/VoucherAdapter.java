@@ -28,12 +28,18 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherV
     private Context context;
     private ArrayList<Voucher> voucherArrayList;
     private TextView pointsTextView; // Reference to pointsTextView in RewardsFragment
+    private OnPointsRedeemListener onPointsRedeemListener;
 
 
-    public VoucherAdapter(Context context, ArrayList<Voucher> input_data, TextView pointsTextView) {
+    public VoucherAdapter(Context context, ArrayList<Voucher> input_data, TextView pointsTextView, OnPointsRedeemListener onPointsRedeemListener) {
         this.context = context;
         this.voucherArrayList = input_data;
         this.pointsTextView = pointsTextView; // Initialize pointsTextView
+        this.onPointsRedeemListener = onPointsRedeemListener;
+    }
+
+    public interface OnPointsRedeemListener {
+        void onPointsRedeem();
     }
 
     private String loadEmailFromSharedPreferences() {
@@ -82,6 +88,9 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherV
                     Log.d("Voucher button", "Voucher button onClick: " + voucher.voucherID);
 
                     updateCustomerVouchers(customerEmail, voucher);
+                    if (getAdapterPosition() != RecyclerView.NO_POSITION) {
+                        onPointsRedeemListener.onPointsRedeem();
+                    }
                 }
             });
         }
