@@ -99,6 +99,7 @@ public class MenuFragment extends Fragment {
                     public void onItemAdd(Item item) {
                         cartViewModel.addToCart(item);
                     }
+                    //Fixing merging error
                 });
 
                 RecyclerView menuRecycler = view.findViewById(R.id.menurecycler);
