@@ -4,24 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:layout_margin="10dp">
 
+    <!--<androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="180dp"
+        android:layout_height="240dp" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:src="@drawable/prata"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>-->
     <RelativeLayout
         android:layout_width="180dp"
         android:layout_height="240dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_margin="10dp"
         android:background="@drawable/layout_bg_rvitems">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_marginTop="2dp"
-            android:layout_width="80dp"
+            android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:src="@mipmap/ic_launcher_round"/>
+            android:src="@drawable/prata"/>
 
         <TextView
             android:id="@+id/tvTitle"
@@ -42,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tvTitle"
             android:text="LOL"/>
+
         <TextView
             android:id="@+id/tvPrice"
             android:layout_marginLeft="10dp"
@@ -55,7 +72,6 @@
             android:backgroundTint="#FE742C"
             app:icon="@drawable/liked"
             app:iconGravity="textTop"
-
             app:iconSize="24dp"
             android:layout_width="40dp"
             android:layout_height="45dp"
@@ -75,6 +91,4 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="30dp"/>
     </RelativeLayout>
-
-
 </androidx.cardview.widget.CardView>
