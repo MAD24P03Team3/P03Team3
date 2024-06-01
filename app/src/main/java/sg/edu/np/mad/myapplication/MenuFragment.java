@@ -65,11 +65,6 @@ public class MenuFragment extends Fragment {
                                     itemList.add(currentItem);
                                 }
 
-
-
-
-
-
                             }
                             hc.arrayCallBack(itemList);
                         }
