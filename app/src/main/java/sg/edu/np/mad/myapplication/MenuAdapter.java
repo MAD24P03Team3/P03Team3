@@ -37,10 +37,9 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
     private ArrayList<Item> menuData;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
     private Context Context;
-
     private String TAG = "MenuAdapter";
+    private OnItemAddListener onItemAddListener;
 
     public void addtoliked(int i, ArrayList<Item> menuData){
         Item item = menuData.get(i);
@@ -71,31 +70,19 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
                                     else{
                                         Log.d(TAG,"The hashmap is empty" + task.getException());
                                     }
-
-
                                 }
                                 else{
                                     Log.d(TAG,"The document does not exists" + task.getException());
                                 }
-
                             }
                             else{
                                 Log.d(TAG,"Unable to retrive document" + task.getException());
                             }
-
                         }
                     });
-        }
-
-        else{
+        } else{
             Log.d(TAG,"Item is empty");
         }
-
-
-
-
-
-
     }
 
     // retrive the user email from shared preferences
@@ -104,18 +91,17 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
         return sharedPreferences.getString(KEY_NAME, "No name found");
     }
 
-
-
-
-
-    // Constructor that has these variables
-    public MenuAdapter(Context context,ArrayList<Item> menuData){
-        this.menuData = menuData;
-        this.Context = context;
-        notifyDataSetChanged();
+    public interface OnItemAddListener {
+        void onItemAdd(Item item);
     }
 
-
+    // Constructor that has these variables
+    public MenuAdapter(Context context,ArrayList<Item> menuData, OnItemAddListener input_onItemAddListener){
+        this.menuData = menuData;
+        this.Context = context;
+        onItemAddListener = input_onItemAddListener;
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
@@ -144,7 +130,6 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
                 addtoliked(index,menuData);
             }
         });
-
     }
 
     @Override
@@ -153,11 +138,11 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
         return menuData.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder{
         // retreiving views from recyler_view layout
 
         ImageView imageView;
-        TextView tvName,  tvItemPrice, tvDesc;
+        TextView tvName, tvItemPrice, tvDesc;
 
         Button plus,liked;
 
@@ -169,23 +154,23 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
             imageView = itemView.findViewById(R.id.foodimg);
             tvName = itemView.findViewById(R.id.foodname);
             tvItemPrice = itemView.findViewById(R.id.itemPrice);
-            plus = itemView.findViewById(R.id.plus);
-            /*
-            // TODO Part 2 : Inside menu Adapter
-                1. Retieve all the views for the menurecycler (add to cart, liked items)
-                2. likes -> retrive the coressponding item object and then add then store it in share preference
-                    - User click -> Add the item to a likedlist
-                3. Add to cart handled by Jake
-            /
-            */
             liked = itemView.findViewById(R.id.heart);
+            plus = itemView.findViewById(R.id.plus);
 
+            // TODO Part 2 : Inside menu Adapter
+            //  1. Retieve all the views for the menurecycler (add to cart, liked items)
+            //  2. likes -> retrive the coressponding item object and then add then store it in share preference
+            //      - User click -> Add the item to a likedlist
+            //  3. Add to cart handled by Jake
 
-
-
-
+            plus.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v){
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        onItemAddListener.onItemAdd(menuData.get(position));
+                    }
+                }
+            });
         }
-
-
     }
 }

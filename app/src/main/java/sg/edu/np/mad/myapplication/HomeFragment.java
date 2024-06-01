@@ -1,18 +1,28 @@
 package sg.edu.np.mad.myapplication;
 
+import static sg.edu.np.mad.myapplication.bottomModal.TAG;
+
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -94,5 +104,50 @@ public class HomeFragment extends Fragment {
         recyclerView_Store.setAdapter(storeAdapter);
 
         return View;
+    }
+
+    public void retrievemenuItems(FirebaseFirestore db, HandleCallBack hc){
+        ArrayList<Item> itemList = new ArrayList<>();
+        // retrive the document
+        db.collection("Stores").document("Prata-Boy")
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        DocumentSnapshot ds = task.getResult();
+                        if(ds.exists()){
+                            // proceed to retrive the menuitems
+                            ArrayList<HashMap<String,Object>> menuItems = (ArrayList<HashMap<String,Object>>) ds.get("menuItems");
+                            for (HashMap<String,Object> item :menuItems){
+                                Double price;
+                                Long lprice;
+                                Object obj =item.get("itemPrice");
+                                String name = (String) item.get("itemName");
+                                String itemId = (String) item.get("itemID");
+
+                                String description = (String) item.get("itemDescription");
+
+                                if(obj instanceof Double){
+                                    price = (Double) obj;
+                                    Item currentItem = new Item(itemId,name,description,price);
+                                    itemList.add(currentItem);
+                                }
+
+                                if(obj instanceof Long){
+                                    lprice = (Long) obj;
+                                    price = lprice.doubleValue();
+                                    Item currentItem = new Item(itemId,name,description,price);
+                                    itemList.add(currentItem);
+                                }
+
+                            }
+                            hc.arrayCallBack(itemList);
+                        }
+                        else{
+                            Log.d(TAG,"The document does not exists");
+
+                        }
+                    }
+                });
+
     }
 }

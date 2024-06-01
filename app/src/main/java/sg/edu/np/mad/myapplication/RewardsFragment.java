@@ -1,6 +1,7 @@
 package sg.edu.np.mad.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -36,7 +37,7 @@ public class RewardsFragment extends Fragment {
         ArrayList<Voucher> recycler_VoucherList = new ArrayList<>();
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_items);
-        VoucherAdapter voucherAdapter = new VoucherAdapter(getContext(), recycler_VoucherList);
+        VoucherAdapter voucherAdapter = new VoucherAdapter(getContext(), recycler_VoucherList, pointsTextView);
         LinearLayoutManager voucherLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 
         recyclerView.setLayoutManager(voucherLayoutManager);
@@ -58,12 +59,17 @@ public class RewardsFragment extends Fragment {
 
         loadCustomerPointsFromDatabase();
 
+        view.findViewById(R.id.rewardsButton).setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CustomerMyRewards.class);
+            startActivity(intent);
+        });
+
         return view;
     }
 
     private void loadCustomerPointsFromDatabase() {
         String customerEmail = loadEmailFromSharedPreferences();
-        db.collection("customer").document(customerEmail).get().addOnCompleteListener(task -> {
+        db.collection("Customer").document(customerEmail).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {

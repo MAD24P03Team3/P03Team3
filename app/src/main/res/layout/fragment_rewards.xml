@@ -12,13 +12,30 @@
 
         <TextView
             android:id="@+id/RewardsTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="Rewards"
             app:layout_constraintTop_toTopOf="parent"
             android:textSize="40sp"
-            android:gravity="center"/>
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/rewardsButton"
+            android:layout_width="45dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="20dp"
+            app:layout_constraintLeft_toRightOf="@id/RewardsTitle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:icon="@drawable/baseline_rewards_24"
+            app:iconGravity="textStart"
+            app:iconTint="@android:color/black"
+            app:iconPadding="0dp"
+            android:backgroundTint="#CCCCCC"
+            android:layout_gravity="center"/>
 
         <RelativeLayout
             android:id="@+id/PointsCard"

@@ -1,5 +1,7 @@
 package sg.edu.np.mad.myapplication;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 import com.google.android.gms.tasks.Task;
@@ -13,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
-public class Voucher {
+public class Voucher implements Parcelable {
     String storeID;
     String voucherID;
     String voucherName;
@@ -80,4 +82,43 @@ public class Voucher {
 
         return taskCompletionSource.getTask();
     }
+    protected Voucher(Parcel in) {
+        storeID = in.readString();
+        voucherID = in.readString();
+        voucherName = in.readString();
+        points = in.readDouble();
+        discount = in.readDouble();
+        valid = new Date(in.readLong());
+        expiry = new Date(in.readLong());
+        description = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(storeID);
+        dest.writeString(voucherID);
+        dest.writeString(voucherName);
+        dest.writeDouble(points);
+        dest.writeDouble(discount);
+        dest.writeLong(valid != null ? valid.getTime() : -1);
+        dest.writeLong(expiry != null ? expiry.getTime() : -1);
+        dest.writeString(description);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Voucher> CREATOR = new Creator<Voucher>() {
+        @Override
+        public Voucher createFromParcel(Parcel in) {
+            return new Voucher(in);
+        }
+
+        @Override
+        public Voucher[] newArray(int size) {
+            return new Voucher[size];
+        }
+    };
 }

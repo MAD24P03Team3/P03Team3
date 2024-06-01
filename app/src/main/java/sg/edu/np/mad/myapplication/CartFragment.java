@@ -32,7 +32,6 @@ public class CartFragment extends Fragment {
     }
 
     public void onViewCreated(View view, Bundle savedInstanceState){
-
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.contentRecycler);
@@ -54,9 +53,6 @@ public class CartFragment extends Fragment {
                 cartAdapter.updateCart(items);
             }
         });
-
-        ///cart = cartAdapter.getCartItems();
-
         /*double subtotal = 0;
         for (Item item : cart) {
             subtotal += item.price;
