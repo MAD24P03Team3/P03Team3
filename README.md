@@ -3,7 +3,10 @@
 Do you struggle to find food options in NP? Do you find yourself often stuck in long queues at food courts around NP and wish for a better alternative? 
 We are introducing ByObEats, a dedicated app for students in NP to order food from NP's own BYOB student-led F&B businesses. Students are able to choose from various student-ran businesses specialising in various delicacies and desserts while avoiding queues all in the palm of their hand. It also allows for the student-led enterprises to reach a wider student population.
 
-## Our Storyboard
+## Our Ideation Process
+
+## [Miro](https://miro.com/app/board/uXjVKLXdQRE=/)
+## [Figma](
 
 
 # Motivation
