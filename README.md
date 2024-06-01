@@ -3,6 +3,9 @@
 Do you struggle to find food options in NP? Do you find yourself often stuck in long queues at food courts around NP and wish for a better alternative? 
 We are introducing ByObEats, a dedicated app for students in NP to order food from NP's own BYOB student-led F&B businesses. Students are able to choose from various student-ran businesses specialising in various delicacies and desserts while avoiding queues all in the palm of their hand. It also allows for the student-led enterprises to reach a wider student population.
 
+## Our Storyboard
+
+
 # Motivation
 - We strive to develop a user-centric application 
 - Allow the student population to conveniently order from anywhere they are at in campus
@@ -67,6 +70,13 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
 - [Google Material 3 Design](https://m3.material.io/)
 - [ChatGPT](https://chatgpt.com/)
 - [Gemini](https://gemini.google.com/)
+
+# Images and Assets credits
+Symbols - [materialIcons](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:favorite:FILL@0;wght@400;GRAD@0;opsz@24&icon.size=24&icon.color=%235f6368)
+Images PrataBoy - [PrataBoy](https://www.instagram.com/prataboynp/)
+Images AcaiDen - [AcaiDen](https://www.instagram.com/acaidensg/)
+Images Oishii Daily - [OishiDaily](https://www.instagram.com/oishiidaily/)
+Images CoffeeConnect - [Coffee Connect](https://www.instagram.com/coffeeconnects.us/)
 
 
 
