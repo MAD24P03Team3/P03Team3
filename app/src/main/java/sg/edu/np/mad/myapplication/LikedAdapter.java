@@ -104,7 +104,7 @@ public class LikedAdapter extends RecyclerView.Adapter <LikedAdapter.myViewHolde
                 if (task.isSuccessful()) {
                     DocumentSnapshot ds = task.getResult();
                     if (ds.exists()) {
-                        // iterate through the itemList objects to convert them to maps kvp
+                        // iterate through the itemList objects to convert each item object to maps kvp and add it to the array
                         ArrayList<HashMap<String, Object>> itemLiked = new ArrayList<>();
                         for (Item item : itemList) {
                             HashMap<String, Object> itemMap = new HashMap<>();
@@ -115,7 +115,7 @@ public class LikedAdapter extends RecyclerView.Adapter <LikedAdapter.myViewHolde
                             itemLiked.add(itemMap);
                         }
 
-                        // Update the Likes array directly
+                        // Update the Likes =field which stores an array
                         db.collection("Customer").document(email).update("Likes", itemLiked)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override

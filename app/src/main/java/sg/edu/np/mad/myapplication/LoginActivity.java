@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String PREFS_NAME = "customer";
     private static final String KEY_NAME = "email";
 
+    // store account infromation details in shared prefrences
     private void saveEmailToSharedPreferences(String email) {
         SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -108,7 +109,9 @@ public class LoginActivity extends AppCompatActivity {
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
+                                // retrive the current user
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                // user exists in FireBaseAuth
                                 if (user != null) {
                                     db.collection("Customer").document(email)
                                             .get()
@@ -119,14 +122,11 @@ public class LoginActivity extends AppCompatActivity {
                                                         String name = document.getString("name");
                                                         String studentEmail = document.getString("Student email");
                                                         Customer currentCustomer = Customer.getInstance(name, studentEmail, password, user.getUid());
-
                                                         // Save the customer instance to SharedPreferences
                                                         currentCustomer.saveInstance(LoginActivity.this);
                                                         Log.d(TAG,currentCustomer.name);
-
                                                         saveEmailToSharedPreferences(studentEmail);
-
-
+                                                        // indicate sucessful login by user and start a new Intnet to Home Page
                                                         Toast.makeText(LoginActivity.this, "Successful login.", Toast.LENGTH_SHORT).show();
                                                         Intent toMainActivity = new Intent(LoginActivity.this, MainActivity2.class);
                                                         startActivity(toMainActivity);
@@ -146,6 +146,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             }
                         })
+                        // lamda function to pass the exception encounteered to validateCurrentUser
                         .addOnFailureListener(e -> validateCurrentUser(e, currentUser));
             }
         });
