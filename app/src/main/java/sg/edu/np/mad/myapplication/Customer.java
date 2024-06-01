@@ -14,7 +14,6 @@ public class Customer extends User {
     ArrayList<Order> currentOrder;
     ArrayList<Order> orderHistory;
     Rewards rewards;
-
     String cid;
 
     public static final String PREFS_NAME = "CustomerPrefs";
@@ -72,8 +71,6 @@ public class Customer extends User {
 
         Log.d("Customer", "Saved Customer: " + name + ", " + email + ", " + cid);
     }
-
-
 
     public String getCid() {
         return cid;
