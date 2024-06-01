@@ -45,11 +45,25 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
      - Display liked items
      - Designed the login and signup page
     
+# Stage 2 implementation of features
+## Isaac Tiew Xun Yong
+ - Implementation of Real Life Payment and Transactions through VISA API
+ - Nested Recycler for menu categorisation
+
+## Chan Man Lock Jake
+   - Google Maps API for finding nearest BYOB Buisness
+
+## DingXuan Liang
+   - Search functionality
+    
 # Technologies Used
-[FireBase FireStore](https://console.firebase.google.com/u/0/project/mad-p03-team-3-foodapp/firestore/databases/-default-/data/~2FCustomer~2Fisaactiew36@gmail.com)
-[Google Material 3 Design](https://m3.material.io/)
-[ChatGPT](https://chatgpt.com/)
-[Gemini](https://gemini.google.com/)
+- [FireBase FireStore](https://console.firebase.google.com/u/0/project/mad-p03-team-3-foodapp/firestore/databases/-default-/data/~2FCustomer~2Fisaactiew36@gmail.com)
+- [Google Material 3 Design](https://m3.material.io/)
+- [ChatGPT](https://chatgpt.com/)
+- [Gemini](https://gemini.google.com/)
+
+
+
 
 
 
