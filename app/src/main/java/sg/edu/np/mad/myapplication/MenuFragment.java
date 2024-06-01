@@ -50,7 +50,7 @@ public class MenuFragment extends Fragment {
                                 String name = (String) item.get("itemName");
                                 String itemId = (String) item.get("itemID");
 
-                                String description = (String) item.get("itemDesc");
+                                String description = (String) item.get("itemDescription");
 
                                 if(obj instanceof Double){
                                     price = (Double) obj;
@@ -96,9 +96,7 @@ public class MenuFragment extends Fragment {
         // TODO Part 1
         //  1. set up all the views in the fragment
         /*  2. handle the database retriveal of all menu items by querying the database
-            Part 2 : Inside menu Adapter
-        *   3. handle the adding items to liked fragment (when like button clicked store the menuItem in db
-        *   4. Retrive the menuItems and store it as item objects in the arrayList of user class*/
+           */
 
 
         retrievemenuItems(db, new HandleCallBack() {
@@ -107,7 +105,7 @@ public class MenuFragment extends Fragment {
             // handle the retrieval from the callback
             public void arrayCallBack(ArrayList<Item> listofitmes) {
                 menuData = listofitmes;
-                MenuAdapter ma = new MenuAdapter(menuData);
+                MenuAdapter ma = new MenuAdapter(getContext(),menuData);
                 RecyclerView menurecycler = view.findViewById(R.id.menurecycler);
                 GridLayoutManager layoutManager = new GridLayoutManager(getContext(),2);
                 menurecycler.setLayoutManager(layoutManager);
