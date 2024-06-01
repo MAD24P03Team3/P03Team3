@@ -44,6 +44,13 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
      - Handle the update of profiles for accounts
      - Display liked items
      - Designed the login and signup page
+    
+# Technologies Used
+[FireBase FireStore](https://console.firebase.google.com/u/0/project/mad-p03-team-3-foodapp/firestore/databases/-default-/data/~2FCustomer~2Fisaactiew36@gmail.com)
+[Google Material 3 Design](https://m3.material.io/)
+[ChatGPT](https://chatgpt.com/)
+[Gemini](https://gemini.google.com/)
+
 
 
    
