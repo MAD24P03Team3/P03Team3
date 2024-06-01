@@ -81,7 +81,7 @@ public  class MainActivity extends AppCompatActivity {
         rv_Items_Data.add("item 4");
 
         linearLayoutManagerItems = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        rv_Items_Adapter = new ItemAdapter(rv_Items_Data);
+        //rv_Items_Adapter = new ItemAdapter(rv_Items_Data);
         rv_Items.setLayoutManager(linearLayoutManagerItems);
         rv_Items.setAdapter(rv_Items_Adapter);
 
