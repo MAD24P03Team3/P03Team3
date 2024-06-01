@@ -14,6 +14,5 @@ public class Item {
         name = input_name;
         description = input_description;
         price = input_price;
-
     }
 }
