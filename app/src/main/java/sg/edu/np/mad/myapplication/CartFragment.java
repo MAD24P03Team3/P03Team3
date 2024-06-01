@@ -5,6 +5,8 @@ import static java.lang.Math.round;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,13 +22,9 @@ import java.util.ArrayList;
 
 public class CartFragment extends Fragment {
 
-    private static final String CART_KEY = "cart";
-
-    CartAdapter cartAdapter;
-
-    ArrayList<Item> cart;
-
-    //RecyclerView recyclerView_CartItems;
+    private RecyclerView recyclerView;
+    private CartAdapter cartAdapter;
+    private CartViewModel cartViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,76 +35,33 @@ public class CartFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        /*if (savedInstanceState != null) {
-            cart = savedInstanceState.getParcelableArrayList("cart");
-        } else {
-            cart = new ArrayList<Item>();
-        }*/
+        recyclerView = view.findViewById(R.id.contentRecycler);
+        cartAdapter = new CartAdapter(new ArrayList<Item>(), new CartAdapter.OnItemDeleteListener() {
+            @Override
+            public void onItemDelete(int position) {
+                cartViewModel.removeFromCart(position);
+            }
+        });
 
-        RecyclerView recyclerView = view.findViewById(R.id.contentRecycler);
-        cartAdapter = new CartAdapter(cart = getCartItems());
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(cartAdapter);
 
-        double subtotal = 0;
+        cartViewModel = new ViewModelProvider(requireActivity()).get(CartViewModel.class);
+        cartViewModel.getCart().observe(getViewLifecycleOwner(), new Observer<ArrayList<Item>>() {
+            @Override
+            public void onChanged(ArrayList<Item> items) {
+                cartAdapter.updateCart(items);
+            }
+        });
+
+        ///cart = cartAdapter.getCartItems();
+
+        /*double subtotal = 0;
         for (Item item : cart) {
             subtotal += item.price;
         }
         TextView contentTotal = view.findViewById(R.id.contentTotal);
-        contentTotal.setText("$" + Math.round(subtotal));
-
-        /*cartAdapter.OnCartUpdatedListener() {
-            @Override
-            public void onCartUpdated(ArrayList<Item> cartArrayList) {
-                double subtotal = 0;
-                for (Item item : cartArrayList){
-                    subtotal += item.price;
-                }
-                //TODO
-                TextView contentTotal = view.findViewById(R.id.contentTotal);
-                contentTotal.setText("$" + Math.round(subtotal));
-            }
-        });*/
-
-        //OnCartUpdatedListener(CartArrayList);
-
-        /*RecyclerView recyclerView = view.findViewById(R.id.contentRecycler);
-        //CartAdapter userAdapter = new CartAdapter(CartArrayList);
-        cartAdapter = new CartAdapter(new CartAdapter.OnCartUpdatedListener() {
-                    @Override
-                    public void onCartUpdated(ArrayList<Item> cartArrayList) {
-                        double subtotal = 0;
-                        for (Item item : cartArrayList){
-                            subtotal += item.price;
-                        }
-                        //TODO
-                        TextView contentTotal = view.findViewById(R.id.contentTotal);
-                        contentTotal.setText("$" + Math.round(subtotal));
-                }
-        });
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(cartAdapter);
-
-        ArrayList<Item> CartArrayList = getCartItems();
-        cartAdapter.updateCartList(CartArrayList);*/
-    }
-
-    private ArrayList<Item> getCartItems() {
-        ArrayList<Item> cart = new ArrayList<>();
-        cart.add(new Item("Store01", "Oishii Daily", "Sushi", 2.4));
-        cart.add(new Item("Store01", "Oishii Daily", "Salmon", 3.4));
-        cart.add(new Item("Store01", "Oishii Daily", "Tuna", 4.4));
-        cart.add(new Item("Store01", "Oishii Daily", "Yuzu Tea", 1.2));
-        return cart;
-    }
-
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
+        contentTotal.setText("$" + Math.round(subtotal));*/
     }
 }
