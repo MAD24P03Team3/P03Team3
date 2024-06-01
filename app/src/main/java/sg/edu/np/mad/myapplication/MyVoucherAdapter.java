@@ -28,6 +28,10 @@ public class MyVoucherAdapter extends RecyclerView.Adapter<MyVoucherAdapter.Vouc
     private ArrayList<Voucher> voucherArrayList;
     private TextView pointsTextView; // Reference to pointsTextView in RewardsFragment
 
+    public MyVoucherAdapter(ArrayList<Voucher> voucherArrayList) {
+        this.voucherArrayList = voucherArrayList;
+    }
+
     public MyVoucherAdapter(Context context, ArrayList<Voucher> input_data) {
         this.context = context;
         this.voucherArrayList = input_data;
@@ -42,7 +46,7 @@ public class MyVoucherAdapter extends RecyclerView.Adapter<MyVoucherAdapter.Vouc
     @NonNull
     public VoucherViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View item = inflater.inflate(R.layout.recycler_voucher, parent, false);
+        View item = inflater.inflate(R.layout.recycler_myrewards, parent, false);
         return new VoucherViewHolder(item);
     }
 
@@ -73,7 +77,6 @@ public class MyVoucherAdapter extends RecyclerView.Adapter<MyVoucherAdapter.Vouc
 
             String customerEmail = loadEmailFromSharedPreferences();
             Log.d("Voucher Adapter", "Customer email: " + customerEmail);
-            Log.d("Voucher button", "Voucher button onClick: " + voucher.voucherID);
 
             retrieveCustomerVouchers(customerEmail, voucher);
         }

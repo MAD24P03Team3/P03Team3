@@ -78,30 +78,44 @@ public class CustomerMyRewards extends AppCompatActivity {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
-                    Long points = document.getLong("points");
-
                     ArrayList<String> voucherIDs = (ArrayList<String>) document.get("vouchers");
                     if (voucherIDs != null && !voucherIDs.isEmpty()) {
-                        db.collection("Vouchers").whereIn("voucherID", voucherIDs).get().addOnCompleteListener(voucherTask -> {
-                            if (voucherTask.isSuccessful()) {
-                                for (QueryDocumentSnapshot voucherDocument : voucherTask.getResult()) {
-                                    String storeID = voucherDocument.getString("storeID");
-                                    String voucherID = voucherDocument.getString("voucherID");
-                                    String voucherName = voucherDocument.getString("voucherName");
-                                    double voucherPoints = voucherDocument.getDouble("points");
-                                    double discount = voucherDocument.getDouble("discount");
-                                    Date valid = voucherDocument.getDate("valid");
-                                    Date expiry = voucherDocument.getDate("expiry");
-                                    String description = voucherDocument.getString("description");
-
-                                    Voucher voucher = new Voucher(storeID, voucherID, voucherName, voucherPoints, discount, valid, expiry, description);
-                                    voucherList.add(voucher);
+                        // Iterate over the voucher IDs
+                        for (String voucherID : voucherIDs) {
+                            // Check if the voucher ID already exists in the list
+                            boolean voucherExists = false;
+                            for (Voucher voucher : voucherList) {
+                                if (voucher.voucherID.equals(voucherID)) {
+                                    voucherExists = true;
+                                    break;
                                 }
-                                MyVoucherAdapter.notifyDataSetChanged();
-                            } else {
-                                Log.d("Firestore", "Error getting vouchers: ", voucherTask.getException());
                             }
-                        });
+                            if (!voucherExists) {
+                                // Fetch voucher details from Firestore and add it to the list
+                                db.collection("Voucher").document(voucherID).get().addOnCompleteListener(voucherTask -> {
+                                    if (voucherTask.isSuccessful()) {
+                                        DocumentSnapshot voucherDocument = voucherTask.getResult();
+                                        if (voucherDocument.exists()) {
+                                            String storeID = voucherDocument.getString("storeID");
+                                            String voucherName = voucherDocument.getString("name");
+                                            double voucherPoints = voucherDocument.getDouble("points");
+                                            double discount = voucherDocument.getDouble("discount");
+                                            Date valid = voucherDocument.getDate("valid");
+                                            Date expiry = voucherDocument.getDate("expiry");
+                                            String description = voucherDocument.getString("description");
+
+                                            Voucher voucher = new Voucher(storeID, voucherID, voucherName, voucherPoints, discount, valid, expiry, description);
+                                            voucherList.add(voucher);
+                                            MyVoucherAdapter.notifyDataSetChanged(); // Notify adapter of data change
+                                        } else {
+                                            Log.d("Firestore", "No such voucher document");
+                                        }
+                                    } else {
+                                        Log.d("Firestore", "Error getting voucher document: ", voucherTask.getException());
+                                    }
+                                });
+                            }
+                        }
                     }
                 } else {
                     Log.d("Firestore", "No such document");
@@ -111,4 +125,6 @@ public class CustomerMyRewards extends AppCompatActivity {
             }
         });
     }
+
+
 }
