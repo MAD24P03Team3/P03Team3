@@ -5,8 +5,9 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
 
 ## Our Ideation Process
 
-## [Miro](https://miro.com/app/board/uXjVKLXdQRE=/)
-## [Figma](
+## Database and class Diagram
+   - [Miro](https://miro.com/app/board/uXjVKLXdQRE=/)
+
 
 
 # Motivation
