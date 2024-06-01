@@ -41,9 +41,9 @@ public class bottomModal extends BottomSheetDialogFragment{
         void onCallback(ArrayList<String> itemList);
 
     }
-    public ArrayList<String> onCallBack(ArrayList<String>itemd){
-        return itemd;
-    }
+//    public ArrayList<String> onCallBack(ArrayList<String>itemd){
+//        return itemd;
+//    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

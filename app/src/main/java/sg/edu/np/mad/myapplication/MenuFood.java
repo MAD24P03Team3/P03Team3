@@ -60,11 +60,11 @@ public class MenuFood extends AppCompatActivity {
 
         //set up the tab layouts
 
-        viewPager2 = findViewById(R.id.view_pageFood);
-        tabLayout = findViewById(R.id.tabs);
-        viewPageAdapter = new ViewPageAdapter(this);
-        viewPager2.setAdapter(viewPageAdapter);
-        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> tab.setText(titles[position])).attach();
+//        viewPager2 = findViewById(R.id.view_pageFood);
+//        tabLayout = findViewById(R.id.tabs);
+//        viewPageAdapter = new ViewPageAdapter(this);
+//        viewPager2.setAdapter(viewPageAdapter);
+//        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> tab.setText(titles[position])).attach();
 
 
 
