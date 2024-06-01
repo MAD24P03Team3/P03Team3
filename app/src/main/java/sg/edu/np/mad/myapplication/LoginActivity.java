@@ -85,10 +85,17 @@ public class LoginActivity extends AppCompatActivity {
         EditText inputPassword = findViewById(R.id.inputPassword);
         Button loginBtn = findViewById(R.id.login);
         TextView signupTxt = findViewById(R.id.signupText);
+        TextView owner = findViewById(R.id.ownerLogin);
 
         signupTxt.setOnClickListener(v -> {
             Intent toSignupActivity = new Intent(LoginActivity.this, SignupActivity.class);
             startActivity(toSignupActivity);
+            finish();
+        });
+
+        owner.setOnClickListener(v -> {
+            Intent toOwner = new Intent(LoginActivity.this,OwnerLogin.class);
+            startActivity(toOwner);
             finish();
         });
 
