@@ -45,7 +45,6 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         // set the text of the Text view name, get the position of the element in arrayList, return that item
         holder.tvName.setText(menuData.get(position).name);
-//        holder.tvDesc.setText(menuData.get(position).description);
         Double price = menuData.get(position).price;
         holder.tvItemPrice.setText(price.toString());
 
@@ -61,7 +60,7 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
         // retreiving views from recyler_view layout
 
         ImageView imageView;
-        TextView tvName,  tvItemPrice;
+        TextView tvName,  tvItemPrice, tvDesc;
 
         Button plus;
 
