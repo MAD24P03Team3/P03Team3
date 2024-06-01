@@ -33,7 +33,7 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
 
    - Add MenuItems for Owner
      - Allow Owners to add menu items to the database for the corresponding store by the owner
-     - View owner-added items in menu
+     - View owner-added items in the menu
    - Display Menu Items and like menu Items
    - Display the list of businesses
 
@@ -47,14 +47,18 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
     
 # Stage 2 implementation of features
 ## Isaac Tiew Xun Yong
- - Implementation of Real Life Payment and Transactions through VISA API
+ - Implementation of Real Life Payment and Transactions to Merchant (Process Payment)
  - Nested Recycler for menu categorisation
 
 ## Chan Man Lock Jake
-   - Google Maps API for finding nearest BYOB Buisness
+   - Google Maps API integrated to find nearest BYOB businesses near them
+   - Upload images to firestore
 
 ## DingXuan Liang
-   - Search functionality
+   - Search functionality  based on a pattern (e.g. asa result: asai)
+
+## Joey
+  - Log In using 2FA
     
 # Technologies Used
 - [FireBase FireStore](https://console.firebase.google.com/u/0/project/mad-p03-team-3-foodapp/firestore/databases/-default-/data/~2FCustomer~2Fisaactiew36@gmail.com)
