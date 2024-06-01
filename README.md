@@ -44,7 +44,7 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
      - Handle the update of profiles for accounts
      - Display liked items
      - Designed the login and signup page
-    
+
 # Stage 2 implementation of features
 ## Isaac Tiew Xun Yong
  - Implementation of Real Life Payment and Transactions to Merchant (Process Payment)
@@ -59,6 +59,8 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
 
 ## Joey
   - Log In using 2FA
+
+
     
 # Technologies Used
 - [FireBase FireStore](https://console.firebase.google.com/u/0/project/mad-p03-team-3-foodapp/firestore/databases/-default-/data/~2FCustomer~2Fisaactiew36@gmail.com)
