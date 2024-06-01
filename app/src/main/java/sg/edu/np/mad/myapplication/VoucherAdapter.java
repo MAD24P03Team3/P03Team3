@@ -13,9 +13,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherViewHolder>{
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherViewHolder> {
 
     private static final String PREFS_NAME = "customer";
     private static final String KEY_NAME = "email";
@@ -44,29 +49,80 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherV
     @Override
     public void onBindViewHolder(@NonNull VoucherViewHolder holder, int position) {
         Voucher voucher = voucherArrayList.get(position);
-        holder.voucherName.setText(voucher.voucherName);
-        holder.voucherDesc.setText(voucher.description);
+        holder.bind(voucher);
     }
 
     @Override
-    public int getItemCount() { return voucherArrayList.size(); }
+    public int getItemCount() {
+        return voucherArrayList.size();
+    }
 
     public class VoucherViewHolder extends RecyclerView.ViewHolder {
         TextView voucherName;
         TextView voucherDesc;
+
         public VoucherViewHolder(@NonNull View itemView) {
             super(itemView);
             voucherName = itemView.findViewById(R.id.voucherName);
             voucherDesc = itemView.findViewById(R.id.voucherDescription);
+        }
+
+        public void bind(Voucher voucher) {
+            voucherName.setText(voucher.voucherName);
+            voucherDesc.setText(voucher.description);
 
             itemView.findViewById(R.id.elevatedButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     String customerEmail = loadEmailFromSharedPreferences();
                     Log.d("Voucher Adapter", "Customer email: " + customerEmail);
-                    Log.d("Voucher button", "Voucher button onClick: ");
+                    Log.d("Voucher button", "Voucher button onClick: " + voucher.voucherID);
+
+                    updateCustomerVouchers(customerEmail, voucher);
                 }
             });
         }
+
+        private void updateCustomerVouchers(String email, Voucher voucher) {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            db.collection("Customer").document(email).get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Map<String, Object> customerData = document.getData();
+                        if (customerData != null) {
+                            ArrayList<String> vouchers = (ArrayList<String>) customerData.get("vouchers");
+                            int points = ((Long) customerData.get("points")).intValue();
+
+                            if (vouchers == null) {
+                                vouchers = new ArrayList<>();
+                            }
+
+                            // Add the new voucherID to the vouchers list
+                            vouchers.add(voucher.voucherID);
+
+                            // Deduct the points by the voucher points
+                            points -= voucher.points;
+
+                            // Update the customer data
+                            Map<String, Object> updateData = new HashMap<>();
+                            updateData.put("vouchers", vouchers);
+                            updateData.put("points", points);
+
+                            db.collection("customer").document(email)
+                                    .update(updateData)
+                                    .addOnSuccessListener(aVoid -> Log.d("Firestore Update", "DocumentSnapshot successfully updated!"))
+                                    .addOnFailureListener(e -> Log.w("Firestore Update", "Error updating document", e));
+                        }
+                    } else {
+                        Log.d("Firestore Update", "No such Customer");
+                    }
+                } else {
+                    Log.d("Firestore Update", "Get failed with ", task.getException());
+                }
+            });
+        }
+
     }
 }
