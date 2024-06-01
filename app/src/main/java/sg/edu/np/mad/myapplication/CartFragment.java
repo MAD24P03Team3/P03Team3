@@ -53,9 +53,6 @@ public class CartFragment extends Fragment {
                 cartAdapter.updateCart(items);
             }
         });
-
-        ///cart = cartAdapter.getCartItems();
-
         /*double subtotal = 0;
         for (Item item : cart) {
             subtotal += item.price;
