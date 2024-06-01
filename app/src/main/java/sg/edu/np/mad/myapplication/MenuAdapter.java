@@ -25,6 +25,7 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
     // Constructor that has these variables
     public MenuAdapter(ArrayList<Item> menuData){
         this.menuData = menuData;
+        notifyDataSetChanged();
     }
 
     @NonNull

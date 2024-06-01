@@ -34,6 +34,7 @@ public class MenuFragment extends Fragment {
 
     public void retrievemenuItems(FirebaseFirestore db, HandleCallBack hc){
         ArrayList<Item> itemList = new ArrayList<>();
+        // retrive the document
         db.collection("Stores").document("Prata-Boy")
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -43,13 +44,31 @@ public class MenuFragment extends Fragment {
                             // proceed to retrive the menuitems
                             ArrayList<HashMap<String,Object>> menuItems = (ArrayList<HashMap<String,Object>>) ds.get("menuItems");
                             for (HashMap<String,Object> item :menuItems){
+                                Double price;
+                                Long lprice;
+                                Object obj =item.get("itemPrice");
                                 String name = (String) item.get("itemName");
                                 String itemId = (String) item.get("itemID");
-                                Double price = (Double) item.get("itemPrice");
+
                                 String description = (String) item.get("itemDesc");
 
-                                Item currentItem = new Item(itemId,name,description,price);
-                                itemList.add(currentItem);
+                                if(obj instanceof Double){
+                                    price = (Double) obj;
+                                    Item currentItem = new Item(itemId,name,description,price);
+                                    itemList.add(currentItem);
+                                }
+
+                                if(obj instanceof Long){
+                                    lprice = (Long) obj;
+                                    price = lprice.doubleValue();
+                                    Item currentItem = new Item(itemId,name,description,price);
+                                    itemList.add(currentItem);
+                                }
+
+
+
+
+
 
                             }
                             hc.arrayCallBack(itemList);
@@ -80,7 +99,10 @@ public class MenuFragment extends Fragment {
             Part 2 : Inside menu Adapter
         *   3. handle the adding items to liked fragment (when like button clicked store the menuItem in db
         *   4. Retrive the menuItems and store it as item objects in the arrayList of user class*/
+
+
         retrievemenuItems(db, new HandleCallBack() {
+
             @Override
             // handle the retrieval from the callback
             public void arrayCallBack(ArrayList<Item> listofitmes) {
@@ -91,6 +113,7 @@ public class MenuFragment extends Fragment {
                 menurecycler.setLayoutManager(layoutManager);
                 menurecycler.setItemAnimator(new DefaultItemAnimator());
                 menurecycler.setAdapter(ma);
+
             }
         });
 
