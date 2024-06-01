@@ -110,8 +110,6 @@ public class MyVoucherAdapter extends RecyclerView.Adapter<MyVoucherAdapter.Vouc
             });
         }
 
-
-
         private void updatePointsTextView(int points) {
             // Update pointsTextView with new points value
             pointsTextView.setText(String.valueOf(points));
