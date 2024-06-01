@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public class Customer extends User {
     private static Customer instance;
     String email;
+
+    String password;
     ArrayList<Item> likes;
     ArrayList<Item> cart;
     ArrayList<Order> currentOrder;
@@ -27,7 +29,7 @@ public class Customer extends User {
 
     // Private constructor to enforce singleton pattern
     private Customer(String name, String email, String password, String cid) {
-        super(name,email,password);
+        super(name,email);
         this.cid = cid;
         this.likes = new ArrayList<>();
         this.cart = new ArrayList<>();
