@@ -30,6 +30,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -116,6 +117,8 @@ public class SignupActivity extends AppCompatActivity {
         data.put("name",c.name);
         data.put("cid",c.cid);
         data.put("Student email",email);
+        data.put("vouchers", new ArrayList<>());
+        data.put("points",0);
         data.put("likes",c.likes);
         data.put("current orders",c.currentOrder);
         data.put("order history",c.orderHistory);

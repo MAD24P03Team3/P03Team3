@@ -23,11 +23,11 @@ public class Voucher {
     Date expiry;
     String description;
 
-    public Voucher(String input_storeID, String input_voucherID, String voucherName, double points, double input_discount, Date input_valid, Date input_expiry, String input_description){
+    public Voucher(String input_storeID, String input_voucherID, String Name, double inputPoints, double input_discount, Date input_valid, Date input_expiry, String input_description){
         storeID = input_storeID;
         voucherID = input_voucherID;
-        voucherName = voucherName;
-        points = points;
+        voucherName = Name;
+        points = inputPoints;
         discount = input_discount;
         valid = input_valid;
         expiry = input_expiry;
