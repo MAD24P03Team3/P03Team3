@@ -25,6 +25,7 @@ public class CartFragment extends Fragment {
     private RecyclerView recyclerView;
     private CartAdapter cartAdapter;
     private CartViewModel cartViewModel;
+    private TextView contentTotal;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class CartFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
+        contentTotal = view.findViewById(R.id.contentTotal);
         recyclerView = view.findViewById(R.id.contentRecycler);
         cartAdapter = new CartAdapter(new ArrayList<Item>(), new CartAdapter.OnItemDeleteListener() {
             @Override
@@ -53,11 +55,11 @@ public class CartFragment extends Fragment {
                 cartAdapter.updateCart(items);
             }
         });
-        /*double subtotal = 0;
-        for (Item item : cart) {
-            subtotal += item.price;
-        }
-        TextView contentTotal = view.findViewById(R.id.contentTotal);
-        contentTotal.setText("$" + Math.round(subtotal));*/
+        cartViewModel.getSubtotal().observe(getViewLifecycleOwner(), new Observer<Double>() {
+            @Override
+            public void onChanged(Double total) {
+                contentTotal.setText(String.format("$%.2f", total));
+            }
+        });
     }
 }

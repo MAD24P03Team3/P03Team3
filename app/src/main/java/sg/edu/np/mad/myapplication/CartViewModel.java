@@ -2,6 +2,7 @@ package sg.edu.np.mad.myapplication;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
@@ -32,6 +33,16 @@ public class CartViewModel extends ViewModel {
             currentCart.remove(position);
             cart.setValue(currentCart);
         }
+    }
+
+    public LiveData<Double> getSubtotal() {
+        return Transformations.map(cart, cartList -> {
+            double subtotal = 0.0;
+            for (Item item : cartList) {
+                subtotal += item.getPrice();
+            }
+            return subtotal;
+        });
     }
 
     public void TestCart() {

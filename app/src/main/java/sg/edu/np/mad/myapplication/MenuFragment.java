@@ -85,7 +85,7 @@ public class MenuFragment extends Fragment {
 
         // TODO Part 1
         //  1. set up all the views in the fragment
-        //  2. handle the database retrivel of all menu items by querying the database
+        //  2. handle the database retrieval of all menu items by querying the database
 
         retrievemenuItems(db, new HandleCallBack() {
 

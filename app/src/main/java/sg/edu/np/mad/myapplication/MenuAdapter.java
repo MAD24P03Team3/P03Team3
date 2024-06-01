@@ -85,7 +85,7 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
         }
     }
 
-    // retrive the user email from shared preferences
+    // retrieve the user email from shared preferences
     private String loadEmailFromSharedPreferences() {
         SharedPreferences sharedPreferences = Context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         return sharedPreferences.getString(KEY_NAME, "No name found");
