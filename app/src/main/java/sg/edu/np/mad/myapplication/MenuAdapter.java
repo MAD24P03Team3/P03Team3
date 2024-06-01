@@ -123,7 +123,7 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
         // set the text of the Text view name, get the position of the element in arrayList, return that item
         holder.tvName.setText(menuData.get(position).name);
         Double price = menuData.get(position).price;
-        holder.tvItemPrice.setText(price.toString());
+        holder.tvItemPrice.setText(String.format("$%.2f",price));
         holder.liked.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
