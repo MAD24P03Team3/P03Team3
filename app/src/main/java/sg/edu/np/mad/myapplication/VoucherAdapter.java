@@ -101,22 +101,26 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherV
 
                             // Add the new voucherID to the vouchers list
                             vouchers.add(voucher.voucherID);
+                            Log.d("Vouchers", "Vouchers: " + voucher.voucherID);
+
 
                             // Deduct the points by the voucher points
                             points -= voucher.points;
+                            Log.d("points", "points: " + points);
+
 
                             // Update the customer data
                             Map<String, Object> updateData = new HashMap<>();
                             updateData.put("vouchers", vouchers);
                             updateData.put("points", points);
 
-                            db.collection("customer").document(email)
+                            db.collection("Customer").document(email)
                                     .update(updateData)
                                     .addOnSuccessListener(aVoid -> Log.d("Firestore Update", "DocumentSnapshot successfully updated!"))
                                     .addOnFailureListener(e -> Log.w("Firestore Update", "Error updating document", e));
                         }
                     } else {
-                        Log.d("Firestore Update", "No such Customer");
+                        Log.d("Firestore Update", "Document not found for email: " + email);
                     }
                 } else {
                     Log.d("Firestore Update", "Get failed with ", task.getException());
