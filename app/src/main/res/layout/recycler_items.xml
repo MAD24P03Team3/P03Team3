@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!--<androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="180dp"
         android:layout_height="240dp" >
 
@@ -18,10 +18,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <!--<RelativeLayout
+    </androidx.constraintlayout.widget.ConstraintLayout>-->
+    <RelativeLayout
         android:layout_width="180dp"
         android:layout_height="240dp"
         android:layout_margin="10dp"
@@ -88,5 +90,5 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="30dp"/>
-    </RelativeLayout>-->
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

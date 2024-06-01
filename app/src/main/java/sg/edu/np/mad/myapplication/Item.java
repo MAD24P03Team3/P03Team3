@@ -15,4 +15,8 @@ public class Item {
         description = input_description;
         price = input_price;
     }
+
+    public double getPrice() {
+        return price;
+    }
 }
