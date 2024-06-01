@@ -91,6 +91,7 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
         return sharedPreferences.getString(KEY_NAME, "No name found");
     }
 
+    //Fixing merging error
     public interface OnItemAddListener {
         void onItemAdd(Item item);
     }
