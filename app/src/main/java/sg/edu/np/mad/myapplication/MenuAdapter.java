@@ -41,6 +41,8 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
     private String TAG = "MenuAdapter";
     private OnItemAddListener onItemAddListener;
 
+
+
     public void addtoliked(int i, ArrayList<Item> menuData){
         Item item = menuData.get(i);
         if(item != null){
@@ -57,6 +59,7 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
                                     likedData.put("likedItemID",item.itemId);
                                     likedData.put("likedItemName",item.name);
                                     likedData.put("likedItemDesc",item.description);
+                                    likedData.put("likePrice",item.price);
 
                                     DocumentReference dr = document.getReference();
                                     if(likedData != null){
@@ -80,7 +83,8 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
                             }
                         }
                     });
-        } else{
+        }
+        else{
             Log.d(TAG,"Item is empty");
         }
     }
@@ -101,7 +105,7 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
         this.menuData = menuData;
         this.Context = context;
         onItemAddListener = input_onItemAddListener;
-        notifyDataSetChanged();
+//        notifyDataSetChanged();
     }
 
     @NonNull

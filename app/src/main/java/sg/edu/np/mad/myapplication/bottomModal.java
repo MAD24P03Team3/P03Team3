@@ -41,9 +41,7 @@ public class bottomModal extends BottomSheetDialogFragment{
         void onCallback(ArrayList<String> itemList);
 
     }
-//    public ArrayList<String> onCallBack(ArrayList<String>itemd){
-//        return itemd;
-//    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,6 +56,7 @@ public class bottomModal extends BottomSheetDialogFragment{
         EditText etPrice = rootview.findViewById(R.id.etprice);
         EditText etcat = rootview.findViewById(R.id.etfoodcat);
 
+        // Handle the user interraction when creating a new menuItem
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,9 +64,10 @@ public class bottomModal extends BottomSheetDialogFragment{
                 String desc = etdesc.getText().toString();
                 String itcat = etcat.getText().toString();
                 Double price = Double.parseDouble(etPrice.getText().toString());
+                // retrive the relevant input fields
                 getAllItemData(new HandleCallback(){
                     @Override
-                    // override the callback method
+                    // override the callback method in the interface
                     public void onCallback(ArrayList<String> itemList) {
                         // Handle the retrieved list
                         itemid = itemList;
@@ -75,6 +75,7 @@ public class bottomModal extends BottomSheetDialogFragment{
                         String lastimd = itemList.get(lastind);
                         int newitemnum = parseInt(lastimd.substring(1,3)) + 1;
                         String newItemId = "P" + newitemnum;
+                        // create a new HashMap to store the item Objects as a Map in FIreStore
                         HashMap<String,Object> data = new HashMap<>();
                         data.put("itemDesc",desc);
                         data.put("itemID",newItemId);
@@ -114,10 +115,6 @@ public class bottomModal extends BottomSheetDialogFragment{
         // specify the document to retrive item objects in a specific collection
         // handle data retrival  <Task> onSucess, onFailure
 
-        //TODO: 1. Create new item objects with user data
-        /*    : 2. Go through all the documents objects retrive all itemId put it in a list
-              : 3. New itemId would be the last index in the list value increment by one
-         */
 
     }
 
