@@ -17,7 +17,7 @@
                 android:id="@+id/voucherName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="$2 off Strawberry Praffle"
+                android:text="Voucher Name"
                 android:layout_margin="20dp"
                 android:textSize="20dp"/>
 
@@ -25,7 +25,7 @@
                 android:id="@+id/voucherDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="This voucher very nice"
+                android:text="voucher Description"
                 android:layout_below="@id/voucherName"
                 android:layout_marginStart="20dp"
                 android:textSize="12dp"
