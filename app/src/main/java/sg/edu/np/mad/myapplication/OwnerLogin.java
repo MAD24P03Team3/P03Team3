@@ -28,7 +28,7 @@ public class OwnerLogin extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
-    private static final String PREFS_NAME = "customer";
+    private static final String PREFS_NAME = "owner";
     private static final String KEY_NAME = "email";
 
     private void saveEmailToSharedPreferences(String email) {
