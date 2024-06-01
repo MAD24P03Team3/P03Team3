@@ -13,6 +13,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
 import sg.edu.np.mad.myapplication.databinding.ActivityMain2Binding;
 
 public class MainActivity2 extends AppCompatActivity {

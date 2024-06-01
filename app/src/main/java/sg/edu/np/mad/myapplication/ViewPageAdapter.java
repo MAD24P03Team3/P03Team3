@@ -17,11 +17,10 @@ public class ViewPageAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position){
+
             case 0:
-                return new fullmenu();
-            case 1:
                 return new pratamenu();
-            case 2:
+            case 1:
                 return new MenuDrinks();
         }
         return null;
