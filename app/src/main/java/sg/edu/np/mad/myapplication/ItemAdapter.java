@@ -47,7 +47,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             super(itemView);
             itemName = itemView.findViewById(R.id.tvTitle);
             itemDescription = itemView.findViewById(R.id.tvDesc);
-            itemPrice = itemView.findViewById(R.id.itemPrice);
+            itemPrice = itemView.findViewById(R.id.tvPrice);
         }
     }
 }
