@@ -19,7 +19,6 @@
         android:background="@drawable/square_rounded">
 
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -31,7 +30,6 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/account">
-
             </ImageView>
 
             <TextView
@@ -44,28 +42,29 @@
                 android:textStyle="bold"></TextView>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/etowneremail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:hint="Owner email">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etOwnerEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/etownerpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:hint="Owner password">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etOwnerPassword"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,13 +72,11 @@
                 android:id="@+id/login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_marginTop="15dp"
                 android:backgroundTint="@color/black"
                 android:text="Log In"
                 android:textSize="20sp"
                 app:cornerRadius="5dp">
-
             </com.google.android.material.button.MaterialButton>
 
             <TextView

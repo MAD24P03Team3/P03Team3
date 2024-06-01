@@ -7,6 +7,7 @@
 
     <!--    Text view of owner's name-->
     <TextView
+        android:layout_marginTop="10dp"
         android:id="@+id/ownername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,10 +20,6 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmenu"
         app:layout_constraintTop_toBottomOf="@+id/ownername"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/coordinator"
-
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
