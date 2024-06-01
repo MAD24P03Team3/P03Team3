@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,21 +28,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class MenuFragment extends Fragment {
 
     public String TAG = "MenuFragment";
+    private CartViewModel cartViewModel;
 
     public void retrievemenuItems(FirebaseFirestore db, HandleCallBack hc){
         ArrayList<Item> itemList = new ArrayList<>();
-        // retrive the document
+        // retrieve the document
         db.collection("Stores").document("Prata-Boy")
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         DocumentSnapshot ds = task.getResult();
                         if(ds.exists()){
-                            // proceed to retrive the menuitems
+                            // proceed to retrieve the menuitems
                             ArrayList<HashMap<String,Object>> menuItems = (ArrayList<HashMap<String,Object>>) ds.get("menuItems");
                             for (HashMap<String,Object> item :menuItems){
                                 Double price;
@@ -64,7 +65,6 @@ public class MenuFragment extends Fragment {
                                     Item currentItem = new Item(itemId,name,description,price);
                                     itemList.add(currentItem);
                                 }
-
                             }
                             hc.arrayCallBack(itemList);
                         }
@@ -74,25 +74,18 @@ public class MenuFragment extends Fragment {
                         }
                     }
                 });
-
     }
 
     ArrayList<Item> menuData = new ArrayList<>();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    ArrayList<Item> menuItems = new ArrayList<Item>();
-    private String[] titles = new String[]{"Menu","Drinks","Praffles"};
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
 
-
         // TODO Part 1
         //  1. set up all the views in the fragment
-        /*  2. handle the database retriveal of all menu items by querying the database
-           */
-
+        //  2. handle the database retrivel of all menu items by querying the database
 
         retrievemenuItems(db, new HandleCallBack() {
 
@@ -100,22 +93,21 @@ public class MenuFragment extends Fragment {
             // handle the retrieval from the callback
             public void arrayCallBack(ArrayList<Item> listofitmes) {
                 menuData = listofitmes;
-                MenuAdapter ma = new MenuAdapter(getContext(),menuData);
-                RecyclerView menurecycler = view.findViewById(R.id.menurecycler);
-                GridLayoutManager layoutManager = new GridLayoutManager(getContext(),2);
-                menurecycler.setLayoutManager(layoutManager);
-                menurecycler.setItemAnimator(new DefaultItemAnimator());
-                menurecycler.setAdapter(ma);
+                cartViewModel = new ViewModelProvider(requireActivity()).get(CartViewModel.class);
+                MenuAdapter menuAdapter = new MenuAdapter(getContext(), menuData, new MenuAdapter.OnItemAddListener() {
+                    @Override
+                    public void onItemAdd(Item item) {
+                        cartViewModel.addToCart(item);
+                    }
+                });
 
+                RecyclerView menuRecycler = view.findViewById(R.id.menurecycler);
+                GridLayoutManager layoutManager = new GridLayoutManager(getContext(),2);
+                menuRecycler.setLayoutManager(layoutManager);
+                menuRecycler.setItemAnimator(new DefaultItemAnimator());
+                menuRecycler.setAdapter(menuAdapter);
             }
         });
-
-
-
-
-
-
-
 
         return view;
     }
