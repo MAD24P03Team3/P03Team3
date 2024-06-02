@@ -22,6 +22,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RewardsFragment extends Fragment {
     private static final String PREFS_NAME = "customer";
@@ -39,7 +41,12 @@ public class RewardsFragment extends Fragment {
         ArrayList<Voucher> recycler_VoucherList = new ArrayList<>();
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_items);
-        VoucherAdapter voucherAdapter = new VoucherAdapter(getContext(), recycler_VoucherList, pointsTextView);
+        VoucherAdapter voucherAdapter = new VoucherAdapter(getContext(), recycler_VoucherList, pointsTextView, new VoucherAdapter.OnPointsRedeemListener() {
+            @Override
+            public void onPointsRedeem() {
+                updateCustomerPoints(loadEmailFromSharedPreferences());
+            }
+        });
         LinearLayoutManager voucherLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 
         recyclerView.setLayoutManager(voucherLayoutManager);
@@ -98,5 +105,28 @@ public class RewardsFragment extends Fragment {
     private String loadEmailFromSharedPreferences() {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(KEY_NAME, "No email found");
+    }
+
+    private void updateCustomerPoints(String email) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("Customer").document(email).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    Map<String, Object> customerData = document.getData();
+                    if (customerData != null) {
+                        ArrayList<String> vouchers = (ArrayList<String>) customerData.get("vouchers");
+                        int points = ((Long) customerData.get("points")).intValue();
+
+                        if (vouchers == null) {
+                            vouchers = new ArrayList<>();
+                        }
+
+                        pointsTextView.setText(String.valueOf(points));
+                    }
+                }
+            }
+        });
     }
 }
