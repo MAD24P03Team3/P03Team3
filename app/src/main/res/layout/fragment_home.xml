@@ -10,11 +10,28 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
 
+        <ImageView
+            android:id="@+id/appIcon"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/account"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="NP's Eats"
+            android:textSize="50dp"
+            app:layout_constraintBottom_toTopOf="@id/scrollView"
+            app:layout_constraintStart_toEndOf="@id/appIcon"/>
+
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appIcon"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="1dp"
             android:background="#FFFFFF"
@@ -104,7 +121,6 @@
                 </HorizontalScrollView>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:background="#CDCDCD"
                     android:id="@+id/horizontalRV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
