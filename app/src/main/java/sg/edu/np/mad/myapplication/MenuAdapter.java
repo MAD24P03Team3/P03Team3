@@ -111,7 +111,7 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardrecyler, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_items, parent, false);
         return new MyViewHolder(v);
     }
 
@@ -127,6 +127,7 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
         // set the text of the Text view name, get the position of the element in arrayList, return that item
         holder.tvName.setText(menuData.get(position).name);
         Double price = menuData.get(position).price;
+        holder.tvItemDescription.setText("");
         holder.tvItemPrice.setText(String.format("$%.2f",price));
         holder.liked.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,8 +148,7 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
         // retreiving views from recyler_view layout
 
         ImageView imageView;
-        TextView tvName, tvItemPrice, tvDesc;
-
+        TextView tvName, tvItemPrice, tvItemDescription;
         Button plus,liked;
 
 
@@ -156,11 +156,12 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
 
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.foodimg);
-            tvName = itemView.findViewById(R.id.foodname);
-            tvItemPrice = itemView.findViewById(R.id.itemPrice);
-            liked = itemView.findViewById(R.id.heart);
-            plus = itemView.findViewById(R.id.plus);
+            imageView = itemView.findViewById(R.id.imageView);
+            tvName = itemView.findViewById(R.id.tvTitle);
+            tvItemPrice = itemView.findViewById(R.id.tvPrice);
+            tvItemDescription = itemView.findViewById(R.id.tvDesc);
+            liked = itemView.findViewById(R.id.Like);
+            plus = itemView.findViewById(R.id.Add);
 
             // TODO Part 2 : Inside menu Adapter
             //  1. Retieve all the views for the menurecycler (add to cart, liked items)
