@@ -119,7 +119,7 @@ public class SignupActivity extends AppCompatActivity {
         data.put("Student email",email);
         data.put("vouchers", new ArrayList<>());
         data.put("points",0);
-        data.put("likes",c.likes);
+        data.put("Likes",c.likes);
         data.put("current orders",c.currentOrder);
         data.put("order history",c.orderHistory);
 
