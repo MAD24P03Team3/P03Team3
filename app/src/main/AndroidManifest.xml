@@ -27,18 +27,14 @@
         <activity
             android:name=".MainActivity2"
             android:exported="true" />
-        <activity
-            android:name=".MenuFood"
-            android:exported="true" />
+
         <activity
             android:name=".SignupActivity"
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
             android:exported="true" />
-        <activity
-            android:name=".RewardsActivity"
-            android:exported="true" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
