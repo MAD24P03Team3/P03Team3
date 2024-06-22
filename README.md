@@ -25,18 +25,19 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
    - Classes for all the various models used in the application
    
    ## Liang DingXuan
-   ### Features Implemented in Stage 1
+
    - Customer Rewards Feature
      - Display all the rewards earned by the customer and available for redemption
      - Redeem the rewards
      - Update the customer's list of rewards
-   - Home Page 
+   - Home Page
+   - Owner Login feature and view orders recieved from store 
 
    ## Isaac Tiew Xun Yong 
    ### Features Implemented in Stage 1
-   - Login and Sign Up for the customer and Log In for Owner
-     - Retrive the relevant fields for Owner and Customer login and authenticate using Firebase Authentication
-     - Sign Up and create a new customer after signing in
+   - Login and Sign Up for the customer 
+     - Retrive the relevant fields for Customer login and authenticate using Firebase Authentication
+     - Sign Up and create a new customer to sign in
 
    - Add MenuItems for Owner
      - Allow Owners to add menu items to the database for the corresponding store by the owner
