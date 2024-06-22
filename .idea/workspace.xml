@@ -168,7 +168,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39eb89c9-b0c2-4177-b484-de25b432035d" name="Changes" comment="Fixed the recyclerview and the likes not scrolling">
+    <list default="true" id="39eb89c9-b0c2-4177-b484-de25b432035d" name="Changes" comment="Commited this file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -1058,7 +1058,8 @@
     <MESSAGE value="Finished likes and unlike" />
     <MESSAGE value="Commented on code" />
     <MESSAGE value="Fixed the recyclerview and the likes not scrolling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed the recyclerview and the likes not scrolling" />
+    <MESSAGE value="Commited this file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commited this file" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
