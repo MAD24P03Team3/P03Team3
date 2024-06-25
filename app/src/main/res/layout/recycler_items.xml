@@ -2,26 +2,105 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:foregroundTint="@color/cardview_dark_background"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:layout_margin="5dp"
+    app:cardCornerRadius="15dp">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="180dp"
+        android:layout_height="280dp" >
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="140dp"
+            android:src="@drawable/prata"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_marginTop="22.5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Item name"
+            android:textSize="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView"/>
+
+        <com.google.android.material.button.MaterialButton
+
+            android:id="@+id/Like"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/circle"
+            android:backgroundTint="@color/white"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="119.75dp"
+            app:iconGravity="textTop"
+            app:iconSize="30dp"
+            app:icon="@drawable/liked"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/Add"/>
+
+        <com.google.android.material.button.MaterialButton
+
+            android:id="@+id/Add"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/circle"
+            android:backgroundTint="@color/white"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="119.75dp"
+            app:iconGravity="textTop"
+            app:iconSize="30dp"
+            app:icon="@drawable/baseline_add_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/Like"/>
+
+        <TextView
+            android:id="@+id/tvDesc"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Item description"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="$69.69"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--<RelativeLayout
         android:layout_width="180dp"
         android:layout_height="240dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_margin="10dp"
         android:background="@drawable/layout_bg_rvitems">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_marginTop="2dp"
-            android:layout_width="80dp"
+            android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:src="@mipmap/ic_launcher_round"/>
+            android:src="@drawable/prata"/>
 
         <TextView
             android:id="@+id/tvTitle"
@@ -42,6 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tvTitle"
             android:text="LOL"/>
+
         <TextView
             android:id="@+id/tvPrice"
             android:layout_marginLeft="10dp"
@@ -55,7 +135,6 @@
             android:backgroundTint="#FE742C"
             app:icon="@drawable/liked"
             app:iconGravity="textTop"
-
             app:iconSize="24dp"
             android:layout_width="40dp"
             android:layout_height="45dp"
@@ -74,7 +153,5 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="30dp"/>
-    </RelativeLayout>
-
-
+    </RelativeLayout>-->
 </androidx.cardview.widget.CardView>
