@@ -23,11 +23,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <View
+        <TextView
+            android:id="@+id/searchbar"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            app:layout_constraintBottom_toTopOf="@id/searchbar"/>
-
+            app:layout_constraintBottom_toTopOf="parent"/>
+        <!--
         <EditText
             android:id="@+id/searchbar"
             android:layout_width="250dp"
@@ -54,13 +55,14 @@
             app:layout_constraintTop_toTopOf="@id/main"
             app:srcCompat="@android:drawable/ic_menu_search"
             tools:layout_editor_absoluteX="75dp" />
+            -->
 
         <HorizontalScrollView
             android:id="@+id/advHorizontalScroll"
             android:contentDescription="scrollview"
             android:layout_width="300dp"
             android:layout_height="450dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="200dp"
             android:fillViewport="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

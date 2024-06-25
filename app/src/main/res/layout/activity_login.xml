@@ -104,6 +104,16 @@
         android:focusable="true"
         android:layout_margin="10dp"
         android:textColor="@android:color/holo_blue_dark"/>
+
+    <TextView
+        android:id="@+id/ownerLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Sign in as owner"
+        android:focusable="true"
+        android:layout_margin="10dp"
+        android:textColor="@android:color/holo_blue_dark"/>
   </LinearLayout>
 
   </androidx.constraintlayout.widget.ConstraintLayout>
