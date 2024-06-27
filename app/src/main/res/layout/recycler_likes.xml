@@ -23,7 +23,7 @@
             android:layout_margin="12dp"
             android:background="@drawable/square_rounded"
             android:clipToOutline="true"
-            android:src="@mipmap/ic_launcher_round"
+            android:foreground="@drawable/prata"
 
             >
 
