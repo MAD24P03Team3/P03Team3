@@ -4,15 +4,15 @@ plugins {
 }
 
 android {
-    namespace = "sg.edu.np.mad.myapplication"
+    namespace = "sg.edu.np.mad.NP_Eats_Team03"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "sg.edu.np.mad.myapplication"
+        applicationId = "sg.edu.np.mad.NP_Eats_Team03"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
