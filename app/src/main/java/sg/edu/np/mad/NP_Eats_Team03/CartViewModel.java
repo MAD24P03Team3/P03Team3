@@ -47,10 +47,7 @@ public class CartViewModel extends ViewModel {
 
     public void TestCart() {
         ArrayList<Item> startcart = new ArrayList<>();
-        startcart.add(new Item("Store01", "Oishii Daily", "Sushi", 2.4));
-        startcart.add(new Item("Store01", "Oishii Daily", "Salmon", 3.4));
-        startcart.add(new Item("Store01", "Oishii Daily", "Tuna", 4.4));
-        startcart.add(new Item("Store01", "Oishii Daily", "Yuzu Tea", 1.2));
+
         cart.setValue(startcart);
     }
 }
