@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.ImageView;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -134,6 +135,7 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
             public void onClick(View v) {
                 int index = holder.getAdapterPosition();
                 addtoliked(index,menuData);
+                Toast.makeText(Context, "Item liked", Toast.LENGTH_SHORT).show();
             }
         });
     }
