@@ -35,12 +35,12 @@
             app:layout_constraintTop_toBottomOf="@id/imageView"/>
 
         <com.google.android.material.button.MaterialButton
-
             android:id="@+id/Like"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/circle"
-            android:backgroundTint="@color/white"
+            android:layout_width="43dp"
+            android:layout_height="50dp"
+            app:iconTint="@android:color/white"
+
+            app:backgroundTint="#FFC529"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="119.75dp"
             app:iconGravity="textTop"
@@ -53,10 +53,9 @@
         <com.google.android.material.button.MaterialButton
 
             android:id="@+id/Add"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/circle"
-            android:backgroundTint="@color/white"
+            android:layout_width="43dp"
+            android:layout_height="50dp"
+            android:backgroundTint="#FE724C"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="119.75dp"
             app:iconGravity="textTop"
