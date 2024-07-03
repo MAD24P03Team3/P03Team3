@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:41281322614:android:87bec01afbb62a079f2957",
         "android_client_info": {
-          "package_name": "com.example.myapplication"
+          "package_name": "com.example.NP_Eats_Team03"
         }
       },
       "oauth_client": [],
@@ -28,7 +28,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:41281322614:android:a8d63570998eb6b59f2957",
         "android_client_info": {
-          "package_name": "sg.edu.np.mad.myapplication"
+          "package_name": "sg.edu.np.mad.NP_Eats_Team03"
         }
       },
       "oauth_client": [],
