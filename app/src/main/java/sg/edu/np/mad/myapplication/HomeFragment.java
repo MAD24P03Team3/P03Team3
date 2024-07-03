@@ -3,6 +3,7 @@ package sg.edu.np.mad.myapplication;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,8 +24,9 @@ public class HomeFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private static final String TAG = "HomeFragment";
     private RecyclerView recyclerViewItem;
-    private ItemAdapter itemAdapter;
+    private MenuAdapter menuAdapter;
     private ArrayList<Item> itemList = new ArrayList<>();
+    private CartViewModel cartViewModel;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -52,11 +54,18 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         recyclerViewItem = view.findViewById(R.id.horizontalRV);
-        itemAdapter = new ItemAdapter(itemList);
+        cartViewModel = new ViewModelProvider(requireActivity()).get(CartViewModel.class);
+        menuAdapter = new MenuAdapter(getContext(), itemList, new MenuAdapter.OnItemAddListener() {
+            @Override
+            public void onItemAdd(Item item) {
+                cartViewModel.addToCart(item);
+            }
+        });
+
         LinearLayoutManager itemLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewItem.setLayoutManager(itemLayoutManager);
         recyclerViewItem.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewItem.setAdapter(itemAdapter);
+        recyclerViewItem.setAdapter(menuAdapter);
 
         ArrayList<String> recyclerStoreList = new ArrayList<>();
         recyclerStoreList.add("Prata boy");
@@ -102,7 +111,7 @@ public class HomeFragment extends Fragment {
                             Item currentItem = new Item(itemId, name, description, price);
                             itemList.add(currentItem);
                         }
-                        itemAdapter.notifyDataSetChanged();
+                        menuAdapter.notifyDataSetChanged();
                     }
                 } else {
                     Log.d(TAG, "The document does not exist");

@@ -7,6 +7,7 @@ import static com.google.firebase.firestore.FieldValue.arrayUnion;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Handler;
 
 public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder> {
 
@@ -130,15 +132,29 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
         Double price = menuData.get(position).price;
         holder.tvItemDescription.setText("");
         holder.tvItemPrice.setText(String.format("$%.2f",price));
+        Context context = Context.getApplicationContext();
         holder.liked.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int index = holder.getAdapterPosition();
                 addtoliked(index,menuData);
-                Toast.makeText(Context, "Item liked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(holder.itemView.getContext(), "Item liked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemAddListener.onItemAdd(menuData.get(position));
+                    Toast.makeText(holder.itemView.getContext(), "Item added to cart", Toast.LENGTH_SHORT).show(); // Changed context usage
+                    Log.d(TAG, "Add button clicked for item: " + menuData.get(position).name); // Added log statement
+                }
             }
         });
     }
+
 
     @Override
     //number of items displayed in the recycler view
@@ -171,14 +187,6 @@ public class MenuAdapter extends RecyclerView.Adapter <MenuAdapter.MyViewHolder>
             //      - User click -> Add the item to a likedlist
             //  3. Add to cart handled by Jake
 
-            plus.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v){
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION) {
-                        onItemAddListener.onItemAdd(menuData.get(position));
-                    }
-                }
-            });
         }
     }
 }
