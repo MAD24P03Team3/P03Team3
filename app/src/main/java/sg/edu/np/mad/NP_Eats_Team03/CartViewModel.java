@@ -1,12 +1,5 @@
 package sg.edu.np.mad.NP_Eats_Team03;
-import static android.app.PendingIntent.getActivity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
-import com.google.firebase.firestore.FieldPath;
-
-import sg.edu.np.mad.NP_Eats_Team03.R;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -26,7 +19,6 @@ public class CartViewModel extends ViewModel {
 
     private static final String PREFS_NAME = "customer";
     private static final String KEY_NAME = "email";
-
 
     public CartViewModel() {
         cart = new MutableLiveData<>(new ArrayList<Item>());
@@ -71,7 +63,6 @@ public class CartViewModel extends ViewModel {
         }
     }
 
-
     public void addToDatabase(String userEmail, Runnable onSuccess, Runnable onFailure) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         ArrayList<Item> currentCart = cart.getValue();
@@ -92,18 +83,42 @@ public class CartViewModel extends ViewModel {
 
             docRef.get().addOnSuccessListener(documentSnapshot -> {
                 List<Map<String, Object>> currentOrders = new ArrayList<>();
+                int largestOrderId = 0;
 
                 if (documentSnapshot.exists()) {
                     currentOrders = (List<Map<String, Object>>) documentSnapshot.get("currentOrders");
 
                     if (currentOrders == null) {
                         currentOrders = new ArrayList<>();
+                    } else {
+                        // Find the largest order ID
+                        for (Map<String, Object> order : currentOrders) {
+                            for (Object value : order.values()) {
+                                if (value instanceof Map) {
+                                    Map<String, Object> orderDetails = (Map<String, Object>) value;
+                                    if (orderDetails.containsKey("orderId")) {
+                                        try {
+                                            int orderId = Integer.parseInt(orderDetails.get("orderId").toString());
+                                            if (orderId > largestOrderId) {
+                                                largestOrderId = orderId;
+                                            }
+                                        } catch (NumberFormatException e) {
+                                            // Ignore if not a number
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
 
-                // Add a new map for the userEmail with the items
+                // Generate new order ID
+                int newOrderId = largestOrderId + 1;
+
+                // Add a new map for the userEmail with the items and orderId
                 Map<String, Object> newOrder = new HashMap<>();
                 newOrder.put(userEmail, new HashMap<String, Object>() {{
+                    put("orderId", newOrderId);
                     put("items", itemIds);
                 }});
                 currentOrders.add(newOrder);
@@ -145,14 +160,9 @@ public class CartViewModel extends ViewModel {
 
 
 
-
-
-
-
     public void TestCart() {
         ArrayList<Item> startcart = new ArrayList<>();
-
         cart.setValue(startcart);
     }
-    //TODO:Add clear cart, Add cart to database
 }
+
