@@ -13,6 +13,13 @@
         android:textSize="18sp"
         android:paddingBottom="8dp"/>
 
+    <Button
+        android:id="@+id/completeButton"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:text="Completed"
+        android:textSize="12dp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_orders"
         android:layout_width="match_parent"
