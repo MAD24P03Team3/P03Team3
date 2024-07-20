@@ -1,4 +1,5 @@
 package sg.edu.np.mad.NP_Eats_Team03;
+import sg.edu.np.mad.NP_Eats_Team03.Navigation.MapBoxRouteHandler;
 import sg.edu.np.mad.NP_Eats_Team03.R;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -67,6 +68,8 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        MapBoxRouteHandler mbh = new MapBoxRouteHandler();
+        mbh.initializetest(this);
 
         // Enable edge-to-edge display
         EdgeToEdge.enable(this);
