@@ -39,8 +39,10 @@ android {
 
 dependencies {
     // Exclude sceneform-base from core to avoid duplicate classes
-    implementation("com.gorisse.thomas.sceneform:sceneform:1.23.0")
-    implementation("com.gorisse.thomas.sceneform:core:1.23.0")
+    implementation("com.gorisse.thomas.sceneform:sceneform:1.23.0"){
+        exclude(group = "com.google.flatbuffers", module = "flatbuffers-java")
+    }
+    implementation ("io.github.cdimascio:dotenv-java:2.2.0")
     implementation("com.gorisse.thomas.sceneform:ux:1.23.0")
     implementation ("com.google.android.gms:play-services-location:21.3.0")
     // Add mapbox dependency
