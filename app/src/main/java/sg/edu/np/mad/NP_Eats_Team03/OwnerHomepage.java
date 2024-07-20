@@ -17,19 +17,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import sg.edu.np.mad.NP_Eats_Team03.R;
 
 public class OwnerHomepage extends Fragment {
     private static final String PREFS_NAME = "owner";
     private static final String KEY_NAME = "email";
 
-    private String loadEmailFromSharedPreferences() {
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        return sharedPreferences.getString(KEY_NAME, "No name found");
-    }
-    private List<Item> orderList;
+    private List<CustomerOrder> customerOrderList;
     private RecyclerView recyclerView;
-    private Owner_Order_Adapter adapter;
+    private CustomerOrderAdapter adapter;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public OwnerHomepage() {
@@ -61,9 +56,9 @@ public class OwnerHomepage extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_items);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // Initialize the order list and adapter
-        orderList = new ArrayList<>();
-        adapter = new Owner_Order_Adapter(orderList);
+        // Initialize the customer order list and adapter
+        customerOrderList = new ArrayList<>();
+        adapter = new CustomerOrderAdapter(customerOrderList);
         recyclerView.setAdapter(adapter);
 
         // Retrieve email from SharedPreferences
@@ -97,8 +92,8 @@ public class OwnerHomepage extends Fragment {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
-                    // Get the list of current orders (array of itemIDs)
-                    List<String> currentOrders = (List<String>) document.get("currentOrders");
+                    // Get the list of current orders (array of maps containing customer emails and their orders)
+                    List<Map<String, Object>> currentOrders = (List<Map<String, Object>>) document.get("currentOrders");
 
                     // Get the list of menu items (array of maps containing item details)
                     List<Map<String, Object>> menuItems = (List<Map<String, Object>>) document.get("menuItems");
@@ -109,18 +104,34 @@ public class OwnerHomepage extends Fragment {
                     }
 
                     // Iterate through each order in currentOrders
-                    for (String itemID : currentOrders) {
-                        // Iterate through each menu item to find a match
-                        for (Map<String, Object> menuItem : menuItems) {
-                            // Check if the itemID matches any item in menuItems
-                            if (menuItem.get("itemID").equals(itemID)) {
-                                // If match found, create an Item object and add it to the orderList
-                                String name = (String) menuItem.get("itemName");
-                                String description = (String) menuItem.get("itemDescription");
-                                double price = (double) menuItem.get("itemPrice");
-                                orderList.add(new Item(itemID, name, description, price));
-                                break; // Exit inner loop since match found
+                    for (Map<String, Object> order : currentOrders) {
+                        for (Map.Entry<String, Object> entry : order.entrySet()) {
+                            String customerEmail = entry.getKey();
+                            Map<String, Object> orderDetails = (Map<String, Object>) entry.getValue();
+                            List<String> orderIds = (List<String>) orderDetails.get("items");
+                            List<Item> orders = new ArrayList<>();
+
+                            // Iterate through each order ID to find matching menu items
+                            for (String itemID : orderIds) {
+                                for (Map<String, Object> menuItem : menuItems) {
+                                    if (menuItem.get("itemID").equals(itemID)) {
+                                        String name = (String) menuItem.get("itemName");
+                                        String description = (String) menuItem.get("itemDescription");
+                                        Object priceObj = menuItem.get("itemPrice");
+                                        double price;
+                                        if (priceObj instanceof Long) {
+                                            price = ((Long) priceObj).doubleValue();
+                                        } else {
+                                            price = (double) priceObj;
+                                        }
+                                        orders.add(new Item(itemID, name, description, price));
+                                        break;
+                                    }
+                                }
                             }
+
+                            // Add to customer order list
+                            customerOrderList.add(new CustomerOrder(customerEmail, orders));
                         }
                     }
 
@@ -134,6 +145,4 @@ public class OwnerHomepage extends Fragment {
             }
         });
     }
-
-
 }

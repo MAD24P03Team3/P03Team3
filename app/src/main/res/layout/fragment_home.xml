@@ -8,7 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_marginTop="40dp">
 
         <ImageView
             android:id="@+id/appIcon"
@@ -26,6 +27,7 @@
             android:textSize="50dp"
             app:layout_constraintBottom_toTopOf="@id/scrollView"
             app:layout_constraintStart_toEndOf="@id/appIcon"/>
+
 
         <ScrollView
             android:id="@+id/scrollView"
@@ -142,6 +144,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/tvStoreList"/>
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
