@@ -1,6 +1,8 @@
 package sg.edu.np.mad.NP_Eats_Team03;
 
 import android.os.Bundle;
+
+import sg.edu.np.mad.NP_Eats_Team03.Navigation.MapBoxRouteHandler;
 import sg.edu.np.mad.NP_Eats_Team03.R;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -41,6 +43,7 @@ public  class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
