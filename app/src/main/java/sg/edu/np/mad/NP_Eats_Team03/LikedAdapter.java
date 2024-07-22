@@ -120,6 +120,7 @@ public class LikedAdapter extends RecyclerView.Adapter <LikedAdapter.myViewHolde
                                     @Override
                                     public void onSuccess(Void unused) {
                                         Log.d("LikedAdapter", "Successfully updated the database");
+
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {

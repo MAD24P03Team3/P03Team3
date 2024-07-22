@@ -8,7 +8,6 @@
     <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />
 
 
-
     <style name="Theme.App" parent="Theme.AppCompat.Light">
         ...
         <item name="colorPrimary">@color/Red</item>
@@ -20,10 +19,10 @@
     <style name="TextAppearance.App.Button" parent="TextAppearance.MaterialComponents.Button">
 
     </style>
-    <style name = "dialogenters">
 
-        <item name="android:windowEnterAnimation"
-            >@anim/slide_in
+    <style name="dialogenters">
+
+        <item name="android:windowEnterAnimation">@anim/slide_in
 
         </item>
 
