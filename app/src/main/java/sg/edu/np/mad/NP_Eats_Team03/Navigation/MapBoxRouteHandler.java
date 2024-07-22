@@ -1,19 +1,26 @@
 package sg.edu.np.mad.NP_Eats_Team03.Navigation;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.mapbox.api.directions.v5.DirectionsCriteria;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
 import com.mapbox.api.directions.v5.models.DirectionsRoute;
+import com.mapbox.api.directions.v5.models.LegStep;
+import com.mapbox.api.directions.v5.models.RouteLeg;
 import com.mapbox.api.directions.v5.models.RouteOptions;
+import com.mapbox.geojson.GeoJson;
 import com.mapbox.geojson.Point;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import com.mapbox.api.directions.v5.MapboxDirections;
 import com.mapbox.geojson.utils.PolylineUtils;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +38,17 @@ public class MapBoxRouteHandler implements
     Context context;
 
 
+    private static final String KEY_Directions = "Directions";
+    private static final String PREFS_NAME = "Directions";
+
     Point origin;
 
     Point destination;
 
-    public MapBoxRouteHandler() {
+   List<DirectionsRoute> currentRote;
+
+    public MapBoxRouteHandler(Context context) {
+        this.context = context;
     }
 
     //   Rest API to handle route function declare this method as static
@@ -49,7 +62,7 @@ public class MapBoxRouteHandler implements
 //                Should accept a list of points
                 .coordinatesList(startEnd)
                 .profile(DirectionsCriteria.PROFILE_WALKING)
-                .overview(DirectionsCriteria.OVERVIEW_FULL)
+                .steps(true)
                 .build();
 
         // Create MapboxDirections client using RouteOptions
@@ -86,22 +99,29 @@ public class MapBoxRouteHandler implements
 
     }
 
-    // preprocess the data to just find the route part of the response
     @Override
     public void responseReturn(Response<DirectionsResponse> response) {
         Response<DirectionsResponse> storedResponse = response;
-//        get the route property in the json response
-        DirectionsRoute route = response.body().routes().get(0);
-        // Decode the polyline with precision 6
-        List<Point> points = PolylineUtils.decode(route.geometry(), 6);
+        // store the response as sharedPrefrences
+
+        DirectionsRoute routes = response.body().routes().get(0);
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(routes);
+        editor.putString(KEY_Directions,json);
+        editor.commit();
 
 
-        // Print the decoded points (latitude, longitude)
-        for (Point point : points) {
-            Log.d("Response route","Coordinates" + point);
-        }
+
 
     }
+
+
+
+
+
 
 
     public void initializetest(Context context){

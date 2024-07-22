@@ -68,8 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        MapBoxRouteHandler mbh = new MapBoxRouteHandler();
-        mbh.initializetest(this);
+
 
         // Enable edge-to-edge display
         EdgeToEdge.enable(this);

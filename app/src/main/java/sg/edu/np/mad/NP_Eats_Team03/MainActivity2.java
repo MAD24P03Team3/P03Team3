@@ -87,13 +87,12 @@ public class MainActivity2 extends AppCompatActivity {
             else if (bottomNavView.getItemId() == R.id.navigation_Rewards) {
                 switchFragment =  new RewardsFragment();
             }
-//            else if (bottomNavView.getItemId() == R.id.navigation_Account) {
-//                switchFragment =  new AccountFragment();
-//            }
 
-            else if (bottomNavView.getItemId() == R.id.navigation_Map){
-                switchFragment = new MapFragment();
+            else if (bottomNavView.getItemId() == R.id.navigation_Account) {
+                switchFragment =  new AccountFragment();
             }
+
+
             if (switchFragment != null) {
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.nav_host_fragment, switchFragment)
