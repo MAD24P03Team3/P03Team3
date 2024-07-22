@@ -69,6 +69,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder> 
                                             @Override
                                             public void onSuccess(Void unused) {
                                                 Log.d(TAG, "Document successfully updated");
+
                                             }
                                         });
                                     } else {

@@ -96,6 +96,7 @@ public class FireStoreHandler {
                                             @Override
                                             public void onSuccess(Void unused) {
                                                 hw.onSucess("Data written sucessfully");
+
                                             }
                                         });
                                     }
