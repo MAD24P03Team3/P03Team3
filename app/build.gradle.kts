@@ -32,12 +32,26 @@ android {
     }
     buildFeatures{
         viewBinding = true
+        mlModelBinding = true
     }
+
 
 }
 
 dependencies {
-
+    // Exclude sceneform-base from core to avoid duplicate classes
+//    implementation("com.gorisse.thomas.sceneform:sceneform:1.23.0")
+    implementation ("io.github.cdimascio:dotenv-java:2.2.0")
+//    implementation("com.gorisse.thomas.sceneform:ux:1.23.0"){
+//        exclude(group = "com.google.flatbuffers", module = "flatbuffers-java")
+//    }
+    implementation ("com.google.android.gms:play-services-location:21.3.0")
+    // Add mapbox dependency
+    implementation("com.mapbox.maps:android:11.5.0")
+    implementation("com.mapbox.mapboxsdk:mapbox-sdk-services:7.0.0")
+    // Add mapbox navigational tools
+    implementation("com.mapbox.navigationcore:android:3.2.0-rc.1")
+    implementation("com.mapbox.navigationcore:ui-components:3.2.0-rc.1")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -45,7 +59,17 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation(libs.firebase.firestore)
+    implementation ("org.tensorflow:tensorflow-lite:2.9.0")
+    implementation ("org.tensorflow:tensorflow-lite-support:0.3.1")
+    implementation ("org.tensorflow:tensorflow-lite-metadata:0.3.1")
+    implementation(libs.tensorflow.lite.support)
+    implementation(libs.tensorflow.lite.metadata)
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 }
+
+
+

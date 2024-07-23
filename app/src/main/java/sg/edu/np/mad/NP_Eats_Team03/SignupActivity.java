@@ -129,6 +129,7 @@ public class SignupActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void unused) {
                         Log.d(TAG, "New user added to firestore db!");
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

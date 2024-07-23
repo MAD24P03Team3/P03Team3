@@ -3,6 +3,8 @@ package sg.edu.np.mad.NP_Eats_Team03;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+
+import sg.edu.np.mad.NP_Eats_Team03.Navigation.MapBoxRouteHandler;
 import sg.edu.np.mad.NP_Eats_Team03.R;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,6 +52,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         ActivityMain2Binding binding = ActivityMain2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         //BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
 
         binding.navView.setOnItemSelectedListener(bottomNavView -> {
@@ -84,9 +87,12 @@ public class MainActivity2 extends AppCompatActivity {
             else if (bottomNavView.getItemId() == R.id.navigation_Rewards) {
                 switchFragment =  new RewardsFragment();
             }
+
             else if (bottomNavView.getItemId() == R.id.navigation_Account) {
                 switchFragment =  new AccountFragment();
             }
+
+
             if (switchFragment != null) {
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.nav_host_fragment, switchFragment)
