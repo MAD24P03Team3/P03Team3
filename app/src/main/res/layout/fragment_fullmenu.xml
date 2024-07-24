@@ -4,8 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="#F5F5DC"
-    android:layout_height="match_parent"
-    tools:context=".fullmenu">
+    android:layout_height="match_parent">
+    <!--tools:context=".fullmenu"-->
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
