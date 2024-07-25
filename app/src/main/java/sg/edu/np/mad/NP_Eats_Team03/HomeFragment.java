@@ -119,7 +119,7 @@ public class HomeFragment extends Fragment {
 
                     }
                 }
-
+                reccomendedList.notifyAll();
                 // Display or use top_6_searches as needed
                 Log.d(TAG, "Top 6 Predicted Searches: " + Arrays.toString(top_6_searches));
 
