@@ -41,6 +41,9 @@ public class ownerHome extends AppCompatActivity {
                 else if(menuItem.getItemId() == R.id.owner_Menu){
                     ft.replace(R.id.fragmenu, new OwnerMenu());
                 }
+                else if(menuItem.getItemId() == R.id.owner_Account){
+                    ft.replace(R.id.fragmenu, new owner_account());//Todo account
+                }
 
                 ft.commit();
                 return true;
