@@ -70,14 +70,11 @@ public class HomeFragment extends Fragment {
         return fragment;
     }
 
-    public String[] setReccomendedList() {
+    public String[] setReccomendedList(float[] orderCounts) {
         String[] top_6_searches = new String[6];
         try {
-            // Example scaled input data
-            float[] new_X_scaled = new float[]{
-                    13, 3, 6, 14, 7, 20, 4, 18, 2, 13, 17, 11, 8, 3, 15,
-                    13, 3, 6, 14, 7, 20, 4, 18, 2, 13, 17, 11, 8, 3, 15};
-
+            // Use the passed orderCounts
+            float[] new_X_scaled = Arrays.copyOf(orderCounts, orderCounts.length);
 
             // Prepare input data as ByteBuffer
             int inputSize = new_X_scaled.length; // Number of elements
@@ -147,14 +144,14 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        retrievemenuItems(FirebaseFirestore.getInstance());
 
         orderHistoryCount(FirebaseFirestore.getInstance(), new OnOrderHistoryListener() {
             @Override
             public void onOrderHistoryLoaded(float[] orderCounts) {
                 // Use orderCounts here
                 Log.e(TAG, "onOrderHistoryLoaded: " + Arrays.toString(orderCounts));
-                // You may want to update UI components with this data here
+                String[] reccomendations = setReccomendedList(orderCounts);
+                retrievemenuItems(FirebaseFirestore.getInstance(), reccomendations);
             }
         });
 
@@ -193,8 +190,7 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    public void retrievemenuItems(FirebaseFirestore db) {
-        String[] reccomendations = setReccomendedList();
+    public void retrievemenuItems(FirebaseFirestore db, String[] reccomendations) {
 
         for(String string: reccomendations){
             Log.d(TAG, "retrievemenuItems: " + string);
@@ -223,20 +219,14 @@ public class HomeFragment extends Fragment {
 
                             Item currentItem = new Item(itemId, name, description, price);
 
-
                             for (String id : reccomendations){
                                 if (id.equals(currentItem.itemId)){
                                     itemList.add(currentItem);
                                     Log.d(TAG, "onComplete: " + id);
                                 }
-
                             }
-
-
                         }
                         menuAdapter.notifyDataSetChanged();
-                        setReccomendedList();
-
                     }
                 } else {
                     Log.d(TAG, "The document does not exist");
@@ -244,6 +234,7 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
     public void orderHistoryCount(FirebaseFirestore db, OnOrderHistoryListener listener) {
         String email = loadEmailFromSharedPreferences();
         final float[] orderCounts = new float[30]; // Assuming there are 30 items (P01 to P15 repeated)
@@ -262,7 +253,6 @@ public class HomeFragment extends Fragment {
                                         String itemId = "P" + String.format("%02d", i % 15 + 1); // P01 to P15 repeated
                                         if (itemId.equals(orderId)) {
                                             orderCounts[i]++;
-
                                         }
                                     }
                                 }
@@ -287,8 +277,4 @@ public class HomeFragment extends Fragment {
     public interface OnOrderHistoryListener {
         void onOrderHistoryLoaded(float[] orderCounts);
     }
-
-
-
-
 }
