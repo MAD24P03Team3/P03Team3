@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,6 +33,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     public void onBindViewHolder(CartViewHolder holder, int position) {
         Item item = cart.get(position);
+        //holder.contentImage.setImageDrawable(item.);
         holder.contentName.setText(item.name);
         holder.contentDetails.setText(item.description);
         holder.contentPrice.setText("$" + item.price);
@@ -56,6 +58,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     }*/
 
     public class CartViewHolder extends RecyclerView.ViewHolder {
+        ImageView contentImage;
         TextView contentName;
         TextView contentDetails;
         TextView contentPrice;
@@ -63,6 +66,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         public CartViewHolder(View itemView, final OnItemDeleteListener onItemDeleteListener) {
             super(itemView);
+            contentImage = itemView.findViewById(R.id.contentImage);
             contentName = itemView.findViewById(R.id.contentName);
             contentDetails = itemView.findViewById(R.id.contentDetails);
             contentPrice = itemView.findViewById(R.id.contentPrice);
