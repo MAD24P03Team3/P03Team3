@@ -18,6 +18,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.location.CurrentLocationRequest;
@@ -25,6 +26,7 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.Priority;
 import com.google.android.gms.tasks.CancellationToken;
 import com.google.android.gms.tasks.CancellationTokenSource;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -69,8 +71,9 @@ public class MapActivity extends AppCompatActivity {
     private CameraOptions co;
 
     private Point c = Point.fromLngLat( 103.77491355276209,1.3331722062601192);
-    private Point prata = Point.fromLngLat(103.7751671051295, 1.3335828064696371);
-    private Point Oishi = Point.fromLngLat(103.77570807725307, 1.3318849730782238);
+    private Point prataLocation = Point.fromLngLat(103.7751671051295, 1.3335828064696371);
+
+    private Point coffeConnectLocation = Point.fromLngLat(103.77514407731805,1.333138192506025);
 
     private String ACCESS_FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
 
@@ -106,7 +109,7 @@ public class MapActivity extends AppCompatActivity {
         String json = sp2.getString(KEY_Directions,"null");
         mapView = findViewById(R.id.mapView);
         map = mapView.getMapboxMap();
-//      Change the style of the map to dark mode
+//      Change the style of the map to Satelite Streets
 
         map.loadStyle(Style.SATELLITE_STREETS, style -> {
 
@@ -143,11 +146,25 @@ public class MapActivity extends AppCompatActivity {
 
                     if (point.equals(OishiLocation)) {
                         Gson localGson = new GsonBuilder().registerTypeAdapterFactory(GeoJsonAdapterFactory.create()).create();
-                        String destination = localGson.toJson(Oishi);
+                        String destination = localGson.toJson(OishiLocation);
                         Log.d("MapAcitivity","This is oishi");
                         // inflate the fragment for oishi
-                        showBottomSheet(R.layout.restraunt_modal,userStart,destination);
+                        showBottomSheet(R.layout.restraunt_modal,userStart,destination, "Oishi Daily");
 
+                    }
+                    else if (point.equals(prataLocation)){
+                        Gson localGson = new GsonBuilder().registerTypeAdapterFactory(GeoJsonAdapterFactory.create()).create();
+                        String destination = localGson.toJson(prataLocation);
+                        Log.d("MapAcitivity","This is Prata Boy");
+                        // inflate the fragment for oishi
+                        showBottomSheet(R.layout.restraunt_modal,userStart,destination, "Prata Boy");
+                    }
+                    else if (point.equals(coffeConnectLocation)){
+                        Gson localGson = new GsonBuilder().registerTypeAdapterFactory(GeoJsonAdapterFactory.create()).create();
+                        String destination = localGson.toJson(coffeConnectLocation);
+                        Log.d("MapAcitivity","This is coffeConnect");
+                        // inflate the fragment for oishi
+                        showBottomSheet(R.layout.restraunt_modal,userStart,destination, "Coffee Connect");
                     }
 
                     // handle the specific annotation clicked
@@ -157,16 +174,12 @@ public class MapActivity extends AppCompatActivity {
 
         });
 
-
-
     }
 
 //    implement the onMapReady interface
 //    Handle the different lifecycles of the map (navigation, addedPoint on map, different location)
 
 //    Create an alert dialog informing users that they cannot use the application outside of the specified bounds
-
-
     public void requestPermission(){
         if((ActivityCompat.checkSelfPermission(this,ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) && (ActivityCompat.checkSelfPermission(this,ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)){
             Toast.makeText(this,"Permission granted", Toast.LENGTH_SHORT).show();
@@ -176,16 +189,15 @@ public class MapActivity extends AppCompatActivity {
                     .build();
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
             CancellationToken cancellationToken = cancellationTokenSource.getToken();
-            // check why can't access location after async concluded
+            // used a callback here
             locationHelper.getCurrentLocation(currentLocationRequest, cancellationToken);
 
         }
         else{
-//           // request the permission
+//           // request the permissions
             ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION,ACCESS_COARSE_LOCATION},reqCode);
         }
     }
-
 
 
     // it works it shows on map
@@ -195,18 +207,15 @@ public class MapActivity extends AppCompatActivity {
 //       Convert the drawable content to a bitmap
         // issue is bitmap is null
         try{
-            Bitmap icon = BitmapFactory.decodeResource(this.getResources(),R.drawable.users);
+            Bitmap icon = BitmapFactory.decodeResource(this.getResources(),R.drawable.rest);
             Bitmap customIcon = Bitmap.createScaledBitmap(icon,50,50,false);
-
-            Point c = Point.fromLngLat( 103.77491355276209,1.3331722062601192);
-            Point prata = Point.fromLngLat(103.7751671051295, 1.3335828064696371);
-            Point Oishi = Point.fromLngLat(103.77570807725307, 1.3318849730782238);
-            stores = new Point[]{c, prata, Oishi};
+            stores = new Point[]{OishiLocation,prataLocation,coffeConnectLocation};
             if(icon != null){
                 for(Point point : stores){
                     PointAnnotationOptions options = new PointAnnotationOptions()
                             .withPoint(point)
-                            .withIconImage(customIcon);
+                            .withIconImage(customIcon)
+                            .withIconSize(2f);
 
                     pa.create(options);
 
@@ -222,12 +231,16 @@ public class MapActivity extends AppCompatActivity {
 
     }
 
+    // check openglEs version
+
     public void openGLVersion(){
         int error = GLES20.glGetError();
         if (error != GLES20.GL_NO_ERROR) {
             Log.e("OpenGL Error", "Error code: " + error);
         }
     }
+
+    // handle the map lifecycles
 
     @Override
     protected void onDestroy() {
@@ -239,10 +252,10 @@ public class MapActivity extends AppCompatActivity {
         super.onRestart();
     }
 
-    private void showBottomSheet(Integer layoutresid,String start, String destination){
-        BottomSheetDialogFragment bottomSheetDialogFragment = MapModal.newInstance(layoutresid,start,destination);
-        bottomSheetDialogFragment.show(getSupportFragmentManager(),"NIL");
 
+    private void showBottomSheet(Integer layoutresid,String start, String destination, String storename){
+        BottomSheetDialogFragment bottomSheetDialogFragment = MapModal.newInstance(layoutresid,start,destination,storename);
+        bottomSheetDialogFragment.show(getSupportFragmentManager(),"NIL");
     }
 }
 
