@@ -59,14 +59,12 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
  - Show user's the direction instructions for navigating in a recyclerView
 
 ## Chan Man Lock Jake
-   - Google Maps API integrated to find nearest BYOB businesses near them
-   - Upload images to firestore
-
+   - Biometric Authentication
 ## DingXuan Liang
    - Search functionality  based on a pattern (e.g. asa result: asai)
-
+   - Recomended item algoritm using tensorflow
 ## Joey
-  - Log In using 2FA
+  - Verification of email and OTP
 
 
     
@@ -83,7 +81,7 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
 - Images AcaiDen - [AcaiDen](https://www.instagram.com/acaidensg/)
 - Images Oishii Daily - [OishiDaily](https://www.instagram.com/oishiidaily/)
 - Images CoffeeConnect - [Coffee Connect](https://www.instagram.com/coffeeconnects.us/)
-- Images of Directions - [Adobe Firefly](https://firefly.adobe.com/?ff_channel=adobe_com&ff_campaign=ffly_homepage&ff_source=firefly_seo)
+- Images of Directions - [svg-repo](https://www.svgrepo.com/)
 
 
 
