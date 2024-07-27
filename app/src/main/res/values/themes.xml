@@ -29,5 +29,9 @@
 
     </style>
 
+    <style name="YourApplicationTheme" parent="android:style/Theme.NoTitleBar">
+        <item name="android:buttonStyle">@style/CustomButton</item>
+    </style>
+
 
 </resources>

@@ -2,6 +2,8 @@ package sg.edu.np.mad.NP_Eats_Team03.Navigation;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Looper;
@@ -21,8 +23,14 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
-public class LocationHelper {
-    private Activity activity;
+public class LocationHelper{
+    private Context context;
+
+    private String PREFS_NAME = "USER_LOCATION";
+
+    private String KEY_LOCATION = "Location";
+
+
     private FusedLocationProviderClient fusedLocationProviderClient;
 
     public Location currentLocation;
@@ -30,17 +38,17 @@ public class LocationHelper {
     private LocationCallback locationCallback;
     private LocationRequest locationRequest;
 
-    public LocationHelper(Activity activity, FusedLocationProviderClient fusedLocationProviderClient, Location currentLocation) {
-        this.activity = activity;
-        this.currentLocation = currentLocation;
-        this.fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
+    public LocationHelper (Context context, FusedLocationProviderClient fusedLocationProviderClient, Location currentLocation){
+        this.context = context;
+        this.currentLocation = null;
+        this.fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context);
     }
 
     public void getCurrentLocation(CurrentLocationRequest request, CancellationToken cancellationToken) {
 
 
         fusedLocationProviderClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, cancellationToken)
-                .addOnSuccessListener(activity, new OnSuccessListener<Location>() {
+                .addOnSuccessListener((Activity) context, new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
                         // Got last known location. In some rare situations this can be null.
@@ -49,6 +57,11 @@ public class LocationHelper {
                             double latitude = location.getLatitude();
                             double longitude = location.getLongitude();
                             Log.d("LocationHelper", "Current location: " + latitude + ", " + longitude);
+//                          Implement a location callback
+                            SharedPreferences sharedPreference = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreference.edit();
+                            editor.putString(KEY_LOCATION,latitude + "," + longitude);
+                            editor.commit();
 
                         }
                         Log.w("LocationHelper", "No current location could be found");
@@ -58,17 +71,15 @@ public class LocationHelper {
 
     // call this on onResume()
     private void startLocationUpdates() {
-        Task<Void> locationUpdateTask = fusedLocationProviderClient.requestLocationUpdates(locationRequest,
-                locationCallback,
-                Looper.getMainLooper());
-        locationUpdateTask.addOnSuccessListener(activity, new OnSuccessListener<Void>() {
+        Task<Void> locationUpdateTask = fusedLocationProviderClient.requestLocationUpdates(locationRequest,locationCallback,Looper.getMainLooper());
+        locationUpdateTask.addOnSuccessListener((Activity) context, new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Log.d("LocationHelper", "Location update successful");
             }
         });
 
-        locationUpdateTask.addOnFailureListener(activity, new OnFailureListener() {
+        locationUpdateTask.addOnFailureListener((Activity) context, new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Log.d("LocationHelper", "Location update not sucessful");
@@ -93,6 +104,8 @@ public class LocationHelper {
     public Location getCurrentLocation() {
         return currentLocation;
     }
+
+
 
     //   permission requests should be handles in the at runtime inside activity
 }

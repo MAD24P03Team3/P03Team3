@@ -12,19 +12,12 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/storeList"
-        mapbox:mapbox_cameraTargetLat="1.330530"
-        mapbox:mapbox_cameraTargetLng="103.772636"
+        app:layout_constraintTop_toTopOf="parent"
+        app:mapbox_locationComponentEnabled="true"
+        app:mapbox_locationComponentPuckBearing="heading"
+        mapbox:mapbox_cameraTargetLng="1.330530"
+        mapbox:mapbox_cameraTargetLat="103.772636"
         mapbox:mapbox_cameraZoom="18"
         />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/storeList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/mapView"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
