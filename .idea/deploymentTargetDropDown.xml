@@ -5,24 +5,11 @@
       <entry key="LoginActivity">
         <State />
       </entry>
-      <entry key="MapActivity">
+      <entry key="MainActivity2">
         <State />
       </entry>
-      <entry key="NavigationActivity">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\isaac\.android\avd\Pixel_XL_API_34.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-07-27T04:11:51.890902200Z" />
-        </State>
+      <entry key="MapActivity">
+        <State />
       </entry>
       <entry key="app">
         <State />
