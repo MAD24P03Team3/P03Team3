@@ -27,6 +27,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +51,7 @@ public class CartFragment extends Fragment {
     private Button checkoutButton;
     private Button orderMoreButton;
     private TextView emptyCartMessage;
+    private String selectedPaymentMethod;
 
     private static final String PREFS_NAME = "customer";
     private static final String KEY_NAME = "email";
@@ -143,7 +146,7 @@ public class CartFragment extends Fragment {
         checkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showCheckoutConfirmationDialog();
+                showPaymentMethodDialog();
             }
         });
 
@@ -171,6 +174,37 @@ public class CartFragment extends Fragment {
             checkoutButton.setVisibility(View.VISIBLE);
             orderMoreButton.setVisibility(View.GONE);
         }
+    }
+
+    private void showPaymentMethodDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_select_payment_method, null);
+        builder.setView(dialogView)
+                .setTitle("Select Payment Method")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        RadioGroup radioGroup = dialogView.findViewById(R.id.paymentMethodRadioGroup);
+                        int selectedId = radioGroup.getCheckedRadioButtonId();
+
+                        if (selectedId == -1) {
+                            // No radio button selected
+                            Toast.makeText(getContext(), "Please select a payment method", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // A radio button is selected
+                            RadioButton selectedRadioButton = dialogView.findViewById(selectedId);
+                            selectedPaymentMethod = selectedRadioButton.getText().toString();
+                            showCheckoutConfirmationDialog();
+                        }
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void showCheckoutConfirmationDialog() {

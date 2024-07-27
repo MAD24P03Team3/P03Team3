@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/dialog_background">
+
+    <RadioGroup
+        android:id="@+id/paymentMethodRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radioCreditCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radio_button_selector"
+            android:button="@null"
+            android:padding="16dp"
+            android:text="Credit Card"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
+
+        <RadioButton
+            android:id="@+id/radioGooglePay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radio_button_selector"
+            android:button="@null"
+            android:padding="16dp"
+            android:text="Google Pay"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
+
+        <RadioButton
+            android:id="@+id/radioCash"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radio_button_selector"
+            android:button="@null"
+            android:padding="16dp"
+            android:text="Cash on Delivery"
+            android:textSize="16sp"/>
+    </RadioGroup>
+
+</LinearLayout>
