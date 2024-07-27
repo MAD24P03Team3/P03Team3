@@ -186,11 +186,12 @@ public class LoginActivity extends AppCompatActivity {
                 .setTitle("Biometric login for NP Eats")
                 .setSubtitle("Log in using your biometric credential")
                 .setNegativeButtonText("Use account password")
+                //.setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_STRONG | BiometricManager.Authenticators.DEVICE_CREDENTIAL)
                 .build();
 
         // Prompt the user to authenticate using biometrics if available
         BiometricManager biometricManager = BiometricManager.from(this);
-        switch (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG | BiometricManager.Authenticators.BIOMETRIC_WEAK)) {
+        switch (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG | BiometricManager.Authenticators.DEVICE_CREDENTIAL)) {
             case BiometricManager.BIOMETRIC_SUCCESS:
                 Log.d(TAG, "App can authenticate using biometrics.");
                 biometricPrompt.authenticate(promptInfo);

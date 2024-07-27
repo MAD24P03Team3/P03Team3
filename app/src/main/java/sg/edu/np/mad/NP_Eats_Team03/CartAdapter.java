@@ -43,7 +43,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         //holder.contentImage.setImageDrawable(item.);
         holder.contentName.setText(item.name);
         holder.contentDetails.setText(item.description);
-        holder.contentPrice.setText("$" + (item.price * item.quantity));
+        holder.contentPrice.setText("$" + (item.price * item.quantity) + "0");
         holder.quantityText.setText(String.valueOf(item.quantity));
     }
 
