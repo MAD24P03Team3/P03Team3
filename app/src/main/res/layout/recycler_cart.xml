@@ -5,12 +5,13 @@
     android:layout_height="wrap_content" >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/contentImage"
             android:layout_width="110dp"
             android:layout_height="110dp"
+            android:layout_marginTop="5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/acaiden" />
@@ -19,6 +20,7 @@
             android:id="@+id/contentName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="10px"
             android:text="contentName"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -30,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="contentDetails"
-            android:textSize="20sp"
+            android:textSize="10sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/contentName" />
 
@@ -65,6 +67,12 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/contentDetails" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/border"
+            app:layout_constraintBottom_toBottomOf="@id/contentDelete"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

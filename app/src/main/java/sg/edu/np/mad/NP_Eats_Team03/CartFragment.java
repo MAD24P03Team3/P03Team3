@@ -41,6 +41,7 @@ public class CartFragment extends Fragment {
     private ImageView contentImage;
     private TextView contentTotal;
     private Button checkoutButton;
+    private TextView emptyCartMessage;
 
     private static final String PREFS_NAME = "customer";
     private static final String KEY_NAME = "email";
@@ -59,6 +60,7 @@ public class CartFragment extends Fragment {
         contentTotal = view.findViewById(R.id.contentTotal);
         recyclerView = view.findViewById(R.id.contentRecycler);
         checkoutButton = view.findViewById(R.id.contentButton01);
+        emptyCartMessage = view.findViewById(R.id.emptyCartMessage);
 
         cartAdapter = new CartAdapter(new ArrayList<Item>(), new CartAdapter.OnItemDeleteListener() {
             @Override
@@ -72,12 +74,16 @@ public class CartFragment extends Fragment {
         recyclerView.setAdapter(cartAdapter);
 
         cartViewModel = new ViewModelProvider(requireActivity()).get(CartViewModel.class);
-        cartViewModel.getCart().observe(getViewLifecycleOwner(), new Observer<ArrayList<Item>>() {
-            @Override
-            public void onChanged(ArrayList<Item> items) {
-                cartAdapter.updateCart(items);
-            }
+        cartViewModel.getCart().observe(getViewLifecycleOwner(), items -> {
+            cartAdapter.updateCart(items);
+            toggleEmptyCartMessage(items.isEmpty());
         });
+//        cartViewModel.getCart().observe(getViewLifecycleOwner(), new Observer<ArrayList<Item>>() {
+//            @Override
+//            public void onChanged(ArrayList<Item> items) {
+//                cartAdapter.updateCart(items);
+//            }
+//        });
         cartViewModel.getSubtotal().observe(getViewLifecycleOwner(), new Observer<Double>() {
             @Override
             public void onChanged(Double total) {
@@ -91,6 +97,21 @@ public class CartFragment extends Fragment {
             }
         });
     }
+
+    private void toggleEmptyCartMessage(boolean isEmpty) {
+        if (isEmpty) {
+            emptyCartMessage.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+            contentTotal.setVisibility(View.GONE);
+            checkoutButton.setVisibility(View.GONE);
+        } else {
+            emptyCartMessage.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+            contentTotal.setVisibility(View.VISIBLE);
+            checkoutButton.setVisibility(View.VISIBLE);
+        }
+    }
+
     private void showCheckoutConfirmationDialog() {
         new AlertDialog.Builder(getContext())
                 .setTitle("Confirm Checkout")
