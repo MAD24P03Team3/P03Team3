@@ -168,7 +168,7 @@ public class HomeFragment extends Fragment {
         menuAdapter = new MenuAdapter(getContext(), itemList, new MenuAdapter.OnItemAddListener() {
             @Override
             public void onItemAdd(Item item) {
-                cartViewModel.addToCart(item);
+                cartViewModel.addToCart(item, 1);
             }
         });
 
