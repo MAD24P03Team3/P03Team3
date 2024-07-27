@@ -55,8 +55,8 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
 
 # Stage 2 implementation of features
 ## Isaac Tiew Xun Yong
- - Implementation of Real Life Payment and Transactions to Merchant (Process Payment)
- - Nested Recycler for menu categorisation
+ - Implementation of route navigation through the aid of a mapview using mapbox sdk of locations of the BYOB buisnesses
+ - Show user's the direction instructions for navigating in a recyclerView
 
 ## Chan Man Lock Jake
    - Google Maps API integrated to find nearest BYOB businesses near them
