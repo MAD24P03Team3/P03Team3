@@ -106,16 +106,8 @@ public class HomeFragment extends Fragment {
                 }
                 Arrays.sort(indices, (i1, i2) -> Float.compare(predictions[i2], predictions[i1]));
 
-
                 for (int i = 0; i < 6; i++) {
                     top_6_searches[i] = "P" + String.format("%02d", indices[i] + 1);
-                    for (Item item : itemList) {
-                        if (item.itemId.equals(top_6_searches[i])) {
-                            reccomendedList.add(item.name);
-                            Log.e(TAG, "predictSearches: " + item.name);
-                        }
-
-                    }
                 }
 
                 // Display or use top_6_searches as needed
@@ -192,9 +184,12 @@ public class HomeFragment extends Fragment {
 
     public void retrievemenuItems(FirebaseFirestore db, String[] reccomendations) {
 
-        for(String string: reccomendations){
-            Log.d(TAG, "retrievemenuItems: " + string);
+        List<Item> recommendedItems = new ArrayList<>(); // List to hold recommended items in order
+
+        for (String rec : reccomendations) {
+            Log.d(TAG, "retrievemenuItems: " + rec);
         }
+
         db.collection("Stores").document("Prata-Boy").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -219,13 +214,17 @@ public class HomeFragment extends Fragment {
 
                             Item currentItem = new Item(itemId, name, description, price);
 
-                            for (String id : reccomendations){
-                                if (id.equals(currentItem.itemId)){
-                                    itemList.add(currentItem);
-                                    Log.d(TAG, "onComplete: " + id);
+                            for (String id : reccomendations) {
+                                if (id.equals(currentItem.itemId)) {
+                                    recommendedItems.add(currentItem); // Add to recommended items list
+                                    break; // Stop looping through reccomendations once a match is found
                                 }
                             }
                         }
+
+                        // Update itemList with recommended items in order
+                        itemList.clear();
+                        itemList.addAll(recommendedItems);
                         menuAdapter.notifyDataSetChanged();
                     }
                 } else {
