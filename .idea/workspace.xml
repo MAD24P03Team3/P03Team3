@@ -3,26 +3,18 @@
   <component name="AndroidLayouts">
     <shared>
       <config>
+        <device id="_device_class_foldable" />
+        <device id="_device_class_phone" />
         <device id="pixel_8_pro" />
       </config>
     </shared>
     <layouts>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_ar_test.xml">
-        <config>
-          <theme>@style/Theme.MyApplication</theme>
-        </config>
-      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_cart.xml">
         <config>
           <theme>@style/Theme.MyApplication</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_customer_my_rewards.xml">
-        <config>
-          <theme>@style/Theme.MyApplication</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_foodmenu.xml">
         <config>
           <theme>@style/Theme.MyApplication</theme>
         </config>
@@ -43,6 +35,11 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_map.xml">
+        <config>
+          <theme>@style/Theme.MyApplication</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_navigation.xml">
         <config>
           <theme>@style/Theme.MyApplication</theme>
         </config>
@@ -72,7 +69,17 @@
           <theme>@style/Theme.MyApplication</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_verification.xml">
+        <config>
+          <theme>@style/Theme.MyApplication</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/cardrecyler.xml">
+        <config>
+          <theme>@style/Theme.MyApplication</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/directions_recycler.xml">
         <config>
           <theme>@style/Theme.MyApplication</theme>
         </config>
@@ -103,11 +110,6 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_menu.xml">
-        <config>
-          <theme>@style/Theme.MyApplication</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_owner_account.xml">
         <config>
           <theme>@style/Theme.MyApplication</theme>
         </config>
@@ -187,6 +189,11 @@
           <theme>@style/Theme.MyApplication</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/restraunt_modal.xml">
+        <config>
+          <theme>@style/Theme.MyApplication</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/bottom_navigation_menu.xml">
         <config>
           <theme>@style/Theme.MyApplication</theme>
@@ -203,15 +210,29 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39eb89c9-b0c2-4177-b484-de25b432035d" name="Changes" comment="modal order history intergration">
+    <list default="true" id="39eb89c9-b0c2-4177-b484-de25b432035d" name="Changes" comment="Merging the Implemented Mode-ViewModel and View Architecture for Menu page utilising MutableLiveData into Isaac branch">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/left.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rest.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/right.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/straight.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/NP_Eats_Team03/DirectionsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/NP_Eats_Team03/DirectionsAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/NP_Eats_Team03/MapActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/NP_Eats_Team03/MapActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/NP_Eats_Team03/MapModal.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/NP_Eats_Team03/MapModal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/NP_Eats_Team03/NavigationActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/sg/edu/np/mad/NP_Eats_Team03/NavigationActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/rightarrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/straightarrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_ar_test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_navigation.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/directions_recycler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/directions_recycler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/restraunt_modal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/restraunt_modal.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -221,7 +242,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\liang\.android\avd\Pixel_8_Pro_API_30.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[R52M9071FCH]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -245,12 +266,12 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="layoutResourceFile" />
-        <option value="valueResourceFile" />
-        <option value="Interface" />
-        <option value="resourceFile" />
-        <option value="Class" />
         <option value="Kotlin Class" />
+        <option value="valueResourceFile" />
+        <option value="resourceFile" />
+        <option value="Interface" />
+        <option value="layoutResourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -268,7 +289,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/AppData/Local/Google/AndroidStudio2023.2/device-explorer/Pixel 8 Pro API 30/_/data/data/sg.edu.np.mad.NP_Eats_Team03/shared_prefs/Directions.xml" root0="SKIP_INSPECTION" />
     <setting file="file://$USER_HOME$/AppData/Local/Google/AndroidStudio2023.2/device-explorer/Pixel 8 Pro API 30/_/data/data/sg.edu.np.mad.NP_Eats_Team03/shared_prefs/FirebaseHeartBeatW0RFRkFVTFRd+MTo0MTI4MTMyMjYxNDphbmRyb2lkOmE4ZDYzNTcwOTk4ZWI2YjU5ZjI5NTc.xml" root0="SKIP_INSPECTION" />
+    <setting file="file://$USER_HOME$/AppData/Local/Google/AndroidStudio2023.2/device-explorer/samsung SM-T865/_/data/data/sg.edu.np.mad.NP_Eats_Team03/shared_prefs/Directions.xml" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -296,9 +319,9 @@
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/liang/AndroidStudioProjects/P03Team3-Testing/app&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Isaac's-branch&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Year 2/Semester 1/Mobile Applications Development/Assignment 1/P03Team3/app/src/main/res/drawable&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Dependencies&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
@@ -321,11 +344,11 @@
       <recent name="sg.edu.np.mad.myapplication" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Year 2\Semester 1\Mobile Applications Development\Assignment 1\P03Team3\app\src\main\res\drawable" />
       <recent name="C:\Year 2\Semester 1\Mobile Applications Development\Assignment 1\P03Team3\app\src\main\res\layout" />
       <recent name="C:\Year 2\Semester 1\Mobile Applications Development\Assignment 1\P03Team3\app\sampledata" />
       <recent name="C:\Year 2\Semester 1\Mobile Applications Development\Assignment 1\P03Team3\Models" />
       <recent name="C:\Year 2\Semester 1\Mobile Applications Development\Assignment 1\P03Team3\Assets" />
-      <recent name="C:\Year 2\Semester 1\Mobile Applications Development\Assignment 1\P03Team3\app\src\main\java\sg\edu\np\mad\NP_Eats_Team03" />
     </key>
     <key name="android.template.-1920465005">
       <recent name="sg.edu.np.mad.NP_Eats_Team03" />
@@ -337,7 +360,7 @@
       <recent name="sg.edu.np.mad.NP_Eats_Team03" />
     </key>
   </component>
-  <component name="RunManager" selected="Android App.app">
+  <component name="RunManager" selected="Android App.MapActivity">
     <configuration name="LoginActivity" type="AndroidRunConfigurationType" factoryName="Android App" temporary="true">
       <module name="NP_Eats_Team03.app.main" />
       <option name="DEPLOY" value="true" />
@@ -600,6 +623,73 @@
       </Profilers>
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="sg.edu.np.mad.NP_Eats_Team03.MapActivity" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NavigationActivity" type="AndroidRunConfigurationType" factoryName="Android App">
+      <module name="NP_Eats_Team03.app.main" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="specific_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Hybrid>
+      <Java>
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Java>
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="sg.edu.np.mad.NP_Eats_Team03.NavigationActivity" />
       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
       <method v="2">
@@ -1010,6 +1100,7 @@
     <list>
       <item itemvalue="Android App.app" />
       <item itemvalue="Android App.MapActivity" />
+      <item itemvalue="Android App.NavigationActivity" />
       <item itemvalue="Android App.ar" />
       <item itemvalue="Android App.foodmenu" />
       <item itemvalue="Android App.Rewards page" />
@@ -1254,127 +1345,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721466873072</updated>
     </task>
-    <task id="LOCAL-00028" summary="Implemented Mode-ViewModel and View Architecture for Menu page utilising MutableLiveData">
+    <task id="LOCAL-00028" summary="Merging the Implemented Mode-ViewModel and View Architecture for Menu page utilising MutableLiveData into Isaac branch">
       <option name="closed" value="true" />
-      <created>1721661304195</created>
+      <created>1722093489780</created>
       <option name="number" value="00028" />
       <option name="presentableId" value="LOCAL-00028" />
       <option name="project" value="LOCAL" />
-      <updated>1721661304195</updated>
+      <updated>1722093489780</updated>
     </task>
-    <task id="LOCAL-00029" summary="Implemented Mode-ViewModel and View Architecture for Menu page utilising MutableLiveData">
-      <option name="closed" value="true" />
-      <created>1721661372286</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1721661372286</updated>
-    </task>
-    <task id="LOCAL-00030" summary="Implemented Mode-ViewModel and View Architecture for Menu page utilising MutableLiveData">
-      <option name="closed" value="true" />
-      <created>1721661493843</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1721661493843</updated>
-    </task>
-    <task id="LOCAL-00031" summary="mapbox token">
-      <option name="closed" value="true" />
-      <created>1721869004135</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1721869004135</updated>
-    </task>
-    <task id="LOCAL-00032" summary="unversioned files">
-      <option name="closed" value="true" />
-      <created>1721870031959</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1721870031959</updated>
-    </task>
-    <task id="LOCAL-00033" summary="search bar fixed">
-      <option name="closed" value="true" />
-      <created>1721892103100</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1721892103100</updated>
-    </task>
-    <task id="LOCAL-00034" summary="search bar fixed">
-      <option name="closed" value="true" />
-      <created>1721892245104</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1721892245104</updated>
-    </task>
-    <task id="LOCAL-00035" summary="search bar fixed">
-      <option name="closed" value="true" />
-      <created>1721892461628</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1721892461628</updated>
-    </task>
-    <task id="LOCAL-00036" summary="search bar fixed">
-      <option name="closed" value="true" />
-      <created>1721892465593</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1721892465593</updated>
-    </task>
-    <task id="LOCAL-00037" summary="owner logout">
-      <option name="closed" value="true" />
-      <created>1721955535664</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1721955535664</updated>
-    </task>
-    <task id="LOCAL-00038" summary="owner logout">
-      <option name="closed" value="true" />
-      <created>1721955547318</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1721955547318</updated>
-    </task>
-    <task id="LOCAL-00039" summary="owner logout">
-      <option name="closed" value="true" />
-      <created>1722066754222</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1722066754222</updated>
-    </task>
-    <task id="LOCAL-00040" summary="owner logout">
-      <option name="closed" value="true" />
-      <created>1722066786619</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1722066786619</updated>
-    </task>
-    <task id="LOCAL-00041" summary="modal order history intergration">
-      <option name="closed" value="true" />
-      <created>1722095626752</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1722095626752</updated>
-    </task>
-    <task id="LOCAL-00042" summary="modal order history intergration">
-      <option name="closed" value="true" />
-      <created>1722095661379</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1722095661379</updated>
-    </task>
-    <option name="localTasksCounter" value="43" />
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -1401,6 +1380,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Isaac's branch merged" />
     <MESSAGE value="Added the login page in the login view" />
     <MESSAGE value="Did the login page and order page" />
     <MESSAGE value="commited workspace.xml" />
@@ -1417,23 +1397,19 @@
     <MESSAGE value="Finished likes and unlike" />
     <MESSAGE value="Fixed Rewards Restart Activity issue" />
     <MESSAGE value="main page" />
+    <MESSAGE value="Implemented Mode-ViewModel and View Architecture for Menu page utilising MutableLiveData" />
     <MESSAGE value="Fixed merge conflicts" />
     <MESSAGE value="Hide env variable from gradle.properties" />
     <MESSAGE value="Fixed merge conflicts on local main" />
-    <MESSAGE value="Implemented Mode-ViewModel and View Architecture for Menu page utilising MutableLiveData" />
-    <MESSAGE value="mapbox token" />
-    <MESSAGE value="unversioned files" />
-    <MESSAGE value="search bar fixed" />
-    <MESSAGE value="owner logout" />
-    <MESSAGE value="modal order history intergration" />
-    <option name="LAST_COMMIT_MESSAGE" value="modal order history intergration" />
+    <MESSAGE value="Merging main into isaac branch" />
+    <MESSAGE value="Merging the Implemented Mode-ViewModel and View Architecture for Menu page utilising MutableLiveData into Isaac branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merging the Implemented Mode-ViewModel and View Architecture for Menu page utilising MutableLiveData into Isaac branch" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="com.mapbox.api.directions.v5.models.AutoValue_DirectionsRoute" memberName="geometry" />
         <PinnedItemInfo parentTag="java.lang.String" memberName="count" />
-        <PinnedItemInfo parentTag="sg.edu.np.mad.NP_Eats_Team03.Navigation.LocationHelper" memberName="currentLocation" />
         <PinnedItemInfo parentTag="com.google.firebase.firestore.DocumentReference" memberName="key" />
         <PinnedItemInfo parentTag="com.google.firebase.auth.internal.zzy" memberName="zzd" />
         <PinnedItemInfo parentTag="com.google.firebase.firestore.model.DocumentKey" memberName="path" />

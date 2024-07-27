@@ -2,7 +2,7 @@ package sg.edu.np.mad.NP_Eats_Team03;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
@@ -36,7 +36,7 @@ public class NavigationActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_ar_test);
+        setContentView(R.layout.activity_navigation);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -78,13 +78,18 @@ public class NavigationActivity extends AppCompatActivity {
         List<RouteLeg> legs = routes.legs();
         for (RouteLeg leg : legs) {
             List<LegStep> steps = leg.steps();
-            for (LegStep step : steps) {
-                String direction = step.maneuver().instruction();
-                Log.d("This is me", direction);
-                dirList.add(direction);
+            for(LegStep step: steps){
+                String instruct = step.maneuver().instruction();
+                dirList.add(instruct);
             }
         }
-        DirectionsAdapter da = new DirectionsAdapter(dirList, this);
-        dr.setAdapter(da);
+        try{
+            DirectionsAdapter da = new DirectionsAdapter(dirList, this);
+            dr.setAdapter(da);
+        }
+        catch(Error error){
+            Toast.makeText(this,"NavActivity",Toast.LENGTH_SHORT).show();
+        }
+
     }
 }
