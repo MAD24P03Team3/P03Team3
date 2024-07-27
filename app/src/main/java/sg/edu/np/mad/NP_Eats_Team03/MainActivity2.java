@@ -76,7 +76,7 @@ public class MainActivity2 extends AppCompatActivity {
             Fragment switchFragment = null;
 
             if (bottomNavView.getItemId() == R.id.navigation_Home) {
-
+                switchFragment =  new HomeFragment();
             }
             else if (bottomNavView.getItemId() == R.id.navigation_Menu) {
                 if (Debouncer.shouldProceed()) {
