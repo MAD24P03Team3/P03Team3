@@ -79,7 +79,9 @@ public class MainActivity2 extends AppCompatActivity {
                 switchFragment =  new HomeFragment();
             }
             else if (bottomNavView.getItemId() == R.id.navigation_Menu) {
-                switchFragment =  new MenuFragment();
+                if (Debouncer.shouldProceed()) {
+                    switchFragment = new MenuFragment();
+                }
             }
             else if (bottomNavView.getItemId() == R.id.navigation_Cart) {
                 switchFragment =  new CartFragment();
@@ -107,6 +109,21 @@ public class MainActivity2 extends AppCompatActivity {
                     .setReorderingAllowed(true)
                     .addToBackStack(null)
                     .commit();
+        }
+    }
+
+    public static class Debouncer {
+        private static long lastClickTime = 0;
+        private static final long DEBOUNCE_DELAY = 800; // Delay in milliseconds
+
+        public static boolean shouldProceed() {
+            long currentTime = System.currentTimeMillis();
+            if (currentTime - lastClickTime > DEBOUNCE_DELAY) {
+                lastClickTime = currentTime;
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 }
