@@ -15,26 +15,27 @@
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="20dp"
+            android:background="@color/white"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/bottomLayout">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/contentTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginLeft="20dp"
+                    android:paddingLeft="20dp"
                     android:text="Your order"
                     android:textAlignment="viewStart"
                     android:textSize="34sp"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
+                    android:background="#014689"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/contentRecycler"
@@ -42,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    app:layout_constraintTop_toBottomOf="@id/contentTitle" />
+                    app:layout_constraintTop_toBottomOf="@id/contentTitle"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
@@ -51,6 +52,9 @@
             android:id="@+id/bottomLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:background="@color/white"
+
             app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
@@ -62,7 +66,7 @@
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/contentButton01" />
+                app:layout_constraintBottom_toTopOf="@id/contentButton01"/>
 
             <TextView
                 android:id="@+id/contentTotal"
@@ -73,16 +77,18 @@
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/contentButton01" />
+                app:layout_constraintBottom_toTopOf="@id/contentButton01"/>
 
             <Button
                 android:id="@+id/contentButton01"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Checkout"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/Yellow"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
