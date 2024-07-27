@@ -61,6 +61,7 @@ dependencies {
     implementation ("org.tensorflow:tensorflow-lite:2.9.0")
     implementation ("org.tensorflow:tensorflow-lite-support:0.3.1")
     implementation ("org.tensorflow:tensorflow-lite-metadata:0.3.1")
+    implementation ("androidx.biometric:biometric:1.1.0")
     implementation(libs.tensorflow.lite.support)
     implementation(libs.tensorflow.lite.metadata)
     implementation(libs.navigation.fragment)

@@ -24,8 +24,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-//import org.tensorflow.lite.DataType;
-//import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
+import org.tensorflow.lite.DataType;
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -36,7 +36,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//import sg.edu.np.mad.NP_Eats_Team03.ml.Model;
+import sg.edu.np.mad.NP_Eats_Team03.ml.Model;
 
 public class HomeFragment extends Fragment {
 
@@ -70,69 +70,71 @@ public class HomeFragment extends Fragment {
         return fragment;
     }
 
-//    public void setReccomendedList() {
-//        try {
-//            // Example scaled input data
-//            float[] new_X_scaled = new float[]{
-//                    13, 3, 6, 14, 7, 20, 4, 18, 2, 13, 17, 11, 8, 3, 15,
-//                    13, 3, 6, 14, 7, 20, 4, 18, 2, 13, 17, 11, 8, 3, 15};
-//
-//
-//            // Prepare input data as ByteBuffer
-//            int inputSize = new_X_scaled.length; // Number of elements
-//            int bufferSize = 4 * inputSize; // 4 bytes per float
-//            ByteBuffer byteBuffer = ByteBuffer.allocateDirect(bufferSize);
-//            byteBuffer.order(ByteOrder.nativeOrder());
-//            for (float val : new_X_scaled) {
-//                byteBuffer.putFloat(val);
-//            }
-//            byteBuffer.rewind(); // Rewind buffer to beginning
-//
-//            // Load the model and run inference
-//            try {
-//                Model model = Model.newInstance(getContext());
-//
-//                // Creates inputs for reference.
-//                TensorBuffer inputFeature0 = TensorBuffer.createFixedSize(new int[]{1, inputSize}, DataType.FLOAT32);
-//                inputFeature0.loadBuffer(byteBuffer);
-//
-//                // Runs model inference and gets result.
-//                Model.Outputs outputs = model.process(inputFeature0);
-//                TensorBuffer outputFeature0 = outputs.getOutputFeature0AsTensorBuffer();
-//
-//                // Get the predictions
-//                float[] predictions = outputFeature0.getFloatArray();
-//                Integer[] indices = new Integer[predictions.length];
-//                for (int i = 0; i < predictions.length; i++) {
-//                    indices[i] = i;
-//                }
-//                Arrays.sort(indices, (i1, i2) -> Float.compare(predictions[i2], predictions[i1]));
-//
-//                String[] top_6_searches = new String[6];
-//                for (int i = 0; i < 6; i++) {
-//                    top_6_searches[i] = "P" + String.format("%02d", indices[i] + 1);
-//                    for (Item item : itemList) {
-//                        if (item.itemId.equals(top_6_searches[i])) {
-//                            reccomendedList.add(item.name);
-//                            Log.e(TAG, "predictSearches: " + item.name);
-//                        }
-//
-//                    }
-//                }
-//
-//                // Display or use top_6_searches as needed
-//                Log.d(TAG, "Top 6 Predicted Searches: " + Arrays.toString(top_6_searches));
-//
-//                // Releases model resources if no longer used.
-//                model.close();
-//            } catch (IOException e) {
-//                Log.e(TAG, "Error loading TensorFlow Lite model: " + e);
-//            }
-//
-//        } catch (Exception e) {
-//            Log.e(TAG, "Error preparing or scaling data: " + e);
-//        }
-//    }
+    public String[] setReccomendedList() {
+        String[] top_6_searches = new String[6];
+        try {
+            // Example scaled input data
+            float[] new_X_scaled = new float[]{
+                    13, 3, 6, 14, 7, 20, 4, 18, 2, 13, 17, 11, 8, 3, 15,
+                    13, 3, 6, 14, 7, 20, 4, 18, 2, 13, 17, 11, 8, 3, 15};
+
+
+            // Prepare input data as ByteBuffer
+            int inputSize = new_X_scaled.length; // Number of elements
+            int bufferSize = 4 * inputSize; // 4 bytes per float
+            ByteBuffer byteBuffer = ByteBuffer.allocateDirect(bufferSize);
+            byteBuffer.order(ByteOrder.nativeOrder());
+            for (float val : new_X_scaled) {
+                byteBuffer.putFloat(val);
+            }
+            byteBuffer.rewind(); // Rewind buffer to beginning
+
+            // Load the model and run inference
+            try {
+                Model model = Model.newInstance(getContext());
+
+                // Creates inputs for reference.
+                TensorBuffer inputFeature0 = TensorBuffer.createFixedSize(new int[]{1, inputSize}, DataType.FLOAT32);
+                inputFeature0.loadBuffer(byteBuffer);
+
+                // Runs model inference and gets result.
+                Model.Outputs outputs = model.process(inputFeature0);
+                TensorBuffer outputFeature0 = outputs.getOutputFeature0AsTensorBuffer();
+
+                // Get the predictions
+                float[] predictions = outputFeature0.getFloatArray();
+                Integer[] indices = new Integer[predictions.length];
+                for (int i = 0; i < predictions.length; i++) {
+                    indices[i] = i;
+                }
+                Arrays.sort(indices, (i1, i2) -> Float.compare(predictions[i2], predictions[i1]));
+
+
+                for (int i = 0; i < 6; i++) {
+                    top_6_searches[i] = "P" + String.format("%02d", indices[i] + 1);
+                    for (Item item : itemList) {
+                        if (item.itemId.equals(top_6_searches[i])) {
+                            reccomendedList.add(item.name);
+                            Log.e(TAG, "predictSearches: " + item.name);
+                        }
+
+                    }
+                }
+
+                // Display or use top_6_searches as needed
+                Log.d(TAG, "Top 6 Predicted Searches: " + Arrays.toString(top_6_searches));
+
+                // Releases model resources if no longer used.
+                model.close();
+            } catch (IOException e) {
+                Log.e(TAG, "Error loading TensorFlow Lite model: " + e);
+            }
+
+        } catch (Exception e) {
+            Log.e(TAG, "Error preparing or scaling data: " + e);
+        }
+        return  top_6_searches;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -192,6 +194,11 @@ public class HomeFragment extends Fragment {
     }
 
     public void retrievemenuItems(FirebaseFirestore db) {
+        String[] reccomendations = setReccomendedList();
+
+        for(String string: reccomendations){
+            Log.d(TAG, "retrievemenuItems: " + string);
+        }
         db.collection("Stores").document("Prata-Boy").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -215,11 +222,20 @@ public class HomeFragment extends Fragment {
                             }
 
                             Item currentItem = new Item(itemId, name, description, price);
-                            itemList.add(currentItem);
+
+
+                            for (String id : reccomendations){
+                                if (id.equals(currentItem.itemId)){
+                                    itemList.add(currentItem);
+                                    Log.d(TAG, "onComplete: " + id);
+                                }
+
+                            }
+
 
                         }
                         menuAdapter.notifyDataSetChanged();
-//                        setReccomendedList();
+                        setReccomendedList();
 
                     }
                 } else {
