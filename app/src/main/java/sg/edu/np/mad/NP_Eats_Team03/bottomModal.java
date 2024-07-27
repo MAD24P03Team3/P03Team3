@@ -49,6 +49,7 @@ import java.util.Map;
 
 public class bottomModal extends BottomSheetDialogFragment{
 
+
     ArrayList<String> itemid = new ArrayList<String>();
 
 
@@ -59,6 +60,8 @@ public class bottomModal extends BottomSheetDialogFragment{
     private ActivityResultLauncher<String[]> requestPermissionLauncher;
     private static final int PICK_IMAGE_REQUEST = 2;
 
+
+
     public interface HandleCallback{
 
         void onCallback(ArrayList<String> itemList);
@@ -68,6 +71,7 @@ public class bottomModal extends BottomSheetDialogFragment{
     private void openGallery() {
         pickImage.launch("image/*");
     }
+
 
 
     @Nullable
@@ -81,12 +85,16 @@ public class bottomModal extends BottomSheetDialogFragment{
         Button submit = rootview.findViewById(R.id.submitpopup);
         Button editImage = rootview.findViewById(R.id.editimg);
 
+
         pickImage = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
             @Override
             public void onActivityResult(Uri uri) {
                 if (uri != null) {
                     Log.d("This is my image", uri.toString());
                     image.setImageURI(uri);
+
+//                  call the upload to firebase method
+
                 }
             }
         });
@@ -100,6 +108,8 @@ public class bottomModal extends BottomSheetDialogFragment{
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 String name = etname.getText().toString();
                 String desc = etdesc.getText().toString();
                 String itcat = etcat.getText().toString();
