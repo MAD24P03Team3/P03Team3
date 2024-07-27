@@ -70,7 +70,8 @@ public class HomeFragment extends Fragment {
         return fragment;
     }
 
-    public void setReccomendedList() {
+    public String[] setReccomendedList() {
+        String[] top_6_searches = new String[6];
         try {
             // Example scaled input data
             float[] new_X_scaled = new float[]{
@@ -108,7 +109,7 @@ public class HomeFragment extends Fragment {
                 }
                 Arrays.sort(indices, (i1, i2) -> Float.compare(predictions[i2], predictions[i1]));
 
-                String[] top_6_searches = new String[6];
+
                 for (int i = 0; i < 6; i++) {
                     top_6_searches[i] = "P" + String.format("%02d", indices[i] + 1);
                     for (Item item : itemList) {
@@ -132,6 +133,7 @@ public class HomeFragment extends Fragment {
         } catch (Exception e) {
             Log.e(TAG, "Error preparing or scaling data: " + e);
         }
+        return  top_6_searches;
     }
 
     @Override
@@ -192,6 +194,11 @@ public class HomeFragment extends Fragment {
     }
 
     public void retrievemenuItems(FirebaseFirestore db) {
+        String[] reccomendations = setReccomendedList();
+
+        for(String string: reccomendations){
+            Log.d(TAG, "retrievemenuItems: " + string);
+        }
         db.collection("Stores").document("Prata-Boy").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -215,7 +222,16 @@ public class HomeFragment extends Fragment {
                             }
 
                             Item currentItem = new Item(itemId, name, description, price);
-                            itemList.add(currentItem);
+
+
+                            for (String id : reccomendations){
+                                if (id.equals(currentItem.itemId)){
+                                    itemList.add(currentItem);
+                                    Log.d(TAG, "onComplete: " + id);
+                                }
+
+                            }
+
 
                         }
                         menuAdapter.notifyDataSetChanged();
