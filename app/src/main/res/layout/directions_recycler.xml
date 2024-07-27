@@ -6,9 +6,9 @@
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
+        android:layout_margin="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:cardElevation="8dp"
         app:cardCornerRadius="8dp"
@@ -17,6 +17,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:padding="16dp">
 
             <!-- Card Title -->
@@ -24,7 +25,6 @@
                 android:id="@+id/directionImage"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:background="@drawable/prata"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBaseline_toBaselineOf="@+id/directionInstruction" />
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
                 android:text="Card Content"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/directionImage"
                 app:layout_constraintTop_toTopOf="parent"

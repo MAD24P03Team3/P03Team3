@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,10 +28,11 @@ public class MapModal extends BottomSheetDialogFragment {
     }
 
 //    allows for data passed to fragements to be stored when it is recreated (fragment lifecycyle)
-    public static MapModal newInstance(Integer layoutresID, String start, String end) {
+    public static MapModal newInstance(Integer layoutresID, String start, String end, String Storename) {
 
         Bundle args = new Bundle();
         args.putInt("LayoutResID",layoutresID);
+        args.putString("Storename",Storename);
         args.putString("Start",start);
         args.putString("Destination",end);
         MapModal fragment = new MapModal();
@@ -49,6 +51,9 @@ public class MapModal extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button button = view.findViewById(R.id.startNavigating);
+        TextView storename = view.findViewById(R.id.Storename);
+        storename.setText(getArguments().getString("Storename"));
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
