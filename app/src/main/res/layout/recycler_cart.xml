@@ -31,6 +31,7 @@
             android:id="@+id/contentDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxWidth="300dp"
             android:paddingBottom="10dp"
             android:text="contentDetails"
             android:textSize="10sp"
@@ -59,36 +60,43 @@
             android:id="@+id/contentDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:src="@android:drawable/ic_menu_delete"
+            android:backgroundTint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/contentPrice" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <ImageButton
             android:id="@+id/decreaseQuantity"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:padding="3dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:scaleType="fitXY"
+            android:padding="0dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="4dp"
             android:src="@drawable/minus_sign"
+            android:background="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/contentDetails" />
 
         <TextView
             android:id="@+id/quantityText"
-            android:layout_width="30dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
             android:text="1"
-            android:textSize="15dp"
+            android:textSize="20dp"
             android:textAlignment="center"
             app:layout_constraintStart_toEndOf="@id/decreaseQuantity"
             app:layout_constraintTop_toBottomOf="@id/contentDetails" />
 
         <ImageButton
             android:id="@+id/increaseQuantity"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginTop="4dp"
             android:src="@drawable/baseline_add_24"
+            android:background="@color/white"
             app:layout_constraintStart_toEndOf="@id/quantityText"
             app:layout_constraintTop_toBottomOf="@id/contentDetails" />
 
@@ -102,7 +110,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@drawable/border"
-            app:layout_constraintBottom_toBottomOf="@id/contentDelete"/>
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
