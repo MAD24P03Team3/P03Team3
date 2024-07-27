@@ -22,7 +22,7 @@ public class CartViewModel extends ViewModel {
 
     public CartViewModel() {
         cart = new MutableLiveData<>(new ArrayList<Item>());
-        TestCart();
+        //TestCart();
     }
 
     public LiveData<ArrayList<Item>> getCart() {

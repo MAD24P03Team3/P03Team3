@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricManager;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -22,6 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.concurrent.Executor;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -30,6 +34,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String PREFS_NAME = "customer";
     private static final String KEY_NAME = "email";
+
+    private Executor executor;
+    private BiometricPrompt biometricPrompt;
+    private BiometricPrompt.PromptInfo promptInfo;
 
     // store account infromation details in shared prefrences
     private void saveEmailToSharedPreferences(String email) {
@@ -147,5 +155,55 @@ public class LoginActivity extends AppCompatActivity {
                         .addOnFailureListener(e -> validateCurrentUser(e, currentUser));
             }
         });
+
+        // Initialize biometric prompt
+        executor = ContextCompat.getMainExecutor(this);
+        biometricPrompt = new BiometricPrompt(LoginActivity.this, executor, new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationError(int errorCode, CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+                Toast.makeText(getApplicationContext(), "Authentication error: " + errString, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                Toast.makeText(getApplicationContext(), "Authentication succeeded!", Toast.LENGTH_SHORT).show();
+                // Proceed to the next activity
+                Intent toMainActivity = new Intent(LoginActivity.this, MainActivity2.class);
+                startActivity(toMainActivity);
+                finish();
+            }
+
+            @Override
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
+                Toast.makeText(getApplicationContext(), "Authentication failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Biometric login for NP Eats")
+                .setSubtitle("Log in using your biometric credential")
+                .setNegativeButtonText("Use account password")
+                .build();
+
+        // Prompt the user to authenticate using biometrics if available
+        BiometricManager biometricManager = BiometricManager.from(this);
+        switch (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG | BiometricManager.Authenticators.BIOMETRIC_WEAK)) {
+            case BiometricManager.BIOMETRIC_SUCCESS:
+                Log.d(TAG, "App can authenticate using biometrics.");
+                biometricPrompt.authenticate(promptInfo);
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
+                Log.e(TAG, "No biometric features available on this device.");
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
+                Log.e(TAG, "Biometric features are currently unavailable.");
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                Log.e(TAG, "The user hasn't associated any biometric credentials with their account.");
+                break;
+        }
     }
 }
