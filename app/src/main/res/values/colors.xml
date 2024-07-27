@@ -7,4 +7,6 @@
     <color name = "Red">#FE724C</color>
     <color name = "Grey">#D7D7D7</color>
     <color name = "Black">#272D2F</color>
+    <color name = "JetBlack">#1F1B24</color>
+    <color name = "NavBlue">#00B4F8</color>
 </resources>

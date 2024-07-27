@@ -1,14 +1,15 @@
 package sg.edu.np.mad.NP_Eats_Team03;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
+import android.opengl.GLES20;
 import android.os.Bundle;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -24,17 +25,26 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.Priority;
 import com.google.android.gms.tasks.CancellationToken;
 import com.google.android.gms.tasks.CancellationTokenSource;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.mapbox.geojson.Point;
+import com.mapbox.geojson.gson.GeoJsonAdapterFactory;
 import com.mapbox.maps.CameraOptions;
 import com.mapbox.maps.MapView;
 import com.mapbox.maps.MapboxMap;
 import com.mapbox.maps.Style;
-import com.mapbox.maps.extension.style.layers.properties.generated.IconAnchor;
 import com.mapbox.maps.plugin.annotation.AnnotationConfig;
 import com.mapbox.maps.plugin.annotation.AnnotationPlugin;
 import com.mapbox.maps.plugin.annotation.AnnotationType;
+import com.mapbox.maps.plugin.annotation.generated.OnPointAnnotationClickListener;
+import com.mapbox.maps.plugin.annotation.generated.PointAnnotation;
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationManager;
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions;
+import com.mapbox.maps.plugin.locationcomponent.LocationComponentPlugin;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import sg.edu.np.mad.NP_Eats_Team03.Navigation.LocationHelper;
 import sg.edu.np.mad.NP_Eats_Team03.Navigation.MapBoxRouteHandler;
@@ -49,7 +59,18 @@ public class MapActivity extends AppCompatActivity {
     private MapboxMap map;
     private Integer reqCode = 3;
 
+    private static final String KEY_Directions = "Directions";
+    private static final String PREFS_NAME = "Directions";
+
+    private String LOC_PREFS_NAME = "USER_LOCATION";
+
+    private String KEY_LOCATION = "Location";
+
     private CameraOptions co;
+
+    private Point c = Point.fromLngLat( 103.77491355276209,1.3331722062601192);
+    private Point prata = Point.fromLngLat(103.7751671051295, 1.3335828064696371);
+    private Point Oishi = Point.fromLngLat(103.77570807725307, 1.3318849730782238);
 
     private String ACCESS_FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
 
@@ -57,10 +78,10 @@ public class MapActivity extends AppCompatActivity {
 
     private Integer REQ_CODE = 200;
 
-    private Point userLocation;
+    private Point OishiLocation = Point.fromLngLat(103.77570807725307, 1.3318849730782238);
 
 
-    private Location userStart;
+    private String userStart;
 
     private MapBoxRouteHandler routeHandler;
 
@@ -76,52 +97,69 @@ public class MapActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         requestPermission();
-        routeHandler = new MapBoxRouteHandler(this);
-        routeHandler.retrivefromMapBox(this,Point.fromLngLat(103.77491355276209,1.3331722062601192),Point.fromLngLat(103.77570807725307, 1.3318849730782238));
 
+        userStart = getSharedPreferences(LOC_PREFS_NAME,Context.MODE_PRIVATE).getString(KEY_LOCATION,null);
 
-
-
-
+        SharedPreferences sp2 = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        String json = sp2.getString(KEY_Directions,"null");
         mapView = findViewById(R.id.mapView);
         map = mapView.getMapboxMap();
 //      Change the style of the map to dark mode
 
-        map.loadStyle(Style.SATELLITE_STREETS, new Style.OnStyleLoaded() {
-            @Override
-            public void onStyleLoaded(@NonNull Style style) {
-                //create the annotations on the map
+        map.loadStyle(Style.SATELLITE_STREETS, style -> {
+
+
+            //create the annotations on the map
 //          Intialize a new annotation plugin
-                Point origin = Point.fromLngLat(103.772830242,1.333498666);
+            // Integrate google's location provider with MapBox's
+            LocationComponentPlugin locationComponentPlugin = mapView.getPlugin("MAPBOX_LOCATION_COMPONENT_PLUGIN_ID");
+
+            Point origin = Point.fromLngLat(103.772830242,1.333498666);
 //              center the coordinates at ngee ann poly
-                AnnotationPlugin annotationPlugin = mapView.getPlugin("MAPBOX_ANNOTATION_PLUGIN_ID");
-                AnnotationConfig ac = new AnnotationConfig();
-                PointAnnotationManager pointAnnotationManager = (PointAnnotationManager) annotationPlugin.createAnnotationManager(AnnotationType.PointAnnotation, ac);
+            AnnotationPlugin annotationPlugin = mapView.getPlugin("MAPBOX_ANNOTATION_PLUGIN_ID");
+            AnnotationConfig ac = new AnnotationConfig();
+            PointAnnotationManager pointAnnotationManager = (PointAnnotationManager) annotationPlugin.createAnnotationManager(AnnotationType.PointAnnotation, ac);
+            InitializePoints(storeLocations,pointAnnotationManager);
 
-
-//          create a point Annotation
-                InitializePoints(storeLocations,pointAnnotationManager);
-
-                CameraOptions co = (new
-                     CameraOptions.Builder())
-                     .center(origin).zoom(17.00).build();
+            CameraOptions co = (new
+                    CameraOptions.Builder())
+                    .center(origin).zoom(17.00).build();
 
 
 //              set a listener to each point annotation
 
 
-             map.setCamera(co);
+            map.setCamera(co);
+
+//          get the AnnotationClickListenerPlugin
 
 
+            pointAnnotationManager.addClickListener(new OnPointAnnotationClickListener() {
+                @Override
+                public boolean onAnnotationClick(@NonNull PointAnnotation pointAnnotation) {
+                    Point point = Point.fromLngLat(pointAnnotation.getGeometry().longitude(),pointAnnotation.getGeometry().latitude());
 
+                    if (point.equals(OishiLocation)) {
+                        Gson localGson = new GsonBuilder().registerTypeAdapterFactory(GeoJsonAdapterFactory.create()).create();
+                        String destination = localGson.toJson(Oishi);
+                        Log.d("MapAcitivity","This is oishi");
+                        // inflate the fragment for oishi
+                        showBottomSheet(R.layout.restraunt_modal,userStart,destination);
 
-            }
+                    }
+
+                    // handle the specific annotation clicked
+                    return false;
+                }
+            });
+
         });
+
+
+
     }
-
-
-
 
 //    implement the onMapReady interface
 //    Handle the different lifecycles of the map (navigation, addedPoint on map, different location)
@@ -139,15 +177,7 @@ public class MapActivity extends AppCompatActivity {
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
             CancellationToken cancellationToken = cancellationTokenSource.getToken();
             // check why can't access location after async concluded
-            locationHelper.getCurrentLocation(currentLocationRequest,cancellationToken);
-
-            if(userStart != null){
-                userLocation = Point.fromLngLat(locationHelper.currentLocation.getLongitude(),locationHelper.currentLocation.getLatitude());
-                Toast.makeText(this,"Longitude: " + userLocation.longitude() + "Latitude" + userLocation.latitude(),Toast.LENGTH_SHORT).show();
-            }
-            else{
-                Toast.makeText(this,"User location not found",Toast.LENGTH_SHORT).show();
-            }
+            locationHelper.getCurrentLocation(currentLocationRequest, cancellationToken);
 
         }
         else{
@@ -179,6 +209,7 @@ public class MapActivity extends AppCompatActivity {
                             .withIconImage(customIcon);
 
                     pa.create(options);
+
                 }
             }
             else{
@@ -189,9 +220,28 @@ public class MapActivity extends AppCompatActivity {
             Log.v("Error for bitmap",e.getMessage());
         }
 
+    }
 
+    public void openGLVersion(){
+        int error = GLES20.glGetError();
+        if (error != GLES20.GL_NO_ERROR) {
+            Log.e("OpenGL Error", "Error code: " + error);
+        }
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    private void showBottomSheet(Integer layoutresid,String start, String destination){
+        BottomSheetDialogFragment bottomSheetDialogFragment = MapModal.newInstance(layoutresid,start,destination);
+        bottomSheetDialogFragment.show(getSupportFragmentManager(),"NIL");
 
     }
 }
