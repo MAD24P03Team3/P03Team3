@@ -249,4 +249,19 @@ public class SignupActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    // **New Method to Send Verification Email**
+    private void sendVerificationEmail(FirebaseUser user) {
+        user.sendEmailVerification()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "Verification email sent.");
+                        } else {
+                            Log.e(TAG, "Failed to send verification email.", task.getException());
+                        }
+                    }
+                });
+    }
 }
