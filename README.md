@@ -45,7 +45,7 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
    - Display Menu Items and like menu Items
    - Display the list of businesses
 
-## Joey 
+## Joey Tan Ying Xian
    ### Features Implemented in Stage 1
    - Lead designer for the application as well as Storyboarding
    - Account Page
@@ -63,7 +63,7 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
 ## DingXuan Liang
    - Search functionality  based on a pattern (e.g. asa result: asai)
    - Recomended item algoritm using tensorflow
-## Joey
+## Joey Tan Ying Xian
   - Verification of email and OTP
 
 
