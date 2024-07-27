@@ -55,8 +55,8 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
 
 # Stage 2 implementation of features
 ## Isaac Tiew Xun Yong
- - Implementation of Real Life Payment and Transactions to Merchant (Process Payment)
- - Nested Recycler for menu categorisation
+ - Implementation of route navigation through the aid of a mapview using mapbox sdk of locations of the BYOB buisnesses
+ - Show user's the direction instructions for navigating in a recyclerView
 
 ## Chan Man Lock Jake
    - Google Maps API integrated to find nearest BYOB businesses near them
@@ -75,6 +75,7 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
 - [Google Material 3 Design](https://m3.material.io/)
 - [ChatGPT](https://chatgpt.com/)
 - [Gemini](https://gemini.google.com/)
+- [Mapbox](https://docs.mapbox.com/android/maps/guides/)
 
 # Images and Assets credits
 - Symbols - [materialIcons](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:favorite:FILL@0;wght@400;GRAD@0;opsz@24&icon.size=24&icon.color=%235f6368)
@@ -82,6 +83,7 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
 - Images AcaiDen - [AcaiDen](https://www.instagram.com/acaidensg/)
 - Images Oishii Daily - [OishiDaily](https://www.instagram.com/oishiidaily/)
 - Images CoffeeConnect - [Coffee Connect](https://www.instagram.com/coffeeconnects.us/)
+- Images of Directions - [Adobe Firefly](https://firefly.adobe.com/?ff_channel=adobe_com&ff_campaign=ffly_homepage&ff_source=firefly_seo)
 
 
 
