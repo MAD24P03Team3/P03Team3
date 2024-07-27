@@ -42,9 +42,8 @@ dependencies {
     // Exclude sceneform-base from core to avoid duplicate classes
 //    implementation("com.gorisse.thomas.sceneform:sceneform:1.23.0")
     implementation ("io.github.cdimascio:dotenv-java:2.2.0")
-//    implementation("com.gorisse.thomas.sceneform:ux:1.23.0"){
-//        exclude(group = "com.google.flatbuffers", module = "flatbuffers-java")
-//    }
+//    implementation("com.google.ar:core:1.43.0")
+//    implementation("com.gorisse.thomas.sceneform:ux:1.23.0")
     implementation ("com.google.android.gms:play-services-location:21.3.0")
     // Add mapbox dependency
     implementation("com.mapbox.maps:android:11.5.0")
@@ -62,6 +61,7 @@ dependencies {
     implementation ("org.tensorflow:tensorflow-lite:2.9.0")
     implementation ("org.tensorflow:tensorflow-lite-support:0.3.1")
     implementation ("org.tensorflow:tensorflow-lite-metadata:0.3.1")
+    implementation ("androidx.biometric:biometric:1.1.0")
     implementation(libs.tensorflow.lite.support)
     implementation(libs.tensorflow.lite.metadata)
     implementation(libs.navigation.fragment)

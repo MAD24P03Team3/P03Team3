@@ -6,6 +6,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.mapbox.api.directions.v5.DirectionsAdapterFactory;
 import com.mapbox.api.directions.v5.DirectionsCriteria;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
 import com.mapbox.api.directions.v5.models.DirectionsRoute;
@@ -32,7 +34,7 @@ public class MapBoxRouteHandler implements
     MapCallback{
 //    This is where we will define the methods used to retrieve the list of coord given start and end coord
 
-    ArrayList<Coordinates> pathCoordinaties;
+
     String accessToken;
 
     Context context;
@@ -61,6 +63,7 @@ public class MapBoxRouteHandler implements
         RouteOptions routeOptions = RouteOptions.builder()
 //                Should accept a list of points
                 .coordinatesList(startEnd)
+                .overview(DirectionsCriteria.OVERVIEW_FULL)
                 .profile(DirectionsCriteria.PROFILE_WALKING)
                 .steps(true)
                 .build();
@@ -104,12 +107,16 @@ public class MapBoxRouteHandler implements
         Response<DirectionsResponse> storedResponse = response;
         // store the response as sharedPrefrences
 
-        DirectionsRoute routes = response.body().routes().get(0);
-
+        DirectionsRoute dr = response.body().routes().get(0);
+        Log.d("MapHandler",dr.toString());
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(routes);
+        Gson gson =
+                new GsonBuilder()
+                        .registerTypeAdapterFactory(DirectionsAdapterFactory.create())
+                        .create();
+        String json = gson.toJson(dr);
+        Log.d("MapHandler","This is my json: " + json);
         editor.putString(KEY_Directions,json);
         editor.commit();
 
@@ -124,10 +131,10 @@ public class MapBoxRouteHandler implements
 
 
 
-    public void initializetest(Context context){
-        origin = Point.fromLngLat(103.940379,1.315141);
-        destination = Point.fromLngLat(103.961953, 1.334653);
-
-        retrivefromMapBox(context,origin,destination);
-    }
+//    public void initializetest(Context context){
+//        origin = Point.fromLngLat(103.940379,1.315141);
+//        destination = Point.fromLngLat(103.961953, 1.334653);
+//
+//        retrivefromMapBox(context,origin,destination);
+//    }
 }

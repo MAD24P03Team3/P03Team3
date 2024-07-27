@@ -119,7 +119,7 @@ public class MenuFragment extends Fragment {
                 menuAdapter = new MenuAdapter(getContext(), menuData, new MenuAdapter.OnItemAddListener() {
                     @Override
                     public void onItemAdd(Item item) {
-                        cartViewModel.addToCart(item);
+                        cartViewModel.addToCart(item, 1);
                     }
                 });
 
