@@ -139,11 +139,51 @@ public class SignupActivity extends AppCompatActivity {
                     }
                 });
 
+    }
 
+    //Send a verification email with an OTP link
+    private void sendVerificationEmail(FirebaseUser user) {
+        user.sendEmailVerification()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "Verification email sent.");
+                            Toast.makeText(SignupActivity.this, "Verification email sent. Please check your inbox.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Log.d(TAG, "Failed to send verification email.");
+                            Toast.makeText(SignupActivity.this, "Failed to send verification email. Try again.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
 
+    // Verify the email by checking if it has been verified**
+    private void checkEmailVerification(FirebaseUser user) {
+        user.reload().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    if (user.isEmailVerified()) {
+                        Log.d(TAG, "Email verified.");
+                        proceedToLogin();
+                    } else {
+                        Log.d(TAG, "Email not verified.");
+                        Toast.makeText(SignupActivity.this, "Email not verified. Please check your inbox.", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Log.d(TAG, "Failed to reload user.");
+                    Toast.makeText(SignupActivity.this, "Failed to verify email. Try again.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 
-
-
+    // Login after email verification**
+    private void proceedToLogin() {
+        Intent goToLogin = new Intent(SignupActivity.this, LoginActivity.class);
+        startActivity(goToLogin);
+        finish();
     }
 
 
@@ -194,9 +234,12 @@ public class SignupActivity extends AppCompatActivity {
                                                 addUserToDb(c,email,db);
                                                 // update the user's profile
                                                 updateUserProfile(user, name);
-                                                Intent goToLogin = new Intent(SignupActivity.this, LoginActivity.class);
-                                                startActivity(goToLogin);
-                                                Toast.makeText(SignupActivity.this, "Account created.", Toast.LENGTH_SHORT).show();
+
+                                                // **Send verification email**
+                                                sendVerificationEmail(user);
+
+                                                // **Check if email is verified**
+                                                checkEmailVerification(user);
 
 
                                             }
@@ -250,18 +293,4 @@ public class SignupActivity extends AppCompatActivity {
                 });
     }
 
-    // **New Method to Send Verification Email**
-    private void sendVerificationEmail(FirebaseUser user) {
-        user.sendEmailVerification()
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "Verification email sent.");
-                        } else {
-                            Log.e(TAG, "Failed to send verification email.", task.getException());
-                        }
-                    }
-                });
-    }
 }
