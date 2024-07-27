@@ -5,6 +5,7 @@ import static java.lang.Math.round;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -25,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.lang.reflect.Array;
@@ -41,6 +43,8 @@ public class CartFragment extends Fragment {
     private ImageView contentImage;
     private TextView contentTotal;
     private Button checkoutButton;
+    private Button orderMoreButton;
+    private TextView emptyCartMessage;
 
     private static final String PREFS_NAME = "customer";
     private static final String KEY_NAME = "email";
@@ -55,15 +59,24 @@ public class CartFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.nav_view);
+
         contentImage = view.findViewById(R.id.contentImage);
         contentTotal = view.findViewById(R.id.contentTotal);
         recyclerView = view.findViewById(R.id.contentRecycler);
         checkoutButton = view.findViewById(R.id.contentButton01);
+        emptyCartMessage = view.findViewById(R.id.emptyCartMessage);
+        orderMoreButton = view.findViewById(R.id.orderMoreButton);
 
         cartAdapter = new CartAdapter(new ArrayList<Item>(), new CartAdapter.OnItemDeleteListener() {
             @Override
             public void onItemDelete(int position) {
                 cartViewModel.removeFromCart(position);
+            }
+        }, new CartAdapter.OnQuantityChangeListener() {
+            @Override
+            public void onQuantityChange(int position, int quantity) {
+                cartViewModel.updateQuantity(position, quantity);
             }
         });
 
@@ -72,12 +85,16 @@ public class CartFragment extends Fragment {
         recyclerView.setAdapter(cartAdapter);
 
         cartViewModel = new ViewModelProvider(requireActivity()).get(CartViewModel.class);
-        cartViewModel.getCart().observe(getViewLifecycleOwner(), new Observer<ArrayList<Item>>() {
-            @Override
-            public void onChanged(ArrayList<Item> items) {
-                cartAdapter.updateCart(items);
-            }
+        cartViewModel.getCart().observe(getViewLifecycleOwner(), items -> {
+            cartAdapter.updateCart(items);
+            toggleEmptyCartMessage(items.isEmpty());
         });
+//        cartViewModel.getCart().observe(getViewLifecycleOwner(), new Observer<ArrayList<Item>>() {
+//            @Override
+//            public void onChanged(ArrayList<Item> items) {
+//                cartAdapter.updateCart(items);
+//            }
+//        });
         cartViewModel.getSubtotal().observe(getViewLifecycleOwner(), new Observer<Double>() {
             @Override
             public void onChanged(Double total) {
@@ -90,7 +107,33 @@ public class CartFragment extends Fragment {
                 showCheckoutConfirmationDialog();
             }
         });
+
+        orderMoreButton.setOnClickListener(v -> {
+            Fragment orderMoreFragment = new MenuFragment(); // Replace OrderMoreFragment with your target fragment
+            bottomNavigationView.setSelectedItemId(R.id.navigation_Menu);
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.nav_host_fragment, orderMoreFragment) // Replace fragment_container with the ID of the container where fragments are displayed
+                    .addToBackStack(null) // Optional: add to back stack to enable back navigation
+                    .commit();
+        });
     }
+
+    private void toggleEmptyCartMessage(boolean isEmpty) {
+        if (isEmpty) {
+            emptyCartMessage.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+            //contentTotal.setVisibility(View.GONE);
+            checkoutButton.setVisibility(View.GONE);
+            orderMoreButton.setVisibility(View.VISIBLE);
+        } else {
+            emptyCartMessage.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+            contentTotal.setVisibility(View.VISIBLE);
+            checkoutButton.setVisibility(View.VISIBLE);
+            orderMoreButton.setVisibility(View.GONE);
+        }
+    }
+
     private void showCheckoutConfirmationDialog() {
         new AlertDialog.Builder(getContext())
                 .setTitle("Confirm Checkout")

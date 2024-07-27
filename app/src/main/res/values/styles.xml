@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ApplicationStyle" parent="android:Theme">
+        <item name="android:button">@style/CustomButton</item>
+    </style>
+    <style name="CustomButton" parent="Widget.AppCompat.Button">
+        <item name="android:textSize">20sp</item>
+        <item name="android:background">@drawable/coloured_rectangle</item>
+    </style>
+</resources>
