@@ -214,6 +214,7 @@ public class CartFragment extends Fragment {
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         String userEmail = loadEmailFromSharedPreferences();
+                        Log.d("CartFragment", "Email before calling addToDatabase: " + userEmail);
                         cartViewModel.addToDatabase(userEmail, new Runnable() {
                             @Override
                             public void run() {
@@ -236,9 +237,9 @@ public class CartFragment extends Fragment {
 
 
     private String loadEmailFromSharedPreferences() {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("customer", Context.MODE_PRIVATE);
-        Log.d("CartFragment", "loadEmailFromSharedPreferences: ");
-        return sharedPreferences.getString("email", "No email found");
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        Log.d("CartFragment", "loadEmailFromSharedPreferences: " + sharedPreferences.getString(KEY_NAME, "No email found"));
+        return sharedPreferences.getString(KEY_NAME, "No email found");
     }
 
     private void showToast(String message) {

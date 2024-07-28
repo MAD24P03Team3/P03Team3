@@ -1,5 +1,7 @@
 package sg.edu.np.mad.NP_Eats_Team03;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -204,6 +206,7 @@ public class CartViewModel extends ViewModel {
         ArrayList<Item> currentCart = cart.getValue();
         if (currentCart != null && !currentCart.isEmpty()) {
             Map<String, Object> orderData = new HashMap<>();
+            Log.d("Add to database", "addToDatabase: " + userEmail);
             orderData.put("userEmail", userEmail);
             orderData.put("items", currentCart);
             orderData.put("total", getSubtotal().getValue());
