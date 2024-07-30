@@ -63,6 +63,7 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
 ## DingXuan Liang
    - Search functionality  based on a pattern (e.g. asa result: asai)
    - Recomended item algoritm using tensorflow
+   - Owner view and complete orders
    - Tensorflow training repository: https://github.com/LiangDingxuan/Ai_learning
 ## Joey Tan Ying Xian
   - Verification of email and OTP
