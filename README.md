@@ -45,7 +45,7 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
    - Display Menu Items and like menu Items
    - Display the list of businesses
 
-## Joey 
+## Joey Tan Ying Xian
    ### Features Implemented in Stage 1
    - Lead designer for the application as well as Storyboarding
    - Account Page
@@ -59,14 +59,13 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
  - Show user's the direction instructions for navigating in a recyclerView
 
 ## Chan Man Lock Jake
-   - Google Maps API integrated to find nearest BYOB businesses near them
-   - Upload images to firestore
-
+   - Biometric Authentication
 ## DingXuan Liang
    - Search functionality  based on a pattern (e.g. asa result: asai)
-
-## Joey
-  - Log In using 2FA
+   - Recomended item algoritm using tensorflow
+   - Tensorflow training repository: https://github.com/LiangDingxuan/Ai_learning
+## Joey Tan Ying Xian
+  - Verification of email and OTP
 
 
     
@@ -83,7 +82,7 @@ We are introducing ByObEats, a dedicated app for students in NP to order food fr
 - Images AcaiDen - [AcaiDen](https://www.instagram.com/acaidensg/)
 - Images Oishii Daily - [OishiDaily](https://www.instagram.com/oishiidaily/)
 - Images CoffeeConnect - [Coffee Connect](https://www.instagram.com/coffeeconnects.us/)
-- Images of Directions - [Adobe Firefly](https://firefly.adobe.com/?ff_channel=adobe_com&ff_campaign=ffly_homepage&ff_source=firefly_seo)
+- Images of Directions - [svg-repo](https://www.svgrepo.com/)
 
 
 
