@@ -119,7 +119,6 @@ public class AccountFragment extends Fragment {
 
                     if(ds.exists()){
                         Object object = ds.get("Likes");
-                        Log.d("Object",object.toString());
                         ArrayList<HashMap<String,Object>> itemliked = (ArrayList<HashMap<String,Object>>) ds.get("Likes");
                         if(itemliked != null){
                             for (HashMap<String,Object> items : itemliked){
