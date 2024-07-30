@@ -107,100 +107,100 @@ public class CartViewModel extends ViewModel {
         cart.setValue(new ArrayList<>());
     }
 
-//    public void addToDatabase(String userEmail, Runnable onSuccess, Runnable onFailure) {
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        ArrayList<Item> currentCart = cart.getValue();
-//
-//        if (currentCart != null) {
-//            // Create a list to store item IDs
-//            ArrayList<String> itemIds = new ArrayList<>();
-//
-//            for (Item item : currentCart) {
-//                itemIds.add(item.itemId); // Add itemId to the list
-//            }
-//
-//            // Create the path to the document
-//            DocumentReference docRef = db.collection("Stores").document("Prata-Boy");
-//
-//            // Use a final array to hold currentOrders to make it effectively final
-//            final List<Map<String, Object>>[] currentOrdersHolder = new List[1];
-//
-//            docRef.get().addOnSuccessListener(documentSnapshot -> {
-//                List<Map<String, Object>> currentOrders = new ArrayList<>();
-//                int largestOrderId = 0;
-//
-//                if (documentSnapshot.exists()) {
-//                    currentOrders = (List<Map<String, Object>>) documentSnapshot.get("currentOrders");
-//
-//                    if (currentOrders == null) {
-//                        currentOrders = new ArrayList<>();
-//                    } else {
-//                        // Find the largest order ID
-//                        for (Map<String, Object> order : currentOrders) {
-//                            for (Object value : order.values()) {
-//                                if (value instanceof Map) {
-//                                    Map<String, Object> orderDetails = (Map<String, Object>) value;
-//                                    if (orderDetails.containsKey("orderId")) {
-//                                        try {
-//                                            int orderId = Integer.parseInt(orderDetails.get("orderId").toString());
-//                                            if (orderId > largestOrderId) {
-//                                                largestOrderId = orderId;
-//                                            }
-//                                        } catch (NumberFormatException e) {
-//                                            // Ignore if not a number
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//
-//                // Generate new order ID
-//                int newOrderId = largestOrderId + 1;
-//
-//                // Add a new map for the userEmail with the items and orderId
-//                Map<String, Object> newOrder = new HashMap<>();
-//                newOrder.put(userEmail, new HashMap<String, Object>() {{
-//                    put("orderId", newOrderId);
-//                    put("items", itemIds);
-//                }});
-//                currentOrders.add(newOrder);
-//
-//                // Store the modified currentOrders in the final array holder
-//                currentOrdersHolder[0] = currentOrders;
-//
-//                // Update the document with the modified currentOrders array
-//                docRef.update("currentOrders", currentOrdersHolder[0])
-//                        .addOnSuccessListener(aVoid -> {
-//                            if (onSuccess != null) {
-//                                onSuccess.run();
-//                            }
-//                        })
-//                        .addOnFailureListener(e -> {
-//                            // If update fails, try to set the document
-//                            docRef.set(new HashMap<String, Object>() {{
-//                                        put("currentOrders", currentOrdersHolder[0]);
-//                                    }}, SetOptions.merge())
-//                                    .addOnSuccessListener(aVoid -> {
-//                                        if (onSuccess != null) {
-//                                            onSuccess.run();
-//                                        }
-//                                    })
-//                                    .addOnFailureListener(e2 -> {
-//                                        if (onFailure != null) {
-//                                            onFailure.run();
-//                                        }
-//                                    });
-//                        });
-//            }).addOnFailureListener(e -> {
-//                if (onFailure != null) {
-//                    onFailure.run();
-//                }
-//            });
-//        }
-//    }
+    public void addToDatabase(String userEmail, Runnable onSuccess, Runnable onFailure) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        ArrayList<Item> currentCart = cart.getValue();
 
+        if (currentCart != null) {
+            // Create a list to store item IDs
+            ArrayList<String> itemIds = new ArrayList<>();
+
+            for (Item item : currentCart) {
+                itemIds.add(item.itemId); // Add itemId to the list
+            }
+
+            // Create the path to the document
+            DocumentReference docRef = db.collection("Stores").document("Prata-Boy");
+
+            // Use a final array to hold currentOrders to make it effectively final
+            final List<Map<String, Object>>[] currentOrdersHolder = new List[1];
+
+            docRef.get().addOnSuccessListener(documentSnapshot -> {
+                List<Map<String, Object>> currentOrders = new ArrayList<>();
+                int largestOrderId = 0;
+
+                if (documentSnapshot.exists()) {
+                    currentOrders = (List<Map<String, Object>>) documentSnapshot.get("currentOrders");
+
+                    if (currentOrders == null) {
+                        currentOrders = new ArrayList<>();
+                    } else {
+                        // Find the largest order ID
+                        for (Map<String, Object> order : currentOrders) {
+                            for (Object value : order.values()) {
+                                if (value instanceof Map) {
+                                    Map<String, Object> orderDetails = (Map<String, Object>) value;
+                                    if (orderDetails.containsKey("orderId")) {
+                                        try {
+                                            int orderId = Integer.parseInt(orderDetails.get("orderId").toString());
+                                            if (orderId > largestOrderId) {
+                                                largestOrderId = orderId;
+                                            }
+                                        } catch (NumberFormatException e) {
+                                            // Ignore if not a number
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Generate new order ID
+                int newOrderId = largestOrderId + 1;
+
+                // Add a new map for the userEmail with the items and orderId
+                Map<String, Object> newOrder = new HashMap<>();
+                newOrder.put(userEmail, new HashMap<String, Object>() {{
+                    put("orderId", newOrderId);
+                    put("items", itemIds);
+                }});
+                currentOrders.add(newOrder);
+
+                // Store the modified currentOrders in the final array holder
+                currentOrdersHolder[0] = currentOrders;
+
+                // Update the document with the modified currentOrders array
+                docRef.update("currentOrders", currentOrdersHolder[0])
+                        .addOnSuccessListener(aVoid -> {
+                            if (onSuccess != null) {
+                                onSuccess.run();
+                            }
+                        })
+                        .addOnFailureListener(e -> {
+                            // If update fails, try to set the document
+                            docRef.set(new HashMap<String, Object>() {{
+                                        put("currentOrders", currentOrdersHolder[0]);
+                                    }}, SetOptions.merge())
+                                    .addOnSuccessListener(aVoid -> {
+                                        if (onSuccess != null) {
+                                            onSuccess.run();
+                                        }
+                                    })
+                                    .addOnFailureListener(e2 -> {
+                                        if (onFailure != null) {
+                                            onFailure.run();
+                                        }
+                                    });
+                        });
+            }).addOnFailureListener(e -> {
+                if (onFailure != null) {
+                    onFailure.run();
+                }
+            });
+        }
+    }
+/*
     public void addToDatabase(String userEmail, Runnable onSuccess, Runnable onFailure) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         ArrayList<Item> currentCart = cart.getValue();
@@ -217,7 +217,7 @@ public class CartViewModel extends ViewModel {
                     .addOnFailureListener(e -> onFailure.run());
         }
     }
-
+*/
     public void TestCart() {
         ArrayList<Item> startcart = new ArrayList<>();
         cart.setValue(startcart);
