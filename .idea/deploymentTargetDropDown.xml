@@ -5,6 +5,12 @@
       <entry key="MainActivity2">
         <State />
       </entry>
+      <entry key="MapActivity">
+        <State />
+      </entry>
+      <entry key="app">
+        <State />
+      </entry>
     </value>
   </component>
 </project>

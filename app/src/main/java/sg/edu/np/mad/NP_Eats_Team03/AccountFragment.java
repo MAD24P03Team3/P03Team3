@@ -95,7 +95,8 @@ public class AccountFragment extends Fragment {
         // Clear the email from SharedPreferences
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove(KEY_NAME);
+        //editor.remove(KEY_NAME);
+        //Removing because fails with biometrics
         editor.apply();
 
         // Sign out from FirebaseAuth
@@ -119,7 +120,6 @@ public class AccountFragment extends Fragment {
 
                     if(ds.exists()){
                         Object object = ds.get("Likes");
-                        Log.d("Object",object.toString());
                         ArrayList<HashMap<String,Object>> itemliked = (ArrayList<HashMap<String,Object>>) ds.get("Likes");
                         if(itemliked != null){
                             for (HashMap<String,Object> items : itemliked){
