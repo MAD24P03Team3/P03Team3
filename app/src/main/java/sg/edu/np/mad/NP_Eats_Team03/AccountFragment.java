@@ -95,7 +95,8 @@ public class AccountFragment extends Fragment {
         // Clear the email from SharedPreferences
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove(KEY_NAME);
+        //editor.remove(KEY_NAME);
+        //Removing because fails with biometrics
         editor.apply();
 
         // Sign out from FirebaseAuth
